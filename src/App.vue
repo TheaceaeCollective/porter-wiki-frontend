@@ -52,7 +52,7 @@ onMounted(() => {
 	// 	let kofiWidgetScript = document.createElement("script");
 	// 	kofiWidgetScript.onload = () => {
 	// 		resolve(() => {
-	// 			kofiWidgetOverlay.draw('camelliacommunity', {
+	// 			kofiWidgetOverlay.draw('theaceaecollective', {
 	// 				'type': 'floating-chat',
 	// 				'floating-chat.donateButton.text': 'Support us!',
 	// 				'floating-chat.donateButton.background-color': '#323842',
@@ -69,7 +69,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => { window.removeEventListener("keydown", handleKeyDown); });
 
-// kofiWidgetOverlay.draw('camelliacommunity', {
+// kofiWidgetOverlay.draw('theaceaecollective', {
 // 	'type': 'floating-chat',
 // 	'floating-chat.donateButton.text': 'Support us!',
 // 	'floating-chat.donateButton.background-color': '#323842',

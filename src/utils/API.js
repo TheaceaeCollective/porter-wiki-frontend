@@ -125,7 +125,8 @@ export default class API {
 				if (data.status == 404) {
 					this.user.attemptToken = 0; // reset to 0.
 
-					Toast.showToast("Failed to login as you are not in the server!\nClick this toast to open the Discord server invite (in a new tab)!", { type: "error", onClick: () => { window.open("https://discord.gg/camellia", "_blank") } })
+					// i dont like this. we need to seriously get rid of this - john
+					Toast.showToast("Failed to login as you are not in the server!\nClick this toast to open the Discord server invite (in a new tab)!", { type: "error", onClick: () => { window.open("https://discord.gg", "_blank") } })
 					this.performLogout(true);
 				} else {
 					let isDueToBadToken = (data.status == 401);

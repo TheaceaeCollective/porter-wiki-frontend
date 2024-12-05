@@ -220,7 +220,7 @@ onMounted(() => {
 					</span>
 				</p>
 				<!-- basic redirection for editing articles. will be replaced once the editor is live -->
-				<a :href='"https://github.com/CamelliaCommunity/wiki-articles/edit/main" + `${route.path}` + "/en.md"'
+				<a :href='"https://github.com/theaceaecollective/porter-wiki-articles/edit/main" + `${route.path}` + "/en.md"'
 					target="_blank" class="text-accent cursor-pointer readMoreHover">Edit this
 					page!</a>
 			</div>

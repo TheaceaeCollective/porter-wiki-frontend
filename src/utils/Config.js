@@ -1,14 +1,15 @@
 export default class Config {
-    static siteName = "Camellia Wiki";
+    static siteName = "Porter Wiki";
 
     // Backend
-    static backendURL = "https://backend.camellia.wiki";
+    static backendURL = "https://backend.porter.wiki";
     // static backendURL = "http://localhost:1984";
 
     // CDN
-    static cdnURL = "https://cdn.camellia.wiki";
+    static cdnURL = "https://cdn.porter.wiki";
 
     // Auth
+    // TODO: REPLACE THIS
     static Discord = {
         ClientID: "1290974200126771263",
     };

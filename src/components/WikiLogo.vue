@@ -8,9 +8,9 @@ const props = defineProps({
 </script>
 
 <template>
-    <div :class="'wiki-logo size-' + size ">
-        <img src="@/assets/images/icon.png" alt="Camellia Wiki Icon" />
-        <h1 class="font-light">Camellia • Wiki</h1>
+    <div :class="'wiki-logo size-' + size">
+        <img src="@/assets/images/icon.png" alt="Porter Wiki Icon" />
+        <h1 class="font-light">Porter • Wiki</h1>
     </div>
 </template>
 
@@ -21,7 +21,7 @@ const props = defineProps({
     justify-content: center;
     gap: 12px;
     user-select: none;
-    -webkit-user-select: none; 
+    -webkit-user-select: none;
 
     &.size-small {
         img {

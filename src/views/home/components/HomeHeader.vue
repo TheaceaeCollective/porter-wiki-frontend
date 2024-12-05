@@ -5,7 +5,7 @@ import WikiLogo from '@/components/WikiLogo.vue';
 <template>
     <div class="home-header">
         <WikiLogo />
-        <h4 class="text-center">Where most of Camellia’s work is documented. Including the fandom.</h4>
+        <h4 class="text-center">Where most of Porter Robinson's work is documented. Including the fandom.</h4>
     </div>
 </template>
 
@@ -18,7 +18,7 @@ import WikiLogo from '@/components/WikiLogo.vue';
     align-items: center;
     justify-content: center;
     gap: 24px;
-    
+
     background-color: var(--background-3);
     background: url('/src/assets/images/home-header.png') no-repeat center center / cover;
     border-radius: 10px;

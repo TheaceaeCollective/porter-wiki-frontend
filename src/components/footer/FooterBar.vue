@@ -8,9 +8,9 @@ import FooterLink from "./FooterLink.vue";
 			<div class="w-full h-4 bg-background-2 rounded-b-2xl"></div>
 		</div>
 		<div class="w-full h-16 relative bg-background-1 flex items-center">
-			<a href="https://github.com/CamelliaCommunity" target="_blank"
+			<a href="https://github.com/theaceaecollective" target="_blank"
 				class="absolute left-1 max-md:bottom-16 flex items-center hover:bg-background-3 p-1 rounded transition">
-				<img src="https://raw.githubusercontent.com/CamelliaCommunity/.github/refs/heads/main/maintainedby.png"
+				<img src="https://raw.githubusercontent.com/theaceaecollective/.github/refs/heads/main/maintainedby.png"
 					alt="Big Theaceae Logo" class="md:h-12 h-9" />
 			</a>
 			<div class="mx-auto text-center">
@@ -19,15 +19,15 @@ import FooterLink from "./FooterLink.vue";
 					<span class="relative bottom-0.5 text-xl">&bull;</span>
 					<FooterLink url="/legal/privacy" text="Privacy" />
 					<span class="relative bottom-0.5 text-xl">&bull;</span>
-					<FooterLink url="https://github.com/CamelliaCommunity/wiki-frontend" text="GitHub" />
+					<FooterLink url="https://github.com/theaceaecollective/porter-wiki-frontend" text="GitHub" />
 					<span class="relative bottom-0.5 text-xl">&bull;</span>
-					<FooterLink url="https://discord.gg/camellia" text="Discord" />
+					<FooterLink url="https://discord.gg/nUeRyRtDYC" text="Discord" />
 				</p>
 				<p class="text-lg">
 					Created by
-					<FooterLink url="https://github.com/CamelliaCommunity/wiki-frontend" text="pptek" />
+					<FooterLink url="https://github.com/theaceaecollective/porter-wiki-frontend" text="pptek" />
 					with the contribution of
-					<FooterLink url="https://github.com/CamelliaCommunity/wiki-frontend/graphs/contributors"
+					<FooterLink url="https://github.com/theaceaecollective/porter-wiki-frontend/graphs/contributors"
 						text="others" />.
 				</p>
 			</div>

@@ -74,7 +74,7 @@ Utils.setTitle(react.meta.title);
 				If you would like to create an article within this location you must
 				<a href="" class="text-accent readMoreHover">link your GitHub account.</a>
 				Alternatively, you may request for a new article in
-				<a href="https://discord.gg/camellia" class="text-accent readMoreHover">Discord</a>
+				<a href="https://discord.gg/nUeRyRtDYC" class="text-accent readMoreHover">Discord</a>
 				or head
 				<RouterLink to="/" class="text-accent readMoreHover">Home</RouterLink>.
 			</BlockquoteNote>

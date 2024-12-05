@@ -14,19 +14,19 @@ export default class MetaTagsController {
 	static knownMetas = reactive({
 		"/": {
 			...this.defaultMeta,
-			title: "Homepage | Camellia Wiki",
+			title: "Homepage | Porter Wiki",
 			meta: this.mergeTwoMetas(this.defaultMeta.meta, [
-				{ property: "og:title", content: "Homepage | Camellia Wiki" },
-				{ name: "twitter:title", content: "Homepage | Camellia Wiki" },
+				{ property: "og:title", content: "Homepage | Porter Wiki" },
+				{ name: "twitter:title", content: "Homepage | Porter Wiki" },
 				{ name: "author", content: "Theaceae Collective" }
 			])
 		},
 		"/news": {
 			...this.defaultMeta,
-			title: "News | Camellia Wiki",
+			title: "News | Porter Wiki",
 			meta: this.mergeTwoMetas(this.defaultMeta.meta, [
-				{ property: "og:title", content: "News | Camellia Wiki" },
-				{ name: "twitter:title", content: "News | Camellia Wiki" },
+				{ property: "og:title", content: "News | Porter Wiki" },
+				{ name: "twitter:title", content: "News | Porter Wiki" },
 				{ name: "author", content: "Theaceae Collective" }
 			])
 		},
@@ -34,14 +34,14 @@ export default class MetaTagsController {
 	});
 
 	static createKeywords(keywordsPre) {
-		let keywords = [ "camellia", "wiki", "community", "producer", "fandom", "hardcore", "music", "tano*c", "japanese", "rhythm game", "gaming", "osu!", "discography", "albums", "songs", "fan community" ];
+		let keywords = [ "Porter", "wiki", "community", "producer", "fandom", "hardcore", "music", "tano*c", "japanese", "rhythm game", "gaming", "osu!", "discography", "albums", "songs", "fan community" ];
 		if (!keywordsPre) keywordsPre = [];
 		return [...new Set([ ...keywordsPre, ...keywords ])];
 	};
 
 	static createDefaultMeta() {
-		const pageTitle = "Camellia Wiki";
-		const pageDesc = "The Camellia Wiki includes the focus on Camellia, his works, and rhythm games he has associated with. We encourage you to take a look!";
+		const pageTitle = "Porter Wiki";
+		const pageDesc = "The Porter Robinson Wiki includes the focus on Porter Robinson, his works, and rhythm games he has associated with. We encourage you to take a look!";
 		return {
 			title: pageTitle,
 			meta: [
@@ -49,7 +49,7 @@ export default class MetaTagsController {
 				{ property: "og:title", content: pageTitle },
 				{ property: "og:description", content: pageDesc },
 				{ property: "og:type", content: "article" },
-				{ property: "og:site_name", content: "Camellia Wiki" },
+				{ property: "og:site_name", content: "Porter Robinson Wiki" },
 				{ property: "og:image", content: `${Config.cdnURL}/wikiIcon.png` },
 				{ name: "description", content: pageDesc },
 				{ name: "keywords", content: this.createKeywords().join(", ") },

@@ -110,7 +110,7 @@ API.get("/articles?type=news&count=1984").then((res) => {
 				<div class="flex flex-col md:flex-row justify-between items-center px-5">
 					<h3 class="text-2xl font-semibold">The Wiki Times</h3>
 					<p class="font-extralight">The only Real News Source</p>
-					<img :src="WikiLogo" alt="Camellia Wiki Icon" class="w-8" />
+					<img :src="WikiLogo" alt="Porter Wiki Icon" class="w-8" />
 				</div>
 			</OverlapGrid>
 		</div>
@@ -132,7 +132,7 @@ API.get("/articles?type=news&count=1984").then((res) => {
 				<BlockquoteNote class="border-x-0 rounded-lg font-semibold text-3xl"
 					title="Send Us Money Or The Wiki Hoster Is Getting It.">
 					<div class="mb-2">On a serious note, the wiki hoster needs money.</div>
-					<a href="https://ko-fi.com/camelliacommunity" target="_blank"
+					<a href="https://ko-fi.com/theaceaecollective" target="_blank"
 						class="inline-block p-2 hover:bg-background-3 rounded-xl transition">
 						<img :src="Kofi" class="w-60 m-auto">
 					</a>
