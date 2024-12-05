@@ -37,5 +37,3 @@ To begin development and testing locally, please follow these steps in your term
 - [Vite Official Docs](https://vitejs.dev/guide/)
 - [TailwindCSS Official Docs](https://tailwindcss.com/docs/)
 - [#github-feed](https://discord.com/channels/1278698834704338995/1314172164265476167) channel in the [Discord](https://discord.gg/nUeRyRtDYC)
-
-test again
