@@ -14,19 +14,19 @@ export default class MetaTagsController {
 	static knownMetas = reactive({
 		"/": {
 			...this.defaultMeta,
-			title: "Homepage | Porter Wiki",
+			title: "Homepage | Porter Robinsin Wiki",
 			meta: this.mergeTwoMetas(this.defaultMeta.meta, [
-				{ property: "og:title", content: "Homepage | Porter Wiki" },
-				{ name: "twitter:title", content: "Homepage | Porter Wiki" },
+				{ property: "og:title", content: "Homepage | Porter Robinsin Wiki" },
+				{ name: "twitter:title", content: "Homepage | Porter Robinsin Wiki" },
 				{ name: "author", content: "Theaceae Collective" }
 			])
 		},
 		"/news": {
 			...this.defaultMeta,
-			title: "News | Porter Wiki",
+			title: "News | Porter Robinsin Wiki",
 			meta: this.mergeTwoMetas(this.defaultMeta.meta, [
-				{ property: "og:title", content: "News | Porter Wiki" },
-				{ name: "twitter:title", content: "News | Porter Wiki" },
+				{ property: "og:title", content: "News | Porter Robinsin Wiki" },
+				{ name: "twitter:title", content: "News | Porter Robinsin Wiki" },
 				{ name: "author", content: "Theaceae Collective" }
 			])
 		},
@@ -34,13 +34,13 @@ export default class MetaTagsController {
 	});
 
 	static createKeywords(keywordsPre) {
-		let keywords = [ "Porter", "wiki", "community", "producer", "fandom", "hardcore", "music", "tano*c", "japanese", "rhythm game", "gaming", "osu!", "discography", "albums", "songs", "fan community" ];
+		let keywords = [ "Porter", "wiki", "community", "producer", "fandom", "hardcore", "music", "rhythm game", "gaming", "osu!", "discography", "albums", "songs", "fan community" ];
 		if (!keywordsPre) keywordsPre = [];
 		return [...new Set([ ...keywordsPre, ...keywords ])];
 	};
 
 	static createDefaultMeta() {
-		const pageTitle = "Porter Wiki";
+		const pageTitle = "Porter Robinsin Wiki";
 		const pageDesc = "The Porter Robinson Wiki includes the focus on Porter Robinson, his works, and rhythm games he has associated with. We encourage you to take a look!";
 		return {
 			title: pageTitle,

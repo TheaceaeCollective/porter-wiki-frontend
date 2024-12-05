@@ -110,7 +110,7 @@ API.get("/articles?type=news&count=1984").then((res) => {
 				<div class="flex flex-col md:flex-row justify-between items-center px-5">
 					<h3 class="text-2xl font-semibold">The Wiki Times</h3>
 					<p class="font-extralight">The only Real News Source</p>
-					<img :src="WikiLogo" alt="Porter Wiki Icon" class="w-8" />
+					<img :src="WikiLogo" alt="Porter Robinsin Wiki Icon" class="w-8" />
 				</div>
 			</OverlapGrid>
 		</div>

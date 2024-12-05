@@ -1,5 +1,5 @@
 export default class Config {
-    static siteName = "Porter Wiki";
+    static siteName = "Porter Robinsin Wiki";
 
     // Backend
     static backendURL = "https://backend.porter.wiki";
