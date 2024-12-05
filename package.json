@@ -1,0 +1,40 @@
+{
+  "name": "wiki-frontend",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --mode development",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "vite build --ssrManifest --outDir dist/client",
+    "build:server": "vite build --ssr src/entry-server.js --outDir dist/server",
+    "serve:prod": "cross-env IS_PROD=true node server",
+    "serve": "cross-env IS_PROD=false node server",
+    "preview": "vite preview --mode preview"
+  },
+  "dependencies": {
+    "@phosphor-icons/vue": "^2.2.1",
+    "@unhead/ssr": "^1.11.7",
+    "@unhead/vue": "^1.11.7",
+    "autoprefixer": "^10.4.19",
+    "compression": "^1.7.4",
+    "express": "^4.21.0",
+    "marked": "^12.0.1",
+    "marked-footnote": "^1.2.2",
+    "overlayscrollbars": "^2.10.0",
+    "overlayscrollbars-vue": "^0.5.9",
+    "postcss": "^8.4.38",
+    "sass": "^1.74.1",
+    "sirv": "^2.0.4",
+    "tailwindcss": "^3.4.3",
+    "vue": "^3.4.21",
+    "vue-cookies": "^1.8.4",
+    "vue-router": "^4.3.0",
+    "vue3-toastify": "^0.2.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.4",
+    "cross-env": "^7.0.3",
+    "vite": "^5.1.6"
+  }
+}

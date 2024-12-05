@@ -1,0 +1,171 @@
+@import "./variables.scss", "./font.scss";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Author", sans-serif;
+	font-weight: 400;
+}
+
+/* Scrollbar - Default - Non Vue */
+/* This is to fix horizontal scrollbars. Will get back to later (or someone can take a shot) */
+/* Common styles for Chrome, Safari, Edge */
+::-webkit-scrollbar {
+	width: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: #bbbbbb;
+}
+
+/* Firefox */
+* {
+	scrollbar-width: none;
+	scrollbar-color: var(--colorPrimary) transparent;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	height: 100vh;
+
+	background-color: var(--background-3);
+	color: white;
+
+	#app {
+		height: inherit;
+	}
+}
+
+/* Toast */
+.Toastify__toast-container .Toastify__toast {
+	background: var(--pure-black);
+	border-radius: 8px !important;
+}
+
+.Toastify__progress-bar {
+	height: 4px !important;
+	background: gray !important;
+}
+
+.Toastify__toast--info,
+.Toastify__toast--success,
+.Toastify__toast--warning,
+.Toastify__toast--error {
+	border-left: var(--pure-black) 4px solid;
+}
+
+.Toastify__toast--info {
+	border-color: var(--userfeedback-info) !important;
+}
+.Toastify__progress-bar--info {
+	background: var(--userfeedback-info) !important;
+}
+.Toastify__toast--success {
+	border-color: var(--userfeedback-success) !important;
+}
+.Toastify__progress-bar--success {
+	background: var(--userfeedback-success) !important;
+}
+.Toastify__toast--warning {
+	border-color: var(--userfeedback-warning) !important;
+}
+.Toastify__progress-bar--warning {
+	background: var(--userfeedback-warning) !important;
+}
+.Toastify__toast--error {
+	border-color: var(--userfeedback-error) !important;
+}
+.Toastify__progress-bar--error {
+	background: var(--userfeedback-error) !important;
+}
+
+/* Band-Aids */
+.readMoreHover:hover {
+	// because the homepage uses all sorts of neat things that need this class
+	text-decoration: underline;
+	color: #f68384;
+}
+
+
+/* Spinning Animation */
+@keyframes spin-spin-spin {
+	from {
+		transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+		-o-transform: rotate(360deg);
+		-ms-transform: rotate(360deg);
+		-moz-transform: rotate(360deg);
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@-webkit-keyframes spin-spin-spin {
+	from {
+		transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+.spin-spin-spin {
+	-webkit-animation: spin-spin-spin 1s linear infinite;
+	-moz-animation: spin-spin-spin 1s linear infinite;
+	-ms-animation: spin-spin-spin 1s linear infinite;
+	-o-animation: spin-spin-spin 1s linear infinite;
+	animation: spin-spin-spin 1s linear infinite;
+}
+
+.spin-faster {
+	-webkit-animation-duration: .5s;
+	-moz-animation-duration: .5s;
+	-ms-animation-duration: .5s;
+	-o-animation-duration: .5s;
+	animation-duration: .5s;
+}
+
+.spin-slower {
+	-webkit-animation-duration: 2s;
+	-moz-animation-duration: 2s;
+	-ms-animation-duration: 2s;
+	-o-animation-duration: 2s;
+	animation-duration: 2s;
+}
+
+/* Highlight Comment Animation */
+@keyframes highlighted {
+	0%,
+	50% {
+		background: var(--background-3);
+	}
+	100% {
+		background: transparent;
+	}
+}
+
+.highlighted-comment {
+	-webkit-animation: highlighted 2s ease-out;
+	-moz-animation: highlighted 2s ease-out;
+	-ms-animation: highlighted 2s ease-out;
+	-o-animation: highlighted 2s ease-out;
+	animation: highlighted 2s ease-out;
+	scroll-margin-top: var(--nav-height);
+}
