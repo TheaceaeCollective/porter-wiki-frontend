@@ -3,12 +3,13 @@ export default {
     content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
     theme: {
         colors: {
+            //TODO: NEW COLORS
 			'background': {
                 '1': '#281824',
-                '2': '#331D2D',
-                '3': '#45283D',
+                '2': 'white',
+                '3': '#ec77ac',
 				'4': '#58304D',
-                'header-buttons': '#56304C'
+                'header-buttons': '#ec77ac'
             },
             'accent': '#F876D3',
 			'accent-soft': '#F68384',

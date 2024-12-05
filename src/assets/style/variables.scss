@@ -1,15 +1,21 @@
 :root {
-    --background-1: #281824;
-    --background-2: #331D2D; // content background
-    --background-3: #45283D; // body background and background of cards
-	--background-4: #58304D;
-    --background-header-buttons: #56304C; // background of header buttons^
-	--background-nav-open: linear-gradient(90deg, #E442B7, #EF656E); // background of nav button when nav is opened^
+    //TODO: NEW COLORS
 
-    --accent-1: #F876D3;
+    --background-1: #281824;
+    --background-2: white; // content background
+    --background-3: #45283d; // body background and background of cards
+    --background-4: #58304d;
+    --background-header-buttons: #56304c; // background of header buttons^
+    --background-nav-open: linear-gradient(
+        90deg,
+        #e442b7,
+        #ef656e
+    ); // background of nav button when nav is opened^
+
+    --accent-1: #f876d3;
     --accent-1-opaque: rgba(248, 118, 211, 0.75);
-	--accent-1-soft: #F68384;
-    
+    --accent-1-soft: #f68384;
+
     --content-width: 1080px;
     --nav-height: 65px;
 
@@ -20,11 +26,11 @@
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
 
-	--pure-black: #000;
-	--pure-white: #FFF;
+    --pure-black: #000;
+    --pure-white: #fff;
 
-	--userfeedback-info: #0044FF;
-	--userfeedback-success: #00FF00;
-	--userfeedback-warning: #FFDD00;
-	--userfeedback-error: #DD0000;
+    --userfeedback-info: #0044ff;
+    --userfeedback-success: #00ff00;
+    --userfeedback-warning: #ffdd00;
+    --userfeedback-error: #dd0000;
 }
