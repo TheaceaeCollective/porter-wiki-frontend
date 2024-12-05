@@ -6,10 +6,10 @@
 
 ### This is the frontend code for the Porter Robinson Wiki
 
-### [Alpha](https://alpha.porterrobinson.wiki) | Live
+### [Alpha](https://alpha.potaro.wiki) | Live
 
 > [!NOTE]
-> Alpha will move to Beta (beta.porterrobinson.wiki) once core features are implemented. We will go live to porterrobinson.wiki once beta testing passes quality assurance.
+> Alpha will move to Beta (beta.potaro.wiki) once core features are implemented. We will go live to potaro.wiki once beta testing passes quality assurance.
 
 ## Articles
 
