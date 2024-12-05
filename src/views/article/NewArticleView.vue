@@ -2,7 +2,7 @@
 import { useRoute, RouterLink } from 'vue-router';
 import { reactive } from 'vue';
 import { PhCaretRight } from '@phosphor-icons/vue';
-import CameCry from "@/assets/images/CameCry.webp";
+import PorterCry from "@/assets/images/PorterCry.gif";
 import Utils from '@/utils/Utils';
 import BlockquoteNote from '@/components/BlockquoteNote.vue';
 
@@ -55,7 +55,7 @@ Utils.setTitle(react.meta.title);
 			<h3 class="text-2xl font-semibold">{{ react.meta.title }}</h3>
 		</div>
 		<div v-if="error != 'NotFound'" class="w-full flex flex-col gap-4 items-center">
-			<img :src="CameCry" class="w-24"></img>
+			<img :src="PorterCry" class="w-24"></img>
 			<BlockquoteNote class="w-full" type="caution" title="There was an error loading the requested article!">
 				Uh-oh. Something went wrong loading the article. Don't panic!
 				Let's try
@@ -64,7 +64,7 @@ Utils.setTitle(react.meta.title);
 			</BlockquoteNote>
 		</div>
 		<div v-else class="w-full flex flex-col gap-4 items-center">
-			<img :src="CameCry" class="w-24"></img>
+			<img :src="PorterCry" class="w-24"></img>
 			<BlockquoteNote class="w-full" type="caution" title="The requested article does not exist!">
 				The Wiki does not have an article with this exact name. Please search for
 				<a href="" class="text-accent readMoreHover">{{ react.meta.title }}</a>

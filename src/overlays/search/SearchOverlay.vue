@@ -11,7 +11,7 @@ import SearchResult from '@/components/search/SearchResult.vue';
 import BlockquoteNote from '@/components/BlockquoteNote.vue';
 import GrayLine from '@/components/GrayLine.vue';
 
-import CameCry from "@/assets/images/CameCry.webp";
+import PorterCry from "@/assets/images/PorterCry.gif";
 
 const route = useRoute();
 
@@ -208,7 +208,7 @@ const stupidGroupSortClassFix = (results, num) => {
 					</div>
 					<div v-if="react.error > 404" class="flex flex-col gap-4">
 						<div class="w-full flex flex-col gap-4 items-center">
-							<img :src="CameCry" class="w-24"></img>
+							<img :src="PorterCry" class="w-24"></img>
 							<BlockquoteNote class="w-full" type="caution"
 								title="There was an error processing your search request!">
 								Uh-oh. Something went wrong while searching. Don't panic!

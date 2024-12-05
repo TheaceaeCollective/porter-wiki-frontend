@@ -34,7 +34,7 @@ window.addEventListener("message", (event) => {
 
 <template>
 	<div class="flex flex-col items-center justify-center mt-32 p-8 rounded-2xl gap-3 bg-background-3">
-		<!-- <img :src="CameCry" class="h-20 w-20" /> -->
+		<!-- <img :src="PorterCry" class="h-20 w-20" /> -->
 		<div class="flex flex-col w-fit items-center leading-tight">
 			<h1 class="text-3xl font-extrabold">OAUTH {{ token != "" ? "COMPLETE " : "FAILED" }}</h1>
 			<p class="text-2xl">{{ token != "" ? "One moment, please!" : "Please try again." }}</p>
