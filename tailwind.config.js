@@ -6,10 +6,10 @@ export default {
             //TODO: NEW COLORS
 			'background': {
                 '1': '#281824',
-                '2': 'white',
-                '3': '#ec77ac',
+                '2': '#331D2D',
+                '3': '#45283D',
 				'4': '#58304D',
-                'header-buttons': '#ec77ac'
+                'header-buttons': '#56304C'
             },
             'accent': '#F876D3',
 			'accent-soft': '#F68384',
