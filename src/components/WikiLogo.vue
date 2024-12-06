@@ -9,7 +9,7 @@ const props = defineProps({
 
 <template>
     <div :class="'wiki-logo size-' + size">
-        <img src="@/assets/images/icon.png" alt="Porter Robinsin Wiki Icon" />
+        <img src="@/assets/images/icon.png" alt="Porter Robinson Wiki Icon" />
         <h1 class="font-light">potaro • wiki</h1>
     </div>
 </template>

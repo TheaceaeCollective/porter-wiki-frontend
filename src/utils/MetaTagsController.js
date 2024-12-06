@@ -14,19 +14,19 @@ export default class MetaTagsController {
 	static knownMetas = reactive({
 		"/": {
 			...this.defaultMeta,
-			title: "Homepage | Porter Robinsin Wiki",
+			title: "Homepage | Porter Robinson Wiki",
 			meta: this.mergeTwoMetas(this.defaultMeta.meta, [
-				{ property: "og:title", content: "Homepage | Porter Robinsin Wiki" },
-				{ name: "twitter:title", content: "Homepage | Porter Robinsin Wiki" },
+				{ property: "og:title", content: "Homepage | Porter Robinson Wiki" },
+				{ name: "twitter:title", content: "Homepage | Porter Robinson Wiki" },
 				{ name: "author", content: "Theaceae Collective" }
 			])
 		},
 		"/news": {
 			...this.defaultMeta,
-			title: "News | Porter Robinsin Wiki",
+			title: "News | Porter Robinson Wiki",
 			meta: this.mergeTwoMetas(this.defaultMeta.meta, [
-				{ property: "og:title", content: "News | Porter Robinsin Wiki" },
-				{ name: "twitter:title", content: "News | Porter Robinsin Wiki" },
+				{ property: "og:title", content: "News | Porter Robinson Wiki" },
+				{ name: "twitter:title", content: "News | Porter Robinson Wiki" },
 				{ name: "author", content: "Theaceae Collective" }
 			])
 		},
@@ -40,7 +40,7 @@ export default class MetaTagsController {
 	};
 
 	static createDefaultMeta() {
-		const pageTitle = "Porter Robinsin Wiki";
+		const pageTitle = "Porter Robinson Wiki";
 		const pageDesc = "The Porter Robinson Wiki includes the focus on Porter Robinson, his works, and rhythm games he has associated with. We encourage you to take a look!";
 		return {
 			title: pageTitle,

@@ -81,7 +81,7 @@ app.use("*", async (req, res) => {
 		let errorCss = `body { background-color: #45283d; color: #fff; font-family: Arial, Helvetica, sans-serif; } a { color: #f06c9b; text-decoration: none; } a:hover { color: #f9c4d7; text-decoration: underline; } #error { border-left: 2px solid #dd0000; background-color: #281824; padding: 12px 16px; font-size: 18px; text-align: center; line-height: 27px; }`;
 		let errorHtml = `<div id="error">Uh-oh. A fatal error was encountered while loading Porter Robinson Wiki.<br><br>Please report to the developers on our <a href="https://discord.gg/nUeRyRtDYC">Discord</a>.</div>`;
 		res.status(500).end(
-			`<!DOCTYPE html><html><head><style>${errorCss}</style><title>Error | Porter Robinsin Wiki</title></head><body>${errorHtml}</body></html>`
+			`<!DOCTYPE html><html><head><style>${errorCss}</style><title>Error | Porter Robinson Wiki</title></head><body>${errorHtml}</body></html>`
 		);
 	}
 })

@@ -1,12 +1,12 @@
 export default class Config {
-    static siteName = "Porter Robinsin Wiki";
+    static siteName = "Porter Robinson Wiki";
 
     // Backend
-    static backendURL = "https://backend.porter.wiki";
+    static backendURL = "https://backend.potaro.wiki";
     // static backendURL = "http://localhost:1984";
 
     // CDN
-    static cdnURL = "https://cdn.porter.wiki";
+    static cdnURL = "https://cdn.potaro.wiki";
 
     // Auth
     // TODO: REPLACE THIS
