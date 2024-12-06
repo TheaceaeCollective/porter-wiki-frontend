@@ -193,7 +193,7 @@ const stupidGroupSortClassFix = (results, num) => {
 								</span>
 								<span :class="stupidGroupSortClassFix(react.found.communityPost, 4)"
 									@click="react.found.communityPost.length > 0 ? searchSorter(1, 4) : () => { }">
-									Community Post - {{ react.found.communityPost.length }}
+									Blog Post - {{ react.found.communityPost.length }}
 								</span>
 							</div>
 						</div>
