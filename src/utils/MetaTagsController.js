@@ -41,7 +41,7 @@ export default class MetaTagsController {
 
 	static createDefaultMeta() {
 		const pageTitle = "Porter Robinson Wiki";
-		const pageDesc = "The Porter Robinson Wiki includes the focus on Porter Robinson, his works.";
+		const pageDesc = "The Porter Robinson Wiki includes information about... Porter Robinson, and his community!";
 		return {
 			title: pageTitle,
 			meta: [
