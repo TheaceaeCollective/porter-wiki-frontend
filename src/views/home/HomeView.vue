@@ -147,7 +147,7 @@ onMounted(() => {
 			</div>
 			<div class="w-full flex flex-col lg:w-64 gap-4">
 				<SidebarPosts title="News Posts" :posts="react.news" url="/news" use-images />
-				<SidebarPosts title="Blog Posts" :posts="react.community" url="/community/blog" />
+				<SidebarPosts title="Blog Posts" :posts="react.community" url="/blog" />
 			</div>
 		</div>
 	</div>
