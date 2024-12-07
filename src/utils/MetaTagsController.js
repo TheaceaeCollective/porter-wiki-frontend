@@ -34,7 +34,7 @@ export default class MetaTagsController {
 	});
 
 	static createKeywords(keywordsPre) {
-		let keywords = [ "Porter", "wiki", "community", "producer", "fandom", "hardcore", "music", "rhythm game", "gaming", "osu!", "discography", "albums", "songs", "fan community" ];
+		let keywords = [ "porter", "wiki", "community", "producer", "fandom", "hardcore", "music", "rhythm game", "gaming", "osu!", "discography", "albums", "songs", "fan community", "virtual self", "potaro" ];
 		if (!keywordsPre) keywordsPre = [];
 		return [...new Set([ ...keywordsPre, ...keywords ])];
 	};
