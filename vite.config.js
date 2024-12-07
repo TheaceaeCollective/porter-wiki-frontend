@@ -38,6 +38,13 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview}) => {
 		}
 	};
 	return {
+		css: {
+			preprocessorOptions: {
+				sass: {
+					api: 'modern-compiler' // or "modern"
+				}
+			}
+		},
 		build,
 		plugins,
 		resolve,
