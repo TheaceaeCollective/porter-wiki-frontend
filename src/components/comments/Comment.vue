@@ -203,9 +203,8 @@ if (comment && comment.content?.length > 0) {
 					<span class="font-bold">{{ comment.author.nick || comment.author.name }}</span>
 					<span class="text-light-gray text-base gap-2">&nbsp;@{{ comment.author.name }}
 						&nbsp;&#8226;&nbsp;
-						<!-- todo: replace STAFF with actual role name -->
 						<span v-if="comment.author.staff" class="rounded py-[2px] px-2 font-medium"
-							:style="{ backgroundColor: comment.author.color }">STAFF</span>
+							:style="{ backgroundColor: comment.author.color }">{{ comment.author.position }}</span>
 						<span v-if="comment.author.staff">&nbsp;&nbsp;&#8226;&nbsp;</span>
 						{{ Formatting.formatDate(comment.time) }}
 						-

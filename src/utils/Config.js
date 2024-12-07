@@ -11,7 +11,7 @@ export default class Config {
     // Auth
     // TODO: REPLACE THIS
     static Discord = {
-        ClientID: "1290974200126771263",
+        ClientID: "1314809946059313192",
     };
     static GitHub = {
         ClientID: "",
