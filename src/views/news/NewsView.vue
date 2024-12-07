@@ -140,7 +140,7 @@ API.get("/articles?type=news&count=1984").then((res) => {
 				<div class="flex w-full flex-col gap-4 px-8">
 					<!-- TODO: This is a placeholder for now, but in the future, we will use the Backend to get more and possibly randomize. -->
 					<BlockquoteNote class="border-x-0 rounded-lg" title="Community Advertisement">
-						<div class='text-3xl font-semibold mb-2'>Follow Zentrie's Twitter. It's Our Therapy.</div>
+						<div class='text-3xl font-semibold mb-2'>Follow Zentrie's Bluesky. It's Our Therapy.</div>
 						<div class="mb-2">As a result of hard times we are linking you Zentrie's Bluesky.</div>
 						<a class="text-lg text-accent readMoreHover" target="_blank"
 							href="https://bsky.app/profile/zentrie101.bsky.social">
