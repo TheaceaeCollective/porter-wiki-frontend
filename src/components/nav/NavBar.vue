@@ -24,14 +24,14 @@ const leftLinkList = [{
 	route: "/",
 	name: "Main Page",
 }, {
-	route: "/community/server/guidelines",
-	name: "Staff Guidelines",
+	route: "",
+	name: "Article Editor",
 }, {
 	route: "/wiki/contributing",
 	name: "How to Contribute",
 }, {
 	route: "/wiki/about",
-	name: "About Page",
+	name: "About Us",
 }];
 
 const rightLinkList = [{
