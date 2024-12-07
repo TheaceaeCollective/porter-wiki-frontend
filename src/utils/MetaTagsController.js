@@ -41,7 +41,7 @@ export default class MetaTagsController {
 
 	static createDefaultMeta() {
 		const pageTitle = "Porter Robinson Wiki";
-		const pageDesc = "The Porter Robinson Wiki includes the focus on Porter Robinson, his works, and rhythm games he has associated with. We encourage you to take a look!";
+		const pageDesc = "The Porter Robinson Wiki includes the focus on Porter Robinson, his works.";
 		return {
 			title: pageTitle,
 			meta: [
