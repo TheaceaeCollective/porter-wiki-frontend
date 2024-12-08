@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="300" alt="wiki logo" src="https://raw.githubusercontent.com/theaceaecollective/.github/refs/heads/main/wikilogo.png">
+  <img width="300" alt="wiki logo" src="https://raw.githubusercontent.com/TheaceaeCollective/porter-wiki-frontend/refs/heads/alpha/src/assets/images/wikilogo.png">
 </p>
 
 # Porter Robinson Wiki (Frontend)
