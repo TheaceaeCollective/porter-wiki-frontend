@@ -5,15 +5,15 @@ export default {
         colors: {
             //TODO: NEW COLORS
 			'background': {
-                '1': '#281824',
-                '2': '#331D2D',
-                '3': '#45283D',
-				'4': '#58304D',
-                'header-buttons': '#56304C'
+                "1": "#37294C",
+                "2": "#403055",
+                "3": "#483561",
+                "4": "#543C74",
+                "header-buttons": "#5D427F"
             },
-            'accent': '#F876D3',
-			'accent-soft': '#F68384',
-			'primary': '#F06C9B',
+            "accent": "#8760D3",
+            "accent-soft": "#8B6F9E",
+            "primary": "#8062B3",
 			'black': '#000',
 			'white': "#FFF",
 			'red': '#FF5555',

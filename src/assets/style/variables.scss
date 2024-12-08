@@ -1,20 +1,20 @@
 :root {
     //TODO: NEW COLORS
 
-    --background-1: #281824;
-    --background-2: #331d2d; // content background
-    --background-3: #45283d; // body background and background of cards
-    --background-4: #58304d;
-    --background-header-buttons: #56304c; // background of header buttons^
+    --background-1: #37294c;
+    --background-2: #403055; // content background
+    --background-3: #483561; // body background and background of cards
+    --background-4: #543c74;
+    --background-header-buttons: #5d427f; // background of header buttons^
     --background-nav-open: linear-gradient(
         90deg,
-        #e442b7,
-        #ef656e
+        #6a4d9b,
+        #805fad
     ); // background of nav button when nav is opened^
 
-    --accent-1: #f876d3;
-    --accent-1-opaque: rgba(248, 118, 211, 0.75);
-    --accent-1-soft: #f68384;
+    --accent-1: #8760d3;
+    --accent-1-opaque: rgba(104, 53, 129, 0.75);
+    --accent-1-soft: #8b6f9e;
 
     --content-width: 1080px;
     --nav-height: 65px;

@@ -4,8 +4,9 @@ import WikiLogo from '@/components/WikiLogo.vue';
 
 <template>
     <div class="home-header">
-        <WikiLogo />
-        <h4 class="text-center">Where most of Porter Robinson's work is documented. Including the fandom.</h4>
+        <WikiLogo class="text-black" />
+        <h4 class="text-center text-black">Where most of Porter Robinson's work is documented. Including the fandom.
+        </h4>
     </div>
 </template>
 

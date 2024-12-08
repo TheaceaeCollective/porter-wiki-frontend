@@ -19,8 +19,9 @@ const props = defineProps({
 </template>
 
 <style>
+/* TODO: make this come from variable file */
 .gradient-line {
-	background: linear-gradient(to right, #E442B7, #EF656E);
+	background: linear-gradient(to right, #833bff, #805FAD);
 
 	&.style-hort {
 		width: 100%;
@@ -31,7 +32,6 @@ const props = defineProps({
 		width: 2px;
 		height: 100%;
 	}
-
 
 	&.overshoot {
 		width: calc(100% + 10px);
