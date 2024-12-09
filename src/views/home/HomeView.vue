@@ -123,11 +123,11 @@ onMounted(() => {
 		<div class="flex flex-col md:flex-row w-full xl:w-content-width xl:mx-auto gap-5 md">
 			<div class="flex w-full flex-col gap-4">
 				<div class="w-full flex flex-col md:flex-row gap-4">
-					<BigPost post-type="Popular Today" :post="react.popular" linearBackground other-image />
+					<BigPost post-type="📰 Featured Post" :post="react.featured" linearBackground other-image />
 					<div class="flex w-full flex-col gap-4">
-						<FeaturedPost class="w-full" post-type="Featured Post" :post="react.featured" linearBackground
+						<FeaturedPost class="w-full" post-type="🔥 Popular Today" :post="react.popular" linearBackground
 							other-image />
-						<FeaturedPost class="w-full" post-type="Random Post" :post="react.random" linearBackground
+						<FeaturedPost class="w-full" post-type="🎲 Random Post" :post="react.random" linearBackground
 							other-image />
 						<HomeStats class="w-full" :stats="react.stats" />
 					</div>
