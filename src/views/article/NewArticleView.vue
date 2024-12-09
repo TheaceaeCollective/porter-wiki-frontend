@@ -5,6 +5,7 @@ import { PhCaretRight } from '@phosphor-icons/vue';
 import PorterCry from "@/assets/images/PorterCry.gif";
 import Utils from '@/utils/Utils';
 import BlockquoteNote from '@/components/BlockquoteNote.vue';
+import Button from '@/components/Button.vue';
 
 const props = defineProps({
 	error: {
@@ -65,6 +66,7 @@ Utils.setTitle(react.meta.title);
 		</div>
 		<div v-else class="w-full flex flex-col gap-4 items-center">
 			<img :src="PorterCry" class="w-24"></img>
+			<!-- todo: make a search request for article title -->
 			<BlockquoteNote class="w-full" type="caution" title="The requested article does not exist!">
 				The Wiki does not have an article with this exact name. Please search for
 				<a href="" class="text-accent readMoreHover">{{ react.meta.title }}</a>
@@ -72,12 +74,13 @@ Utils.setTitle(react.meta.title);
 			</BlockquoteNote>
 			<BlockquoteNote class="w-full" type="tip" title="A tip for you">
 				If you would like to create an article within this location you must
-				<a href="" class="text-accent readMoreHover">link your GitHub account.</a>
+				<a href="" class="text-accent readMoreHover">login with an account.</a>
 				Alternatively, you may request for a new article in
 				<a href="https://discord.gg/nUeRyRtDYC" class="text-accent readMoreHover">Discord</a>
 				or head
 				<RouterLink to="/" class="text-accent readMoreHover">Home</RouterLink>.
 			</BlockquoteNote>
+			<Button>Create new article</Button>
 		</div>
 	</div>
 </template>
