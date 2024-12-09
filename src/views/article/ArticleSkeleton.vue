@@ -1,5 +1,5 @@
 <script setup>
-import NewArticleView from "./NewArticleView.vue";
+import ArticleNotFoundView from "./ArticleNotFoundView.vue";
 
 const props = defineProps({
 	loading: Boolean,
@@ -45,7 +45,7 @@ const skeleData = {
 		</div>
 	</div>
 	<template v-else-if="error">
-		<NewArticleView :error="error != 404 ? 'ServerError' : 'NotFound'" />
+		<ArticleNotFoundView :error="error != 404 ? 'ServerError' : 'NotFound'" />
 	</template>
 	<slot v-else></slot>
 </template>

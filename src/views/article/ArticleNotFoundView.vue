@@ -80,7 +80,11 @@ Utils.setTitle(react.meta.title);
 				or head
 				<RouterLink to="/" class="text-accent readMoreHover">Home</RouterLink>.
 			</BlockquoteNote>
-			<Button>Create new article</Button>
+			<RouterLink to="articlecreation" class="rounded-xl">
+				<Button>
+					Create new article
+				</Button>
+			</RouterLink>
 		</div>
 	</div>
 </template>
