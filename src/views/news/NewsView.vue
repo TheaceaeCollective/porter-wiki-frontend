@@ -121,8 +121,7 @@ API.get("/articles?type=news&count=1984").then((res) => {
 						<BigNewsPost :post-type="react.popular.title" :post="react.popular.data" linearBackground
 							other-image />
 					</div>
-					<div
-						class="w-full flex flex-col justify-between gap-2 lg:max-h-full xl:max-h-full overflow-y-auto max-h-full">
+					<div class="w-full flex flex-col gap-2 lg:max-h-full xl:max-h-full overflow-y-auto max-h-full">
 						<template v-for="(post, index) in react.mostRecent">
 							<NewsPost class="flex flex-col w-full" :post="post" linearBackground />
 							<GrayLine v-if="(index + 1) != react.mostRecent.length" :lineStyle=2 class="!h-0.5" />

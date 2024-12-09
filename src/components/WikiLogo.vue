@@ -10,7 +10,7 @@ const props = defineProps({
 <template>
     <div :class="'wiki-logo size-' + size">
         <img src="@/assets/images/icon.png" alt="Porter Robinson Wiki Icon" />
-        <h1 class="font-light">potaro • wiki</h1>
+        <h1 class="font-['Batang']">potaro • wiki</h1>
     </div>
 </template>
 
@@ -25,23 +25,23 @@ const props = defineProps({
 
     &.size-small {
         img {
-            width: 32px;
-            height: 32px;
+            width: 34px;
+            height: 34px;
         }
 
         h1 {
-            font-size: 24px;
+            font-size: 26px;
         }
     }
 
     &.size-big {
         img {
-            width: 52px;
-            height: 52px;
+            width: 54px;
+            height: 54px;
         }
 
         h1 {
-            font-size: 48px;
+            font-size: 50px;
         }
     }
 }
