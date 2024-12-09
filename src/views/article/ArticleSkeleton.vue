@@ -1,5 +1,5 @@
 <script setup>
-import ArticleNotFoundView from "./ArticleNotFoundView.vue";
+import ArticleNotFoundView from "../editor/ArticleNotFoundView.vue";
 
 const props = defineProps({
 	loading: Boolean,
