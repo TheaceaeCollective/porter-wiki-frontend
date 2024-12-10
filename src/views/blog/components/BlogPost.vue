@@ -28,7 +28,7 @@ const props = defineProps({
 
 <template>
 	<RouterLink :to="post.url || '/not-found'">
-		<OverlapGrid class="news-post w-full h-28 rounded-lg overlap-grid" v-if="post.meta">
+		<OverlapGrid class="blog-post w-full h-28 rounded-lg overlap-grid" v-if="post.meta">
 			<LoadingImage :src="Utils.fixCDNImages(post.meta.image, post.url) || DefaultImage || EmptyImage"
 				class="object-cover" />
 			<div class="dim" v-if="linearBackground"></div>
@@ -51,7 +51,7 @@ const props = defineProps({
 </template>
 
 <style lang="scss">
-.news-post {
+.blog-post {
 
 	.dim {
 		transition: background 400ms;

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, createMemoryHistory } from 'vue-router'
 import HomeView from '../views/home/HomeView.vue'
 import NewsView from '../views/news/NewsView.vue'
+import BlogView from '@/views/blog/BlogView.vue'
 import ArticleView from '../views/article/ArticleView.vue'
 import oauthComplete from '../views/oauthComplete.vue'
 
@@ -18,6 +19,11 @@ const router = createRouter({
 			path: '/news',
 			name: 'news',
 			component: NewsView
+		},
+		{
+			path: '/blog',
+			name: 'blog',
+			component: BlogView
 		},
 		{
 			path: '/oauthComplete',
