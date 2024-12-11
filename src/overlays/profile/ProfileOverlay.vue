@@ -4,6 +4,7 @@ import { PhGithubLogo, PhCoffee, PhDiscordLogo } from "@phosphor-icons/vue";
 import Events from "@/utils/Events";
 import ActiveComponents from "@/utils/ActiveComponents";
 import API from "@/utils/API";
+
 import Toast from "@/utils/Toast";
 import GradientLine from "@/components/GradientLine.vue";
 import GrayLine from "@/components/GrayLine.vue";
@@ -12,6 +13,7 @@ import PopupOverlay from "../popup/PopupOverlay.vue";
 import Button from "@/components/Button.vue";
 import ProfileComment from "./ProfileComment.vue";
 import ProfileCard from "@/components/ProfileCard.vue";
+import Formatting from "@/utils/Formatting";
 
 const content = ref();
 
@@ -28,15 +30,15 @@ const CacheSystem = {
 const userStatistics = [
 	{
 		label: "Join Date",
-		value: "Jan 28th, 2024",
+		value: Formatting.formatDate(API.user.join, { month: "short" }),
 	},
 	{
 		label: "Articles Written",
-		value: 0,
+		value: "???",
 	},
 	{
 		label: "Comments",
-		value: 0,
+		value: API.user.comments,
 	},
 ];
 Events.Register("profile-overlay", (userID) => {
