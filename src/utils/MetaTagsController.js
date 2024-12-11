@@ -30,11 +30,20 @@ export default class MetaTagsController {
 				{ name: "author", content: "Theaceae Collective" }
 			])
 		},
+		"/blog": {
+			...this.defaultMeta,
+			title: "Blog | Porter Robinson Wiki",
+			meta: this.mergeTwoMetas(this.defaultMeta.meta, [
+				{ property: "og:title", content: "Blog | Porter Robinson Wiki" },
+				{ name: "twitter:title", content: "Blog | Porter Robinson Wiki" },
+				{ name: "author", content: "Theaceae Collective" }
+			])
+		},
 		"default": this.defaultMeta
 	});
 
 	static createKeywords(keywordsPre) {
-		let keywords = [ "porter", "wiki", "community", "producer", "fandom", "hardcore", "music", "rhythm game", "gaming", "osu!", "discography", "albums", "songs", "fan community", "virtual self", "potaro" ];
+		let keywords = [ "porter", "robinson", "wiki", "community", "producer", "fandom", "hardcore", "music", "rhythm game", "gaming", "osu!", "discography", "albums", "songs", "fan community", "virtual self", "potaro" ];
 		if (!keywordsPre) keywordsPre = [];
 		return [...new Set([ ...keywordsPre, ...keywords ])];
 	};
