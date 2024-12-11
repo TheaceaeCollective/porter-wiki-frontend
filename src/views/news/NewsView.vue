@@ -82,7 +82,7 @@ API.get("/articles?type=news&count=1984").then((res) => {
 		react.semiRecent = react.all.slice(allSliceStartRecent, allSliceEndRecent); //Note: semiRecent holds the 2-5th most recent articles.
 		react.evenMore = react.all.slice(allSliceEndRecent, react.all.length); //Note: evenMore holds all the articles, EXCEPT the most recent one.
 
-		react.mostRecent.title = "Recent Article";
+		react.mostRecent.title = "Latest Article";
 		react.mostRecent.data = react.all[0];
 	};
 });

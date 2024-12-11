@@ -82,7 +82,7 @@ API.get("/articles?type=community&count=1984").then((res) => {
 		react.semiRecent = react.all.slice(allSliceStartRecent, allSliceEndRecent); //Note: semiRecent holds the 2-5th most recent blog posts.
 		react.evenMore = react.all.slice(allSliceEndRecent, react.all.length); //Note: evenMore holds all the blog posts, EXCEPT the most recent one.
 
-		react.mostRecent.title = "Recent Blog";
+		react.mostRecent.title = "Latest Blog";
 		react.mostRecent.data = react.all[0];
 	};
 
