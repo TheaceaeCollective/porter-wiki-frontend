@@ -12,7 +12,8 @@ const props = defineProps({
 </script>
 
 <template>
-	<div class="flex gap-2 content-center rounded-xl bg-background-1 p-3 h-20">
+	<div
+		class="flex gap-2 content-center rounded-xl bg-no-repeat bg-cover bg-center bg-background-1 bg-[url('/src/assets/images/home-header.png')] p-3 h-20">
 		<img :class="`rounded-xl border-2 w-14 h-14`" :src="props.user.avatar"
 			:style="`border-color: ${props.user.color}`" alt="avatar" />
 		<div class="flex flex-col content-center justify-center">

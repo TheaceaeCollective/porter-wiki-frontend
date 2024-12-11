@@ -107,10 +107,7 @@ the about me is custom.need to communicate with backend - john-->
 				<ProfileCard :user="API.user" />
 				<div class="grid grid-cols-4 gap-8">
 					<div class="col-span-3 flex flex-col gap-4">
-						<div class="flex flex-row gap-2">
-							<span>Comments</span>
-							<span>Polls</span>
-						</div>
+						<span>Comments</span>
 						<GradientLine :overshoot="false" />
 						<div class="flex flex-row gap-4">
 							<span>Sort by</span>
