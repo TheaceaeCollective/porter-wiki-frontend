@@ -1,8 +1,8 @@
 <template>
     <a href="https://discord.gg/nUeRyRtDYC" target="_blank"
-        class="static bottom-0 ml-28 bg-cover bg-center bg-no-repeat w-[400px] bg-red rounded-lg flex items-center justify-center overflow-hidden">
+        class="sticky bottom-0 bg-cover bg-center bg-no-repeat w-full bg-red flex items-center justify-center overflow-hidden z-10">
         <div id="dim"
-            class="relative w-full inset-0 flex justify-center items-center transition-background duration-400 bg-black/20">
+            class="relative w-full py-2 inset-0 flex justify-center items-center transition-background duration-400 bg-black/20">
             <p class="font-bold text-center text-white text-">The site is still in alpha. If you
                 wish
                 to give

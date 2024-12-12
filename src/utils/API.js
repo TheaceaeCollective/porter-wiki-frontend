@@ -86,6 +86,7 @@ export default class API {
 		join: null,
 		id: 0,
 		staff: false,
+		position: null,
 		color: "#FFFFFF",
 		loggedIn: false,
 		attemptToken: 0
@@ -105,6 +106,7 @@ export default class API {
 		this.user.avatar = user.avatar || DefaultAvatar;
 		this.user.color = user.color || "#FFFFFF";
 		this.user.staff = user.staff || false;
+		this.user.position = user.position || "";
 		this.user.attemptToken = 0;
 	}
 

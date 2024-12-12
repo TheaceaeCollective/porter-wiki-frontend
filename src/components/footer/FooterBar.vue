@@ -1,5 +1,7 @@
 <script setup>
 import FooterLink from "./FooterLink.vue";
+
+import SiteDisclaimer from "../SiteDisclaimer.vue";
 </script>
 
 <template>
@@ -33,6 +35,7 @@ import FooterLink from "./FooterLink.vue";
 			</div>
 		</div>
 	</div>
+	<SiteDisclaimer /> <!-- remove once we are in beta -->
 </template>
 
 

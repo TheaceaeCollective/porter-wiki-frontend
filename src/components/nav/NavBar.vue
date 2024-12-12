@@ -10,8 +10,6 @@ import NavBarButton from "./NavBarButton.vue";
 import NavBarAccount from "./NavBarAccount.vue";
 import Events from "@/utils/Events";
 
-import SiteDisclaimer from "../SiteDisclaimer.vue";
-
 const isOpen = ref(false);
 
 const togNav = (newValue) => { // pass newValue to force toggle
@@ -87,7 +85,6 @@ onMounted(() => {
 						</Transition>
 					</NavBarButton>
 					<WikiLogo size="small" @click="router.push('/')" class="cursor-pointer" />
-					<SiteDisclaimer /> <!-- remove once we are in beta -->
 				</div>
 				<div class="flex items-center text-center gap-4">
 					<!-- TODO: add functionality to all of these cool buttons - john -->
