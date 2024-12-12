@@ -182,7 +182,8 @@ const submitComment = () => {
 				nick: API.user.nickname,
 				avatar: API.user.avatar,
 				color: API.user.color,
-				staff: API.user.staff
+				staff: API.user.staff,
+				position: API.user.position
 			},
 			ups: 0,
 			downs: 0,
