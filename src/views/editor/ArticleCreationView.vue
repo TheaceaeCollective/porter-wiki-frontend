@@ -1,8 +1,13 @@
-<script setup>
+<script lang="ts" setup>
 import { useRoute, RouterLink } from 'vue-router';
 import { reactive } from 'vue';
 import { PhCaretRight } from '@phosphor-icons/vue';
 import Textbox from '@/components/textbox/Textbox.vue';
+
+import ArticleCreationSourceTab from './components/ArticleCreationSourceTab.vue';
+import ArticleCreationVisualTab from './components/ArticleCreationVisualTab.vue';
+import ArticleCreationHistoryTab from './components/ArticleCreationHistoryTab.vue';
+import ArticleCreationMetadataTab from './components/ArticleCreationMetadataTab.vue';
 
 import Utils from '@/utils/Utils';
 
@@ -13,9 +18,46 @@ const react = reactive({
         title: '',
     },
     breadcrumbs: [],
+    tab: 'metadata',
 });
 
 const route = useRoute();
+
+const tabs = {
+    left: [
+        {
+            name: "source",
+            title: "Source",
+        },
+        {
+            name: "visual",
+            title: "Visual",
+        },
+        {
+            name: "history",
+            title: "Edit History",
+        },
+    ],
+    right: [
+        {
+            name: "metadata",
+            title: "Metadata",
+        },
+    ],
+};
+
+const validateTab = (text: string): string => {
+    if (!text.startsWith('#'))
+        return 'metadata';
+    text = text.substring(1);
+    if (tabs.left.find(item => item.name == text))
+        return text;
+    if (tabs.right.find(item => item.name == text))
+        return text;
+    return 'metadata';
+}
+
+react.tab = validateTab(route.hash);
 
 const createCrumbs = () => {
     const pathParts = route.path.split('/').filter(Boolean);
@@ -28,7 +70,7 @@ const createCrumbs = () => {
 };
 
 createCrumbs();
-react.meta.title = route.params.title || route.path.split('/').pop();
+react.meta.title = typeof(route.params.title) == typeof(String) ? <string>route.params.title : route.path.split('/').pop();
 Utils.setTitle(react.meta.title);
 </script>
 
@@ -47,41 +89,22 @@ Utils.setTitle(react.meta.title);
             </p>
         </div>
         <div class="w-full flex flex-col gap-4 pt-4">
-            <div>
-                <div class="w-full h-14 bg-black"></div>
-            </div>
-            <div>
-                <h1 class="text-2xl font-medium pb-1">Edit summary (briefly describe your changes)</h1>
-                <Textbox placeholder-text="Insert some text..." :simple="true"></Textbox>
-            </div>
-            <div>
-                <h1 class="text-xl font-medium pb-1">Article cover</h1>
-                <div class="w-full h-[148px] bg-black"></div>
-            </div>
-            <div class="w-full flex flex-row gap-4">
-                <div class="w-full">
-                    <h1 class="text-xl font-medium pb-1">Article title</h1>
-                    <Textbox placeholder-text="Insert some text..." :simple="true"></Textbox>
+            <div class="w-full h-14 rounded-xl bg-background-1 flex flex-row justify-between px-5">
+                <div class="flex flex-row gap-5">
+                    <a v-for="tab in tabs.left" class="hover:text-accent text-lg font-light cursor-pointer m-auto" v-bind:style="react.tab == tab.name ? 'color: #ff00ff' : ''" v-bind:href="'#'+tab.name" @click="react.tab = tab.name">
+                        {{ tab.title }}
+                    </a>
                 </div>
-                <div class="w-full">
-                    <h1 class="text-xl font-medium pb-1">Article type</h1>
-                    <Textbox placeholder-text="Insert some text..." :simple="true"></Textbox>
-                </div>
-                <div class="w-full">
-                    <h1 class="text-xl font-medium pb-1">Article date</h1>
-                    <Textbox placeholder-text="Insert some text..." :simple="true"></Textbox>
+                <div class="flex flex-row">
+                    <a v-for="tab in tabs.right" class="hover:text-accent text-lg font-light cursor-pointer m-auto" v-bind:style="react.tab == tab.name ? 'color: #ff00ff' : ''" v-bind:href="'#'+tab.name" @click="react.tab = tab.name">
+                        {{ tab.title }}
+                    </a>
                 </div>
             </div>
-            <div class="w-full flex flex-row gap-4">
-                <div class="w-full">
-                    <h1 class="text-xl font-medium pb-1">Article description</h1>
-                    <Textbox placeholder-text="Insert some text..." :simple="true"></Textbox>
-                </div>
-                <div class="w-full">
-                    <h1 class="text-xl font-medium pb-1">Article tags</h1>
-                    <Textbox placeholder-text="Insert some text..." :simple="true"></Textbox>
-                </div>
-            </div>
+            <ArticleCreationSourceTab v-if="react.tab == 'source'"/>
+            <ArticleCreationVisualTab v-if="react.tab == 'visual'"/>
+            <ArticleCreationHistoryTab v-if="react.tab == 'history'"/>
+            <ArticleCreationMetadataTab v-if="react.tab == 'metadata'"/>
         </div>
     </div>
 </template>
