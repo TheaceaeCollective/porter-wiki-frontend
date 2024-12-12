@@ -70,7 +70,7 @@ const createCrumbs = () => {
 };
 
 createCrumbs();
-react.meta.title = typeof(route.params.title) == typeof(String) ? <string>route.params.title : route.path.split('/').pop();
+react.meta.title = typeof (route.params.title) == typeof (String) ? <string>route.params.title : route.path.split('/').pop();
 Utils.setTitle(react.meta.title);
 </script>
 
@@ -89,22 +89,26 @@ Utils.setTitle(react.meta.title);
             </p>
         </div>
         <div class="w-full flex flex-col gap-4 pt-4">
-            <div class="w-full h-14 rounded-xl bg-background-1 flex flex-row justify-between px-5">
+            <div class="w-full h-14 rounded-lg bg-background-1 flex flex-row justify-between px-5">
                 <div class="flex flex-row gap-5">
-                    <a v-for="tab in tabs.left" class="hover:text-accent text-lg font-light cursor-pointer m-auto" v-bind:style="react.tab == tab.name ? 'color: #ff00ff' : ''" v-bind:href="'#'+tab.name" @click="react.tab = tab.name">
+                    <a v-for="tab in tabs.left" class="hover:text-accent text-lg font-light cursor-pointer m-auto"
+                        v-bind:style="react.tab == tab.name ? 'color: #ff00ff' : ''" v-bind:href="'#' + tab.name"
+                        @click="react.tab = tab.name">
                         {{ tab.title }}
                     </a>
                 </div>
                 <div class="flex flex-row">
-                    <a v-for="tab in tabs.right" class="hover:text-accent text-lg font-light cursor-pointer m-auto" v-bind:style="react.tab == tab.name ? 'color: #ff00ff' : ''" v-bind:href="'#'+tab.name" @click="react.tab = tab.name">
+                    <a v-for="tab in tabs.right" class="hover:text-accent text-lg font-light cursor-pointer m-auto"
+                        v-bind:style="react.tab == tab.name ? 'color: #ff00ff' : ''" v-bind:href="'#' + tab.name"
+                        @click="react.tab = tab.name">
                         {{ tab.title }}
                     </a>
                 </div>
             </div>
-            <ArticleCreationSourceTab v-if="react.tab == 'source'"/>
-            <ArticleCreationVisualTab v-if="react.tab == 'visual'"/>
-            <ArticleCreationHistoryTab v-if="react.tab == 'history'"/>
-            <ArticleCreationMetadataTab v-if="react.tab == 'metadata'"/>
+            <ArticleCreationSourceTab v-if="react.tab == 'source'" />
+            <ArticleCreationVisualTab v-if="react.tab == 'visual'" />
+            <ArticleCreationHistoryTab v-if="react.tab == 'history'" />
+            <ArticleCreationMetadataTab v-if="react.tab == 'metadata'" />
         </div>
     </div>
 </template>
