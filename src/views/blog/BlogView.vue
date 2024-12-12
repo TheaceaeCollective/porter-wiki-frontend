@@ -82,7 +82,7 @@ API.get("/articles?type=community&count=1984").then((res) => {
 		react.semiRecent = react.all.slice(allSliceStartRecent, allSliceEndRecent); //Note: semiRecent holds the 2-5th most recent blog posts.
 		react.evenMore = react.all.slice(allSliceEndRecent, react.all.length); //Note: evenMore holds all the blog posts, EXCEPT the most recent one.
 
-		react.mostRecent.title = "Recent Blog";
+		react.mostRecent.title = "Latest Blog";
 		react.mostRecent.data = react.all[0];
 	};
 
@@ -121,7 +121,7 @@ API.get("/articles?type=community&count=1984").then((res) => {
 							other-image />
 					</div>
 					<div class="w-full flex flex-col gap-2 lg:max-h-full xl:max-h-full overflow-y-auto max-h-full">
-						<!--Side blocks for most recent blog post-->
+						<!--Side blocks for semi recent blog posts-->
 						<template v-for="(post, index) in react.semiRecent">
 							<BlogPost class="flex flex-col w-full" :post="post" linearBackground />
 							<GrayLine v-if="(index + 1) != react.semiRecent.length" :lineStyle=2 class="!h-0.5" />
