@@ -49,8 +49,8 @@ onMounted(() => {
 
 <template>
 	<Transition name="fade">
-		<div id="scrollTo" v-if="react.showReturnBtn" class="fixed bg-background-1 p-5 bottom-0 right-0 cursor-pointer"
-			@click="scrollPos">
+		<div id="scrollTo" v-if="react.showReturnBtn"
+			class="fixed bg-background-1 p-5 bottom-0 right-0 cursor-pointer z-50" @click="scrollPos">
 			<Component :is="((react.prevPos == 0) ? PhCaretUp : PhCaretDown)" class="text-xl"></Component>
 		</div>
 	</Transition>
