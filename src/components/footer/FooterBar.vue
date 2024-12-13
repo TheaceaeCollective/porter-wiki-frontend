@@ -26,8 +26,8 @@ import SiteDisclaimer from "../SiteDisclaimer.vue";
 					<FooterLink url="https://discord.gg/nUeRyRtDYC" text="Discord" />
 				</p>
 				<p class="text-lg">
-					Created by
-					<FooterLink url="https://github.com/theaceaecollective/porter-wiki-frontend" text="pptek" />
+					<FooterLink url="https://github.com/theaceaecollective/porter-wiki-frontend"
+						text="Theaceae Collective" />
 					with the contribution of
 					<FooterLink url="https://github.com/theaceaecollective/porter-wiki-frontend/graphs/contributors"
 						text="others" />.
