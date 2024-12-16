@@ -10,7 +10,7 @@ import SiteDisclaimer from "../SiteDisclaimer.vue";
 			<div class="w-full h-4 bg-background-2 rounded-b-2xl"></div>
 		</div>
 		<div class="w-full h-16 relative bg-background-1 flex items-center">
-			<a href="https://github.com/theaceaecollective" target="_blank"
+			<a href="https://theaceae.org/" target="_blank"
 				class="absolute left-1 max-md:bottom-16 flex items-center hover:bg-background-3 p-1 rounded transition">
 				<img src="https://raw.githubusercontent.com/theaceaecollective/.github/refs/heads/main/maintainedby.png"
 					alt="Big Theaceae Logo" class="md:h-12 h-9" />
@@ -26,8 +26,8 @@ import SiteDisclaimer from "../SiteDisclaimer.vue";
 					<FooterLink url="https://discord.gg/nUeRyRtDYC" text="Discord" />
 				</p>
 				<p class="text-lg">
-					Created by
-					<FooterLink url="https://github.com/theaceaecollective/porter-wiki-frontend" text="pptek" />
+					<FooterLink url="https://github.com/theaceaecollective/porter-wiki-frontend"
+						text="Theaceae Collective" />
 					with the contribution of
 					<FooterLink url="https://github.com/theaceaecollective/porter-wiki-frontend/graphs/contributors"
 						text="others" />.
