@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useRoute, RouterLink } from "vue-router";
-import { reactive } from "vue";
+import { reactive, watch } from "vue";
 import { PhCaretRight } from "@phosphor-icons/vue";
 import SelectedUnderline from "@/components/SelectedUnderline.vue";
 
@@ -56,6 +56,14 @@ const validateTab = (text: string): string => {
 
 react.tab = validateTab(route.hash);
 
+watch(
+    route,
+    (to) => {
+        react.tab = validateTab(to.hash);
+    },
+    { flush: "pre", immediate: true, deep: true }
+);
+
 const createCrumbs = () => {
     const pathParts = route.path.split("/").filter(Boolean);
     react.breadcrumbs = pathParts.map((part, index) => {
@@ -110,7 +118,6 @@ Utils.setTitle(react.meta.title);
                     <SelectedUnderline
                         v-for="tab in tabs.left"
                         class="hover:text-accent text-lg font-light cursor-pointer m-auto"
-                        @click="react.tab = tab.name"
                         :href="'#' + tab.name"
                         :selected="react.tab == tab.name"
                         type="link"
@@ -122,7 +129,6 @@ Utils.setTitle(react.meta.title);
                     <SelectedUnderline
                         v-for="tab in tabs.right"
                         class="hover:text-accent text-lg font-light cursor-pointer m-auto"
-                        @click="react.tab = tab.name"
                         :href="'#' + tab.name"
                         :selected="react.tab == tab.name"
                         type="link"
