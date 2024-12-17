@@ -1,10 +1,8 @@
 <script setup>
 const props = defineProps({
     type: {
-        type: String,
-        validator(value) {
-            return value == null || ["link", "span"].includes(value);
-        },
+        type: String || Object,
+        default: "span",
     },
     selected: {
         type: Boolean,
@@ -14,20 +12,13 @@ const props = defineProps({
 </script>
 
 <template>
-    <a
-        v-if="props.type == 'link'"
+    <component
         class="selected-underline"
-        v-bind:aria-selected="props.selected"
+        :is="props.type"
+        :aria-selected="props.selected"
     >
         <slot></slot>
-    </a>
-    <span
-        v-else-if="props.type == null || props.type == 'span'"
-        class="selected-underline"
-        v-bind:aria-selected="props.selected"
-    >
-        <slot></slot>
-    </span>
+    </component>
 </template>
 
 <style lang="scss">

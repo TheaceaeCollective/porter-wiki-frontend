@@ -6,9 +6,10 @@ import { PhCloudArrowUp } from "@phosphor-icons/vue";
 <template>
     <!-- todo: replace some text boxes with dropdowns. maybe replace shit textbox code -->
     <div>
-        <h1 class="text-2xl font-medium pb-1">
-            Edit summary (briefly describe your changes)
-        </h1>
+        <div class="mb-1">
+            <span class="text-2xl font-medium mr-1">Edit summary</span
+            ><span>(Briefly describe your changes)</span>
+        </div>
         <Textbox
             placeholder-text="Insert some text..."
             :simple="true"

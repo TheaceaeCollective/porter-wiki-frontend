@@ -110,7 +110,7 @@ Utils.setTitle(react.meta.title);
                 </span>
             </p>
         </div>
-        <div class="w-full flex flex-col gap-4 pt-4">
+        <div class="w-full flex flex-col gap-4">
             <div
                 class="w-full h-14 rounded-lg bg-background-1 flex flex-row justify-between px-5"
             >
@@ -120,7 +120,7 @@ Utils.setTitle(react.meta.title);
                         class="hover:text-accent text-lg font-light cursor-pointer m-auto"
                         :href="'#' + tab.name"
                         :selected="react.tab == tab.name"
-                        type="link"
+                        type="a"
                     >
                         {{ tab.title }}
                     </SelectedUnderline>
@@ -131,7 +131,7 @@ Utils.setTitle(react.meta.title);
                         class="hover:text-accent text-lg font-light cursor-pointer m-auto"
                         :href="'#' + tab.name"
                         :selected="react.tab == tab.name"
-                        type="link"
+                        type="a"
                     >
                         {{ tab.title }}
                     </SelectedUnderline>
