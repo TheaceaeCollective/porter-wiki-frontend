@@ -24,7 +24,7 @@ const leftLinkList = [{
 	route: "/",
 	name: "Main Page",
 }, {
-	route: "",
+	route: "/articlecreation",
 	name: "Article Editor",
 }, {
 	route: "/wiki/contributing",
