@@ -64,7 +64,7 @@ const { handleInput, handleKeydown, handleSubmit, placeholderText, beDisabled, b
 </script>
 
 <template>
-	<div class="h-auto w-full flex flex-col rounded-xl bg-background-3 p-2 gap-2">
+	<div class="h-auto w-full flex flex-col rounded-xl bg-background-1 p-2 gap-2">
 		<div class="w-full flex gap-2">
 			<textarea
 				class="h-10 w-full resize-none overflow-hidden rounded-lg bg-background-1 px-3 py-1 text-lg outline-none ring-background-4 focus:ring-2"
@@ -72,17 +72,17 @@ const { handleInput, handleKeydown, handleSubmit, placeholderText, beDisabled, b
 				:id="`${boxName}-textbox`" :value="value" />
 
 			<button v-if="!simple"
-				:class='"m-auto flex size-10 items-center justify-center rounded-lg bg-background-4 p-1 cursor-" + `${beDisabled ? "deny" : "pointer"}`'
+				:class='"m-auto flex size-10 items-center justify-center rounded-lg bg-background-3 p-1 cursor-" + `${beDisabled ? "deny" : "pointer"}`'
 				id="submit" @click="handleSubmit" :disabled="beDisabled">
 				<Component :is="submitIcon" :size="20" :disabled="beDisabled" :class="submitIconClasses"></Component>
 			</button>
 			<button v-if="isReply && !simple"
-				:class='"m-auto flex size-10 items-center justify-center rounded-lg bg-background-4 p-1 cursor-" + `${beDisabled ? "deny" : "pointer"}`'
+				:class='"m-auto flex size-10 items-center justify-center rounded-lg bg-background-3 p-1 cursor-" + `${beDisabled ? "deny" : "pointer"}`'
 				id="cancel" @click="handleCancel" :disabled="beDisabled">
 				<Component :is="PhX" :size="20" :disabled="beDisabled" :class="submitIconClasses"></Component>
 			</button>
 		</div>
-		<div v-if="!simple" class="max-w-fit flex flex-wrap px-2 gap-2 bg-background-2 rounded-lg py-2">
+		<div v-if="!simple" class="max-w-fit flex flex-wrap px-2 gap-2 bg-background-3 rounded-lg py-2">
 			<div id="formatting" class="w-auto flex gap-3">
 				<TextboxIcon :icon="PhTextBolder" :disabled="beDisabled" />
 				<TextboxIcon :icon="PhTextItalic" :disabled="beDisabled" />

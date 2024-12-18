@@ -10,7 +10,7 @@ const props = defineProps({
 	},
 	size: {
 		type: Number,
-		default: 24
+		default: 22
 	}
 });
 </script>
