@@ -4,6 +4,7 @@ import NewsView from '../views/news/NewsView.vue'
 import BlogView from '@/views/blog/BlogView.vue'
 import SettingsView from '../views/settings/SettingsView.vue';
 import ArticleView from '../views/article/ArticleView.vue'
+import ArticleCreationView from '@/views/editor/ArticleCreationView.vue'
 import oauthComplete from '../views/oauthComplete.vue'
 
 const router = createRouter({
@@ -20,6 +21,11 @@ const router = createRouter({
 			path: '/news',
 			name: 'news',
 			component: NewsView
+		},
+		{
+			path: '/articlecreation',
+			name: 'articlecreation',
+			component: ArticleCreationView
 		},
 		{
 			path: '/blog',
