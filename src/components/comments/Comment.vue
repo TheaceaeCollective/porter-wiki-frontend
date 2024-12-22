@@ -14,7 +14,7 @@ import MarkdownUtils from '@/utils/MarkdownUtils';
 import MarkdownView from '../md/MarkdownView.vue';
 
 import NewComment from './NewComment.vue';
-import Button from '../Button.vue';
+import Button from '../buttons/Button.vue';
 import PopupOverlay from '@/overlays/popup/PopupOverlay.vue';
 import Events from '@/utils/Events';
 
@@ -265,7 +265,8 @@ if (comment && comment.content?.length > 0) {
 						class="flex text-light-gray cursor-pointer align-middle items-center gap-1 text-lg rounded-sm px-2 hover:text-white">
 						<PhArrowBendUpLeft /> Reply
 					</span>
-					<span v-if="(!comment.isEditing && !comment.isReplying) && (!comment.isDeleted ? comment.author.id == API.user.id : false)"
+					<span
+						v-if="(!comment.isEditing && !comment.isReplying) && (!comment.isDeleted ? comment.author.id == API.user.id : false)"
 						@click="commentAction(2)"
 						class="flex text-light-gray cursor-pointer align-middle items-center gap-1 text-lg rounded-sm px-2 hover:text-white">
 						<PhPencil /> Edit

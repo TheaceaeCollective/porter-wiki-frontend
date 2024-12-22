@@ -8,7 +8,7 @@ import Toast from '@/utils/Toast';
 
 import TitleBar from '../TitleBar.vue';
 import PopupOverlay from '../popup/PopupOverlay.vue';
-import Button from '@/components/Button.vue';
+import Button from '@/components/buttons/Button.vue';
 
 const content = ref();
 
@@ -59,14 +59,6 @@ function Close(e) {
 function wipToast() {
 	Toast.showToast("That feature is not implemented yet but will be soon!", { type: "error" })
 }
-
-// logs out then closes the popup - john
-function logOut(ClosePopup) {
-	if (API.user.loggedIn) {
-		API.performLogout();
-		ClosePopup();
-	}
-}
 </script>
 
 <template>
@@ -79,25 +71,11 @@ function logOut(ClosePopup) {
 				<div class="flex grow">
 					<div class="w-full flex mb-2.5"></div>
 				</div>
-				<!-- the log out button is temporary - john -->
-				<p class="text-lg text-red bottom-0 justify-center mx-auto cursor-pointer"
-					@click="Events.Emit('popup-logout')">
-					Log Out</p>
 				<p class="text-lg text-red bottom-0 justify-center mx-auto cursor-pointer" @click="wipToast">Report
 					Profile</p>
 			</div>
 		</div>
 	</Transition>
-
-	<PopupOverlay event="popup-logout">
-		<template #content>Are you very sure you want to logout?</template>
-		<template #footer="{ ClosePopup }">
-			<div class="flex justify-center gap-2">
-				<Button type="success" @click="logOut(ClosePopup)">Yes</Button>
-				<Button type="error" @click="ClosePopup">Cancel</Button>
-			</div>
-		</template>
-	</PopupOverlay>
 </template>
 
 <style>
