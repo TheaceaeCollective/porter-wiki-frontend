@@ -5,7 +5,7 @@ import { PhCaretRight } from '@phosphor-icons/vue';
 import PorterCry from "@/assets/images/PorterCry.gif";
 import Utils from '@/utils/Utils';
 import BlockquoteNote from '@/components/BlockquoteNote.vue';
-import Button from '@/components/Button.vue';
+import Button from '@/components/buttons/Button.vue';
 
 const props = defineProps({
 	error: {
