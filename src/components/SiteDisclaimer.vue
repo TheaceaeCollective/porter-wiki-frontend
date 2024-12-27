@@ -10,11 +10,12 @@
                 contact me @papertek or join the Discord.</p>
         </div>
     </a>
-    <a href="https://www.youtube.com/watch?v=SuXWcemNJvQ" target="_blank"
+    <a href="https://www.youtube.com/watch?v=X_j4eiJjlTo" target="_blank"
         class="sticky bottom-10 bg-cover bg-center bg-no-repeat w-full bg-white flex items-center justify-center overflow-hidden z-20">
         <div id="dim"
             class="relative w-full py-2 inset-0 flex justify-center items-center transition-background duration-400 bg-black/20">
-            <p class="font-bold text-center text-black text-">Celebration of Petalbyte's first single "GIRL JUST QUIT MUSIC ALREADY". View the Rhythm Heaven Remix!</p>
+            <p class="font-bold text-center text-black text-">Celebration of Petalbyte's first single "GIRL JUST QUIT
+                MUSIC ALREADY". View the Rhythm Heaven Remix!</p>
         </div>
     </a>
 </template>
