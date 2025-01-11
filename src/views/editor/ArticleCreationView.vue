@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useRoute, RouterLink } from "vue-router";
-import { reactive, watch } from "vue";
+import { reactive, watch, ref, provide } from "vue";
 import { PhCaretRight } from "@phosphor-icons/vue";
 import SelectedUnderline from "@/components/SelectedUnderline.vue";
 
@@ -16,10 +16,20 @@ import Utils from "@/utils/Utils";
 const react = reactive({
     meta: {
         title: "",
+        type: "",
+        date: 0,
+        description: "",
+        tags: [],
     },
     breadcrumbs: [],
     tab: "metadata",
 });
+
+const markdownSource = ref(
+    "## Biography\nText here\n\n### News Release\nMore text"
+);
+
+provide("markdownSource", markdownSource);
 
 const route = useRoute();
 

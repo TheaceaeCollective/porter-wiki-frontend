@@ -1,18 +1,33 @@
-<script setup>
+<script lang="ts" setup>
+import { Ref, ref, inject, watch, onMounted } from "vue";
 import { PhPlus } from "@phosphor-icons/vue";
+
 import EditorToolbar from "@/components/EditorToolbar.vue";
 import Dropdown from "@/components/Dropdown.vue";
+import MarkdownUtils from "@/utils/MarkdownUtils";
+import MarkdownView from "@/components/md/MarkdownView.vue";
 
 const props = defineProps({
     beDisabled: {
         type: Boolean,
         default: false,
     },
-    markdown: {
-        type: String,
-        default: "",
-    },
 });
+
+const renderedMarkdown = ref("");
+const markdownSource: Ref<string, string> = inject("markdownSource");
+
+async function renderMd(source: String) {
+    function isPromise<T>(value: T | Promise<T>): value is Promise<T> {
+        return (value as Promise<T>).then !== undefined;
+    }
+    var md = MarkdownUtils.parse({ meta: {}, content: source });
+    var result = MarkdownUtils.render(md.content, false);
+    if (isPromise(result)) renderedMarkdown.value = await result;
+    else renderedMarkdown.value = result;
+}
+
+onMounted(async () => await renderMd(markdownSource.value));
 </script>
 
 <template>
@@ -26,7 +41,7 @@ const props = defineProps({
     >
         <PhPlus :size="22" class="inline-block mr-2" />Insert text
     </button>
-    <div>{{ markdown }}</div>
+    <MarkdownView :article="renderedMarkdown" />
     <Dropdown :options="['Paragraph', 'Heading', 'Sub-heading 1']" />
 </template>
 

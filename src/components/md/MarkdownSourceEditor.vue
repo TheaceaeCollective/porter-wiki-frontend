@@ -1,4 +1,5 @@
-<script setup>
+<script lang="ts" setup>
+import { Ref, inject } from "vue";
 import EditorToolbar from "@/components/EditorToolbar.vue";
 
 const props = defineProps({
@@ -6,11 +7,9 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
-    markdown: {
-        type: String,
-        default: "",
-    },
 });
+
+const markdownSource: Ref<string, string> = inject("markdownSource");
 </script>
 
 <template>
@@ -21,8 +20,8 @@ const props = defineProps({
         <div class="w-full flex gap-2">
             <textarea
                 class="h-96 w-full overflow-scroll rounded-lg bg-background-1 px-3 py-1 text-lg outline-none ring-background-4 focus:ring-2"
-                >{{ markdown }}</textarea
-            >
+                v-model="markdownSource"
+            ></textarea>
         </div>
     </div>
 </template>

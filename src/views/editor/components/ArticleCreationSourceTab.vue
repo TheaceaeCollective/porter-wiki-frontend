@@ -1,5 +1,5 @@
-<script setup>
-import Textbox from "@/components/textbox/Textbox.vue";
+<script lang="ts" setup>
+import InputText from "@/components/input/InputText.vue";
 import MarkdownSourceEditor from "@/components/md/MarkdownSourceEditor.vue";
 </script>
 
@@ -9,18 +9,9 @@ import MarkdownSourceEditor from "@/components/md/MarkdownSourceEditor.vue";
             <span class="text-2xl font-medium mr-1">Edit summary</span
             ><span>(Briefly describe your changes)</span>
         </div>
-        <Textbox
-            placeholder-text="Insert some text..."
-            :simple="true"
-        ></Textbox>
+        <InputText placeholder="Insert some text..." />
     </div>
-    <MarkdownSourceEditor
-        markdown="## Biography
-Text here
-
-### News Release
-More text"
-    ></MarkdownSourceEditor>
+    <MarkdownSourceEditor />
 </template>
 
 <style lang="scss"></style>
