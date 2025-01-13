@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import { useRoute, RouterLink } from "vue-router";
-import { reactive, watch, ref, provide } from "vue";
+import { reactive, watch, provide, toRef } from "vue";
 import { PhCaretRight } from "@phosphor-icons/vue";
 import SelectedUnderline from "@/components/SelectedUnderline.vue";
 
+import { ArticleMeta } from "./ArticleMeta";
 import ArticleCreationSourceTab from "./components/ArticleCreationSourceTab.vue";
 import ArticleCreationVisualTab from "./components/ArticleCreationVisualTab.vue";
 import ArticleCreationHistoryTab from "./components/ArticleCreationHistoryTab.vue";
@@ -13,23 +14,33 @@ import Utils from "@/utils/Utils";
 
 // Utils.setTitle('Article Creation');
 
-const react = reactive({
+type State = {
+    meta: ArticleMeta;
+    markdown: { source: string };
+    editSummary: string;
+    breadcrumbs: { name: string; path: string }[];
+    tab: string;
+};
+
+const react: State = reactive({
     meta: {
         title: "",
-        type: "",
+        type: "wiki",
         date: 0,
         description: "",
         tags: [],
     },
+    markdown: {
+        source: "## Biography\nText here\n\n### News Release\nMore text",
+    },
+    editSummary: "",
     breadcrumbs: [],
     tab: "metadata",
 });
 
-const markdownSource = ref(
-    "## Biography\nText here\n\n### News Release\nMore text"
-);
-
-provide("markdownSource", markdownSource);
+provide("articleMeta", toRef(react.meta));
+provide("editSummary", toRef(react.editSummary));
+provide("markdownSource", toRef(react.markdown.source));
 
 const route = useRoute();
 

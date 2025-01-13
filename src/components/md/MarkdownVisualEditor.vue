@@ -15,7 +15,7 @@ const props = defineProps({
 });
 
 const renderedMarkdown = ref("");
-const markdownSource: Ref<string, string> = inject("markdownSource");
+const markdownSource: Ref<string> = inject("markdownSource");
 
 async function renderMd(source: String) {
     function isPromise<T>(value: T | Promise<T>): value is Promise<T> {

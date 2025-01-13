@@ -9,7 +9,7 @@ const props = defineProps({
     },
 });
 
-const markdownSource: Ref<string, string> = inject("markdownSource");
+const markdownSource: Ref<string> = inject("markdownSource");
 </script>
 
 <template>

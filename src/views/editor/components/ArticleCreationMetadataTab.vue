@@ -1,7 +1,23 @@
-<script setup>
+<script lang="ts" setup>
+import { Ref, inject } from "vue";
+import { PhCloudArrowUp } from "@phosphor-icons/vue";
+
+import { ArticleMeta } from "../ArticleMeta";
 import InputText from "@/components/input/InputText.vue";
 import InputSelect from "@/components/input/InputSelect.vue";
-import { PhCloudArrowUp } from "@phosphor-icons/vue";
+
+const articleMeta: Ref<ArticleMeta> = inject("articleMeta");
+const editSummary: Ref<string> = inject("editSummary");
+
+function parseTags(input: string): string[] {
+    const results: string[] = [];
+    const matches = input.trim().match(/[^,]+/g);
+    for (let i = 0; i < matches.length; ++i) {
+        const tag = matches[i].trim();
+        if (tag.length > 0) results.push(tag);
+    }
+    return results;
+}
 </script>
 
 <template>
@@ -11,7 +27,11 @@ import { PhCloudArrowUp } from "@phosphor-icons/vue";
             <span class="text-2xl font-medium mr-1">Edit summary</span
             ><span>(Briefly describe your changes)</span>
         </div>
-        <InputText placeholder="Insert some text..." />
+        <InputText
+            placeholder="Insert some text..."
+            :value="editSummary"
+            @input="(event) => (editSummary = event.target.value)"
+        />
     </div>
     <div>
         <h1 class="text-xl font-medium pb-1">Article cover</h1>
@@ -29,29 +49,57 @@ import { PhCloudArrowUp } from "@phosphor-icons/vue";
     <div class="w-full flex flex-row gap-4">
         <div class="w-full">
             <h1 class="text-xl font-medium pb-1">Article title</h1>
-            <InputText placeholder="Insert some text..." />
+            <InputText
+                placeholder="Insert some text..."
+                :value="articleMeta.title"
+                @input="(event) => (articleMeta.title = event.target.value)"
+            />
         </div>
         <div class="w-full">
             <h1 class="text-xl font-medium pb-1">Article type</h1>
-            <InputSelect name="font_style">
-                <option value="wiki">Wiki</option>
-                <option value="news">News</option>
-                <option value="blog">Blog</option>
+            <!-- TODO Emma: make this generate from an array or something -->
+            <InputSelect
+                name="font_style"
+                @change="(event) => (articleMeta.type = event.target.value)"
+            >
+                <option value="wiki" :selected="articleMeta.type == 'wiki'">
+                    Wiki
+                </option>
+                <option value="news" :selected="articleMeta.type == 'news'">
+                    News
+                </option>
+                <option value="blog" :selected="articleMeta.type == 'blog'">
+                    Blog
+                </option>
             </InputSelect>
         </div>
         <div class="w-full">
             <h1 class="text-xl font-medium pb-1">Article date</h1>
+            <!-- TODO Emma -->
             <InputText placeholder="Insert some text..." />
         </div>
     </div>
     <div class="w-full flex flex-row gap-4">
         <div class="w-full">
             <h1 class="text-xl font-medium pb-1">Article description</h1>
-            <InputText placeholder="Insert some text..." />
+            <InputText
+                placeholder="Insert some text..."
+                :value="articleMeta.description"
+                @input="
+                    (event) => (articleMeta.description = event.target.value)
+                "
+            />
         </div>
         <div class="w-full">
             <h1 class="text-xl font-medium pb-1">Article tags</h1>
-            <InputText placeholder="Insert some text..." />
+            <InputText
+                placeholder="Insert some text..."
+                :value="articleMeta.tags.join(', ')"
+                @input="
+                    (event) =>
+                        (articleMeta.tags = parseTags(event.target.value))
+                "
+            />
         </div>
     </div>
 </template>
