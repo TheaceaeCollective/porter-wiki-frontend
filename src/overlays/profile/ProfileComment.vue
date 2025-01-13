@@ -29,11 +29,8 @@ const props = defineProps({
                     </div>
                     <span>Jan 6, 2024 - 12 minutes ago</span>
                 </div>
-                <span class="text-xl leading-6 font-light">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Velit
-                    quisquam laudantium architecto dolor ipsam temporibus officia porro
-                    reiciendis eaque totam necessitatibus fugiat quae non delectus
-                    sapiente omnis enim, nemo officiis!</span>
+                <span class="text-xl leading-6 font-light">shit needs to be refactored. this is also the old comment
+                    design (dont use)</span>
             </div>
             <div class="flex flex-row justify-between">
                 <div class="flex flex-row gap-2">
@@ -59,6 +56,8 @@ const props = defineProps({
                         :size="22" />
                 </div>
             </div>
+
+            <div></div>
         </div>
     </div>
 </template>

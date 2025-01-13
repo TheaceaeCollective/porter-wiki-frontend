@@ -34,7 +34,7 @@ const userStatistics = [
 	},
 	{
 		label: "Articles Written",
-		value: "???",
+		value: 0,
 	},
 	{
 		label: "Comments",
