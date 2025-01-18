@@ -26,7 +26,7 @@ const react: State = reactive({
     meta: {
         title: "",
         type: "wiki",
-        date: 0,
+        date: Date.now() / 1000,
         description: "",
         tags: [],
     },

@@ -5,6 +5,7 @@ import { PhPlus } from "@phosphor-icons/vue";
 import EditorToolbar from "@/components/EditorToolbar.vue";
 import Dropdown from "@/components/Dropdown.vue";
 import MarkdownUtils from "@/utils/MarkdownUtils";
+import TypeUtils from "@/utils/TypeUtils";
 import MarkdownView from "@/components/md/MarkdownView.vue";
 
 const props = defineProps({
@@ -17,13 +18,10 @@ const props = defineProps({
 const renderedMarkdown = ref("");
 const markdownSource: Ref<string> = inject("markdownSource");
 
-async function renderMd(source: String) {
-    function isPromise<T>(value: T | Promise<T>): value is Promise<T> {
-        return (value as Promise<T>).then !== undefined;
-    }
-    var md = MarkdownUtils.parse({ meta: {}, content: source });
-    var result = MarkdownUtils.render(md.content, false);
-    if (isPromise(result)) renderedMarkdown.value = await result;
+async function renderMd(source: string) {
+    var md = MarkdownUtils.parse({ content: source });
+    var result = MarkdownUtils.render(md.content, null, true, true);
+    if (TypeUtils.isPromise(result)) renderedMarkdown.value = await result;
     else renderedMarkdown.value = result;
 }
 
@@ -36,11 +34,13 @@ onMounted(async () => await renderMd(markdownSource.value));
     >
         <EditorToolbar />
     </div>
+    <!--
     <button
         class="w-100 py-1 px-2 insert-paragraph bg-background-4 cursor-pointer text-left"
     >
         <PhPlus :size="22" class="inline-block mr-2" />Insert text
     </button>
+    -->
     <MarkdownView :article="renderedMarkdown" />
     <Dropdown :options="['Paragraph', 'Heading', 'Sub-heading 1']" />
 </template>

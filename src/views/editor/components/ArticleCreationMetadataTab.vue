@@ -5,6 +5,7 @@ import { PhCloudArrowUp } from "@phosphor-icons/vue";
 import { ArticleMeta } from "../ArticleMeta";
 import InputText from "@/components/input/InputText.vue";
 import InputSelect from "@/components/input/InputSelect.vue";
+import Formatting from "@/utils/Formatting";
 
 const articleMeta: Ref<ArticleMeta> = inject("articleMeta");
 const editSummary: Ref<string> = inject("editSummary");
@@ -76,7 +77,11 @@ function parseTags(input: string): string[] {
         <div class="w-full">
             <h1 class="text-xl font-medium pb-1">Article date</h1>
             <!-- TODO Emma -->
-            <InputText placeholder="Insert some text..." />
+            <InputText
+                disabled
+                :placeholder="Formatting.formatDateTime(0)"
+                :value="Formatting.formatDateTime(articleMeta.date)"
+            />
         </div>
     </div>
     <div class="w-full flex flex-row gap-4">
