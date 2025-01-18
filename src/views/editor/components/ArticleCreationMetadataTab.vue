@@ -2,10 +2,30 @@
 import { Ref, inject } from "vue";
 import { PhCloudArrowUp } from "@phosphor-icons/vue";
 
-import { ArticleMeta } from "../ArticleMeta";
+import { ArticleMetaType, ArticleMeta } from "../ArticleMeta";
 import InputText from "@/components/input/InputText.vue";
 import InputSelect from "@/components/input/InputSelect.vue";
 import Formatting from "@/utils/Formatting";
+
+interface ArticleTypeEntry {
+    value: ArticleMetaType;
+    label: string;
+}
+
+const articleTypes: ArticleTypeEntry[] = [
+    {
+        value: "wiki",
+        label: "Wiki",
+    },
+    {
+        value: "news",
+        label: "News",
+    },
+    {
+        value: "blog",
+        label: "Blog",
+    },
+];
 
 const articleMeta: Ref<ArticleMeta> = inject("articleMeta");
 const editSummary: Ref<string> = inject("editSummary");
@@ -58,25 +78,22 @@ function parseTags(input: string): string[] {
         </div>
         <div class="w-full">
             <h1 class="text-xl font-medium pb-1">Article type</h1>
-            <!-- TODO Emma: make this generate from an array or something -->
             <InputSelect
                 name="font_style"
                 @change="(event) => (articleMeta.type = event.target.value)"
             >
-                <option value="wiki" :selected="articleMeta.type == 'wiki'">
-                    Wiki
-                </option>
-                <option value="news" :selected="articleMeta.type == 'news'">
-                    News
-                </option>
-                <option value="blog" :selected="articleMeta.type == 'blog'">
-                    Blog
+                <option
+                    v-for="item in articleTypes"
+                    :value="item.value"
+                    :selected="articleMeta.type == item.value"
+                >
+                    {{ item.label }}
                 </option>
             </InputSelect>
         </div>
         <div class="w-full">
             <h1 class="text-xl font-medium pb-1">Article date</h1>
-            <!-- TODO Emma -->
+            <!-- TODO Emma: calendar dropdown -->
             <InputText
                 disabled
                 :placeholder="Formatting.formatDateTime(0)"
