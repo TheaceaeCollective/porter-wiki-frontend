@@ -100,7 +100,7 @@ onMounted(() => {
                     try {
                         MetaTagsController.setMeta(path, meta, true);
                         articleMeta = MetaTagsController.getMeta(path);
-                    } catch {}
+                    } catch { }
                 }
                 if (!articleMeta) MetaTagsController.getMeta("default");
 
@@ -261,38 +261,22 @@ onMounted(() => {
         <ArticleSkeleton :loading="!react.loaded" :error="react.error">
             <div class="flex justify-between w-full mb-2 px-5 flex-wrap">
                 <p class="flex gap-0.5 flex-wrap">
-                    <RouterLink to="/" class="text-light-gray readMoreHover"
-                        >Home</RouterLink
-                    >
-                    <span
-                        v-for="(part, index) in react.breadcrumbs"
-                        class="flex items-center gap-1"
-                    >
+                    <RouterLink to="/" class="text-light-gray readMoreHover">Home</RouterLink>
+                    <span v-for="(part, index) in react.breadcrumbs" class="flex items-center gap-1">
                         <PhCaretRight :size="16" class="text-light-gray" />
-                        <span
-                            v-if="
-                                index ==
-                                Object.keys(react.breadcrumbs).length - 1
-                            "
-                            >{{ part.name }}</span
-                        >
-                        <RouterLink
-                            v-else
-                            class="text-light-gray readMoreHover"
-                            :to="part.path"
-                            >{{ part.name }}
+                        <span v-if="
+                            index ==
+                            Object.keys(react.breadcrumbs).length - 1
+                        ">{{ part.name }}</span>
+                        <RouterLink v-else class="text-light-gray readMoreHover" :to="part.path">{{ part.name }}
                         </RouterLink>
                     </span>
                 </p>
-                <RouterLink
-                    :to="'/editor?path=' + `${route.path}` + '#source'"
-                    class="text-accent cursor-pointer readMoreHover"
-                    >Edit this page!</RouterLink
-                >
+                <RouterLink :to="'/editor?path=' + `${route.path}` + '#source'"
+                    class="text-accent cursor-pointer readMoreHover">Edit this page!</RouterLink>
             </div>
             <div
-                class="w-full bg-background-1 rounded-lg p-4 flex flex-col md:flex-row justify-between items-center mb-4 gap-4"
-            >
+                class="w-full bg-background-1 rounded-lg p-4 flex flex-col md:flex-row justify-between items-center mb-4 gap-4">
                 <div>
                     <h3 class="text-2xl font-semibold">
                         {{ react.meta.title }}
@@ -311,44 +295,23 @@ onMounted(() => {
 				class="overlap-grid w-full h-60 mb-4 rounded-lg"><img :src="react.meta.image" class="object-cover">
 			</div> -->
             <!-- the image used for cover article -->
-            <div
-                v-if="react.meta.image && react.meta.layout !== 'article'"
-                class="overlap-grid w-full h-60 mb-4 rounded-lg"
-            >
+            <div v-if="react.meta.image && react.meta.layout !== 'article'"
+                class="overlap-grid w-full h-60 mb-4 rounded-lg">
                 <NewsComponents type="1" :image="react.meta.image" />
             </div>
             <div class="article-content max-h-full">
-                <div
-                    class="hidden md:flex w-72 min-w-72 h-auto bg-background-3 rounded-lg flex-col p-5"
-                    v-if="react.meta.layout == 'article'"
-                >
+                <div class="hidden md:flex w-72 min-w-72 h-auto bg-background-3 rounded-lg flex-col p-5"
+                    v-if="react.meta.layout == 'article'">
                     <div class="sticky top-20 flex flex-col">
                         <h4 class="text-lg font-semibold mb-2">Contents</h4>
-                        <ol
-                            class="overflow-auto max-h-[87vh] list-decimal list-inside"
-                        >
-                            <li
-                                v-for="section in react.sections"
-                                class="text-xl mb-3 text-light-gray"
-                            >
-                                <a
-                                    class="hover:underline hover:text-accent-soft"
-                                    :href="'#' + section.id"
-                                    >{{ section.title }}</a
-                                >
-                                <ul
-                                    v-if="section.subsections.length > 0"
-                                    class="list-[circle] pl-3"
-                                >
-                                    <li
-                                        v-for="subsection in section.subsections"
-                                        class="text-lg ml-4"
-                                    >
-                                        <a
-                                            class="hover:underline hover:text-accent-soft"
-                                            :href="'#' + subsection.id"
-                                            >{{ subsection.title }}</a
-                                        >
+                        <ol class="overflow-auto max-h-[87vh] list-decimal list-inside">
+                            <li v-for="section in react.sections" class="text-xl mb-3 text-light-gray">
+                                <a class="hover:underline hover:text-accent-soft" :href="'#' + section.id">{{
+                                    section.title }}</a>
+                                <ul v-if="section.subsections.length > 0" class="list-[circle] pl-3">
+                                    <li v-for="subsection in section.subsections" class="text-lg ml-4">
+                                        <a class="hover:underline hover:text-accent-soft" :href="'#' + subsection.id">{{
+                                            subsection.title }}</a>
                                     </li>
                                 </ul>
                             </li>
@@ -360,10 +323,7 @@ onMounted(() => {
                 </div>
             </div>
 
-            <NewsComponents
-                v-if="react.meta.type == Config.ArticleTypes.News"
-                type="2"
-            />
+            <NewsComponents v-if="react.meta.type == Config.ArticleTypes.News" type="2" />
 
             <div class="article-comments relative inline-block h-max w-max">
                 <CommentsSkeleton :commentSystem="react.commentSystem" />
