@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Ref, ref, inject, watch, onMounted } from "vue";
+import { Ref, ref, isRef, inject, watch, onMounted } from "vue";
 import { PhPlus } from "@phosphor-icons/vue";
 
 import EditorToolbar from "@/components/EditorToolbar.vue";
@@ -17,15 +17,20 @@ const props = defineProps({
 
 const renderedMarkdown = ref("");
 const markdownSource: Ref<string> = inject("markdownSource");
+const articleUrl: Ref<string> = inject("articleUrl");
 
 async function renderMd(source: string) {
     var md = MarkdownUtils.parse({ content: source });
-    var result = MarkdownUtils.render(md.content, null, true, true);
+    var result = MarkdownUtils.render(md.content, articleUrl.value, true, true);
+    console.log(articleUrl.value);
     if (TypeUtils.isPromise(result)) renderedMarkdown.value = await result;
     else renderedMarkdown.value = result;
 }
 
-onMounted(async () => await renderMd(markdownSource.value));
+watch(markdownSource, async (newSource) => await renderMd(newSource));
+onMounted(async () => {
+    if (markdownSource.value.length > 0) await renderMd(markdownSource.value);
+});
 </script>
 
 <template>

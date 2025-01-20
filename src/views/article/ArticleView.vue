@@ -284,16 +284,10 @@ onMounted(() => {
                         </RouterLink>
                     </span>
                 </p>
-                <!-- basic redirection for editing articles. will be replaced once the editor is live -->
-                <a
-                    :href="
-                        'https://github.com/theaceaecollective/porter-wiki-articles/edit/main' +
-                        `${route.path}` +
-                        '/en.md'
-                    "
-                    target="_blank"
+                <RouterLink
+                    :to="'/editor?path=' + `${route.path}` + '#source'"
                     class="text-accent cursor-pointer readMoreHover"
-                    >Edit this page!</a
+                    >Edit this page!</RouterLink
                 >
             </div>
             <div

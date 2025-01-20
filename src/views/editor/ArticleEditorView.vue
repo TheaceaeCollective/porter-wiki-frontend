@@ -1,25 +1,29 @@
 <script lang="ts" setup>
 import { useRoute, RouterLink } from "vue-router";
-import { reactive, watch, provide, toRef } from "vue";
+import { reactive, watch, provide, toRef, ref, onMounted } from "vue";
 import { PhCaretRight } from "@phosphor-icons/vue";
 import SelectedUnderline from "@/components/SelectedUnderline.vue";
 
 import { ArticleMeta } from "./ArticleMeta";
-import ArticleCreationSourceTab from "./components/ArticleCreationSourceTab.vue";
-import ArticleCreationVisualTab from "./components/ArticleCreationVisualTab.vue";
-import ArticleCreationHistoryTab from "./components/ArticleCreationHistoryTab.vue";
-import ArticleCreationMetadataTab from "./components/ArticleCreationMetadataTab.vue";
+import ArticleEditorSourceTab from "./components/ArticleEditorSourceTab.vue";
+import ArticleEditorVisualTab from "./components/ArticleEditorVisualTab.vue";
+import ArticleEditorHistoryTab from "./components/ArticleEditorHistoryTab.vue";
+import ArticleEditorMetadataTab from "./components/ArticleEditorMetadataTab.vue";
 
+import API from "@/utils/API";
 import Utils from "@/utils/Utils";
 
 // Utils.setTitle('Article Creation');
+
+type ArticleEditorTab = "source" | "visual" | "history" | "metadata";
+const defaultTab: ArticleEditorTab = "metadata";
 
 type State = {
     meta: ArticleMeta;
     markdown: { source: string };
     editSummary: string;
     breadcrumbs: { name: string; path: string }[];
-    tab: string;
+    tab: ArticleEditorTab;
 };
 
 const react: State = reactive({
@@ -31,20 +35,33 @@ const react: State = reactive({
         tags: [],
     },
     markdown: {
-        source: "## Biography\nText here\n\n### News Release\nMore text",
+        source: "",
     },
     editSummary: "",
     breadcrumbs: [],
-    tab: "metadata",
+    tab: defaultTab,
 });
 
+const articleUrl = ref("");
+provide("articleUrl", articleUrl);
 provide("articleMeta", toRef(react.meta));
 provide("editSummary", toRef(react.editSummary));
-provide("markdownSource", toRef(react.markdown.source));
+const markdownSource = toRef(react.markdown.source);
+provide("markdownSource", markdownSource);
 
 const route = useRoute();
 
-const tabs = {
+interface ArticleEditorTabEntry {
+    name: ArticleEditorTab;
+    title: string;
+}
+
+interface ArticleEditorTabMap {
+    left: ArticleEditorTabEntry[];
+    right: ArticleEditorTabEntry[];
+}
+
+const tabs: ArticleEditorTabMap = {
     left: [
         {
             name: "source",
@@ -67,12 +84,14 @@ const tabs = {
     ],
 };
 
-const validateTab = (text: string): string => {
-    if (!text.startsWith("#")) return "metadata";
+const validateTab = (text: string): ArticleEditorTab => {
+    if (!text.startsWith("#")) return defaultTab;
     text = text.substring(1);
-    if (tabs.left.find((item) => item.name == text)) return text;
-    if (tabs.right.find((item) => item.name == text)) return text;
-    return "metadata";
+    let result = tabs.left.find((item) => item.name == text);
+    if (result === undefined)
+        result = tabs.right.find((item) => item.name == text);
+    if (result === undefined) return defaultTab;
+    return result.name;
 };
 
 react.tab = validateTab(route.hash);
@@ -95,9 +114,41 @@ const createCrumbs = () => {
     });
 };
 
+const loadArticle = (path: string) => {
+    if (path.startsWith("/")) path = path.substring(1);
+    let articlePath = `/articles/${path}`;
+    articleUrl.value = articlePath;
+    if (path == "style-test") {
+        articlePath =
+            "http://localhost:5173/src/assets/tests/blockquote-test.md"; // can be replaced with md files in the tests folder
+
+        fetch(articlePath)
+            .then((response) => response.text())
+            .then((text) => {
+                markdownSource.value = text;
+            });
+    } else {
+        API.get(articlePath).then(async (res) => {
+            if (res.status != 200) {
+                // TODO Emma: handle errors and not found
+                return;
+            }
+            markdownSource.value = res.data.content;
+            // TODO Emma: set breadcrumbs
+            // TODO Emma: set metadata fields
+        });
+    }
+};
+
+onMounted(() => {
+    const path = route.query.path;
+    if (typeof path == "string") loadArticle(<string>path);
+});
+
 createCrumbs();
+
 react.meta.title =
-    typeof route.params.title == typeof String
+    typeof route.params.title == "string"
         ? <string>route.params.title
         : route.path.split("/").pop();
 Utils.setTitle(react.meta.title);
@@ -158,10 +209,10 @@ Utils.setTitle(react.meta.title);
                     </SelectedUnderline>
                 </div>
             </div>
-            <ArticleCreationSourceTab v-if="react.tab == 'source'" />
-            <ArticleCreationVisualTab v-if="react.tab == 'visual'" />
-            <ArticleCreationHistoryTab v-if="react.tab == 'history'" />
-            <ArticleCreationMetadataTab v-if="react.tab == 'metadata'" />
+            <ArticleEditorSourceTab v-if="react.tab == 'source'" />
+            <ArticleEditorVisualTab v-if="react.tab == 'visual'" />
+            <ArticleEditorHistoryTab v-if="react.tab == 'history'" />
+            <ArticleEditorMetadataTab v-if="react.tab == 'metadata'" />
         </div>
     </div>
 </template>
