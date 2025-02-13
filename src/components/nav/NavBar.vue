@@ -92,7 +92,7 @@ onMounted(() => {
 						@click="Events.Emit('searchoverlay')" />
 					<div class="w-[2px] h-9 max-md:hidden bg-gray"></div>
 					<div class="max-md:hidden flex gap-1">
-						<NavBarButton first>
+						<NavBarButton first @click="">
 							<PhGlobe :size="28" />
 						</NavBarButton>
 						<!--if there ever gets anything added here, give it the 'middle' attribute-->
