@@ -4,7 +4,7 @@ import { reactive, watch, provide, toRef, ref, onMounted } from "vue";
 import { PhCaretRight } from "@phosphor-icons/vue";
 import SelectedUnderline from "@/components/SelectedUnderline.vue";
 
-import { ArticleMeta } from "./ArticleMeta";
+import { ArticleMetadata, ArticleMetadataUtil } from "./ArticleMetadata";
 import ArticleEditorSourceTab from "./components/ArticleEditorSourceTab.vue";
 import ArticleEditorVisualTab from "./components/ArticleEditorVisualTab.vue";
 import ArticleEditorHistoryTab from "./components/ArticleEditorHistoryTab.vue";
@@ -19,7 +19,7 @@ type ArticleEditorTab = "source" | "visual" | "history" | "metadata";
 const defaultTab: ArticleEditorTab = "metadata";
 
 type State = {
-    meta: ArticleMeta;
+    meta: ArticleMetadata;
     markdown: { source: string };
     editSummary: string;
     breadcrumbs: { name: string; path: string }[];
@@ -29,9 +29,12 @@ type State = {
 const react: State = reactive({
     meta: {
         title: "",
+        description: "",
+        author: "",
+        image: "",
+        layout: "",
         type: "wiki",
         date: Date.now() / 1000,
-        description: "",
         tags: [],
     },
     markdown: {
@@ -44,8 +47,12 @@ const react: State = reactive({
 
 const articleUrl = ref("");
 provide("articleUrl", articleUrl);
-provide("articleMeta", toRef(react.meta));
+
+const articleMetadata = toRef(react.meta);
+provide("articleMetadata", articleMetadata);
+
 provide("editSummary", toRef(react.editSummary));
+
 const markdownSource = toRef(react.markdown.source);
 provide("markdownSource", markdownSource);
 
@@ -88,8 +95,7 @@ const validateTab = (text: string): ArticleEditorTab => {
     if (!text.startsWith("#")) return defaultTab;
     text = text.substring(1);
     let result = tabs.left.find((item) => item.name == text);
-    if (result === undefined)
-        result = tabs.right.find((item) => item.name == text);
+    if (result === undefined) result = tabs.right.find((item) => item.name == text);
     if (result === undefined) return defaultTab;
     return result.name;
 };
@@ -104,23 +110,12 @@ watch(
     { flush: "pre", immediate: true, deep: true }
 );
 
-const createCrumbs = () => {
-    const pathParts = route.path.split("/").filter(Boolean);
-    react.breadcrumbs = pathParts.map((part, index) => {
-        return {
-            name: part.charAt(0).toUpperCase() + part.slice(1),
-            path: "/" + pathParts.slice(0, index + 1).join("/"),
-        };
-    });
-};
-
 const loadArticle = (path: string) => {
     if (path.startsWith("/")) path = path.substring(1);
     let articlePath = `/articles/${path}`;
     articleUrl.value = articlePath;
     if (path == "style-test") {
-        articlePath =
-            "http://localhost:5173/src/assets/tests/blockquote-test.md"; // can be replaced with md files in the tests folder
+        articlePath = "http://localhost:5173/src/assets/tests/blockquote-test.md"; // can be replaced with md files in the tests folder
 
         fetch(articlePath)
             .then((response) => response.text())
@@ -133,9 +128,22 @@ const loadArticle = (path: string) => {
                 // TODO Emma: handle errors and not found
                 return;
             }
+
+            // Set metadata fields:
+            articleMetadata.value.title = res.data.meta.title;
+            articleMetadata.value.description = res.data.meta.description;
+            articleMetadata.value.author = res.data.meta.author;
+            articleMetadata.value.image = res.data.meta.image;
+            articleMetadata.value.layout = res.data.meta.layout;
+            articleMetadata.value.type = ArticleMetadataUtil.parseArticleTypeFromBackend(res.data.meta.type);
+            articleMetadata.value.date = res.data.meta.date;
+            articleMetadata.value.tags = res.data.meta.tags;
+
+            // Set breadcrumbs:
+            react.breadcrumbs = res.data.breadcrumbs;
+
+            // Set mardown content:
             markdownSource.value = res.data.content;
-            // TODO Emma: set breadcrumbs
-            // TODO Emma: set metadata fields
         });
     }
 };
@@ -145,12 +153,7 @@ onMounted(() => {
     if (typeof path == "string") loadArticle(<string>path);
 });
 
-createCrumbs();
-
-react.meta.title =
-    typeof route.params.title == "string"
-        ? <string>route.params.title
-        : route.path.split("/").pop();
+react.meta.title = typeof route.params.title == "string" ? <string>route.params.title : route.path.split("/").pop();
 Utils.setTitle(react.meta.title);
 </script>
 
@@ -159,33 +162,16 @@ Utils.setTitle(react.meta.title);
         <!-- todo: breadcrumbs are suppose to be the title of the article the user is wishing to create -->
         <div class="flex justify-between w-full mb-2 px-5 flex-wrap">
             <p class="flex gap-0.5 flex-wrap">
-                <RouterLink to="/" class="text-light-gray readMoreHover"
-                    >Home</RouterLink
-                >
-                <span
-                    v-for="(part, index) in react.breadcrumbs"
-                    class="flex items-center gap-1"
-                >
+                <RouterLink to="/" class="text-light-gray readMoreHover">Home</RouterLink>
+                <span v-for="(part, index) in react.breadcrumbs" class="flex items-center gap-1">
                     <PhCaretRight :size="16" class="text-light-gray" />
-                    <span
-                        v-if="
-                            index == Object.keys(react.breadcrumbs).length - 1
-                        "
-                        >{{ part.name }}</span
-                    >
-                    <RouterLink
-                        v-else
-                        class="text-light-gray readMoreHover"
-                        :to="part.path"
-                        >{{ part.name }}
-                    </RouterLink>
+                    <span v-if="index == Object.keys(react.breadcrumbs).length - 1">{{ part.name }}</span>
+                    <RouterLink v-else class="text-light-gray readMoreHover" :to="part.path">{{ part.name }} </RouterLink>
                 </span>
             </p>
         </div>
         <div class="w-full flex flex-col gap-4">
-            <div
-                class="w-full h-14 rounded-lg bg-background-1 flex flex-row justify-between px-5"
-            >
+            <div class="w-full h-14 rounded-lg bg-background-1 flex flex-row justify-between px-5">
                 <div class="flex flex-row gap-5">
                     <SelectedUnderline
                         v-for="tab in tabs.left"

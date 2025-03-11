@@ -30,8 +30,7 @@ export default class MarkdownUtils {
             if (headerStorage[headerId] == null) headerStorage[headerId] = 0;
             else headerStorage[headerId]++;
 
-            if (headerStorage[headerId] > 0)
-                headerId = `${headerId}-${headerStorage[headerId]}`;
+            if (headerStorage[headerId] > 0) headerId = `${headerId}-${headerStorage[headerId]}`;
 
             return headerId;
         };
@@ -47,13 +46,7 @@ export default class MarkdownUtils {
             if (line.startsWith("## ")) {
                 data.sections.push({
                     title: line.slice(3),
-                    id: genHead(
-                        line
-                            .slice(3)
-                            .toLowerCase()
-                            .trim()
-                            .replace(this.headerRegex, "-")
-                    ),
+                    id: genHead(line.slice(3).toLowerCase().trim().replace(this.headerRegex, "-")),
                     subsections: [],
                 });
             }
@@ -65,13 +58,7 @@ export default class MarkdownUtils {
 
                 const subsection: MarkdownSection = {
                     title: line.slice(4),
-                    id: genHead(
-                        line
-                            .slice(4)
-                            .toLowerCase()
-                            .trim()
-                            .replace(this.headerRegex, "-")
-                    ),
+                    id: genHead(line.slice(4).toLowerCase().trim().replace(this.headerRegex, "-")),
                 };
 
                 last.subsections.push(subsection);
@@ -81,30 +68,17 @@ export default class MarkdownUtils {
         return data;
     }
 
-    static async render(
-        content: string,
-        articleUrl: string,
-        wrapP = true,
-        isEditor = false
-    ): Promise<string> {
+    static async render(content: string, articleUrl: string, wrapP = true, isEditor = false): Promise<string> {
         const headerStorage = {};
         const renderer = {
             heading: (text: string, level: number) => {
-                const d = (s: string, r: string) =>
-                    s.replace(/&\w+;|&#\d+;/g, r);
-                let headerId = d(text.toLowerCase(), "-").replace(
-                    this.headerRegex,
-                    "-"
-                );
-                if (headerStorage[headerId] == null)
-                    headerStorage[headerId] = 0;
+                const d = (s: string, r: string) => s.replace(/&\w+;|&#\d+;/g, r);
+                let headerId = d(text.toLowerCase(), "-").replace(this.headerRegex, "-");
+                if (headerStorage[headerId] == null) headerStorage[headerId] = 0;
                 else headerStorage[headerId]++;
 
-                if (headerStorage[headerId] > 0)
-                    headerId = `${headerId}-${headerStorage[headerId]}`;
-                return `<MarkdownHeader text="${text}" :level="${level}" headerId="${headerId}" ${
-                    isEditor ? "isEditor" : ""
-                } />`;
+                if (headerStorage[headerId] > 0) headerId = `${headerId}-${headerStorage[headerId]}`;
+                return `<MarkdownHeader text="${text}" :level="${level}" headerId="${headerId}" ${isEditor ? "isEditor" : ""} />`;
             },
             paragraph: (text: string) => (wrapP ? `<p>${text}</p>` : text),
             blockquote: (quote: string) => {
@@ -115,14 +89,10 @@ export default class MarkdownUtils {
                 var typeMatch = content.match(/\{: \.(\w+) \}/);
 
                 // determine if it's a blockquote note
-                var headerMatch = content.match(
-                    /^<MarkdownHeader\s+?.*?:level="1".*?\/>/
-                );
+                var headerMatch = content.match(/^<MarkdownHeader\s+?.*?:level="1".*?\/>/);
                 if (headerMatch) {
                     // extract the header text
-                    var titleMatch = headerMatch[0].match(
-                        /^<MarkdownHeader\s+?.*?text="(.*?)".*?\/>$/
-                    );
+                    var titleMatch = headerMatch[0].match(/^<MarkdownHeader\s+?.*?text="(.*?)".*?\/>$/);
                     if (titleMatch) {
                         var finalContent = content.replace(titleMatch[0], "");
                         var title = titleMatch[1];
@@ -140,10 +110,7 @@ export default class MarkdownUtils {
 
                 if (typeMatch) {
                     var type = typeMatch[1];
-                    return `<Blockquote type="${type}">${content.replace(
-                        typeMatch[0],
-                        ""
-                    )}</Blockquote>`;
+                    return `<Blockquote type="${type}">${content.replace(typeMatch[0], "")}</Blockquote>`;
                 }
 
                 return `<Blockquote>${quote}</Blockquote>`;
@@ -151,11 +118,7 @@ export default class MarkdownUtils {
             image: (href: string, title: string, text: string) => {
                 if (articleUrl) {
                     // Check for @ or /
-                    if (href.startsWith("@") || href.startsWith("/"))
-                        return `<MarkdownImage url="${Utils.fixCDNImages(
-                            href,
-                            articleUrl
-                        )}" alt="${text}" />`;
+                    if (href.startsWith("@") || href.startsWith("/")) return `<MarkdownImage url="${href}" alt="${text}" />`;
                 }
 
                 // Default
@@ -167,14 +130,9 @@ export default class MarkdownUtils {
         marked.use(markedFootnote());
 
         const parseResult = marked.parse(content);
-        let html = TypeUtils.isPromise(parseResult)
-            ? await parseResult
-            : parseResult;
+        let html = TypeUtils.isPromise(parseResult) ? await parseResult : parseResult;
 
-        html = html.replace(
-            `<h2 id="footnote-label" class="sr-only">Footnotes</h2>`,
-            ""
-        );
+        html = html.replace(`<h2 id="footnote-label" class="sr-only">Footnotes</h2>`, "");
 
         return html;
     }
