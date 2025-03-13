@@ -1,14 +1,19 @@
 <script setup>
-import { reactive, ref } from 'vue';
+import { reactive, ref } from "vue";
+import { PhGithubLogo, PhCoffee, PhDiscordLogo } from "@phosphor-icons/vue";
+import Events from "@/utils/Events";
+import ActiveComponents from "@/utils/ActiveComponents";
+import API from "@/utils/API";
 
-import Events from '@/utils/Events';
-import ActiveComponents from '@/utils/ActiveComponents';
-import API from '@/utils/API';
-import Toast from '@/utils/Toast';
-
-import TitleBar from '../TitleBar.vue';
-import PopupOverlay from '../popup/PopupOverlay.vue';
-import Button from '@/components/buttons/Button.vue';
+import Toast from "@/utils/Toast";
+import GradientLine from "@/components/GradientLine.vue";
+import GrayLine from "@/components/GrayLine.vue";
+import TitleBar from "../TitleBar.vue";
+import PopupOverlay from "../popup/PopupOverlay.vue";
+import Button from "@/components/buttons/Button.vue";
+import ProfileComment from "./ProfileComment.vue";
+import ProfileCard from "@/components/ProfileCard.vue";
+import Formatting from "@/utils/Formatting";
 
 const content = ref();
 
@@ -76,6 +81,14 @@ function Close(e) {
 // temporary function - john
 function wipToast() {
 	Toast.showToast("That feature is not implemented yet but will be soon!", { type: "error" })
+}
+
+// logs out then closes the popup - john
+function logOut(ClosePopup) {
+	if (API.user.loggedIn) {
+		API.performLogout();
+		ClosePopup();
+	}
 }
 </script>
 
@@ -148,15 +161,22 @@ the about me is custom.need to communicate with backend - john-->
 						</div>
 					</div>
 				</div>
-				<!-- the log out button is temporary - john -->
-				<p class="text-lg text-red bottom-0 justify-center mx-auto cursor-pointer"
-					@click="Events.Emit('popup-logout')">
-					Log Out</p>
-				<p class="text-lg text-red bottom-0 justify-center mx-auto cursor-pointer" @click="wipToast">Report
-					Profile</p>
+				<p class="text-lg text-red bottom-0 justify-center mx-auto cursor-pointer" @click="wipToast">
+					Report Profile
+				</p>
 			</div>
 		</div>
 	</Transition>
+
+	<PopupOverlay event="popup-logout">
+		<template #content>Are you very sure you want to logout?</template>
+		<template #footer="{ ClosePopup }">
+			<div class="flex justify-center gap-2">
+				<Button type="success" @click="logOut(ClosePopup)">Yes</Button>
+				<Button type="error" @click="ClosePopup">Cancel</Button>
+			</div>
+		</template>
+	</PopupOverlay>
 </template>
 
 <style>
