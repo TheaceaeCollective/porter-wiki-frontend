@@ -124,7 +124,7 @@ API.get("/articles?type=community&count=1984").then((res) => {
 						<!--Side blocks for semi recent blog posts-->
 						<template v-for="(post, index) in react.semiRecent">
 							<BlogPost class="flex flex-col w-full" :post="post" linearBackground />
-							<GrayLine v-if="(index + 1) != react.semiRecent.length" :lineStyle=2 class="!h-0.5" />
+							<GrayLine v-if="(index + 1) != react.semiRecent.length" :lineStyle=2 class="h-0.5!" />
 						</template>
 					</div>
 				</div>
@@ -137,7 +137,7 @@ API.get("/articles?type=community&count=1984").then((res) => {
 						<!--Bottom div for most older blog posts-->
 						<div v-for="(post, index) in react.evenMore" class="flex flex-col w-full gap-2">
 							<BlogPost :post="post" linearBackground />
-							<GrayLine v-if="(index + 1) != react.evenMore.length" :lineStyle=2 class="!h-0.5" />
+							<GrayLine v-if="(index + 1) != react.evenMore.length" :lineStyle=2 class="h-0.5!" />
 						</div>
 					</div>
 				</div>
