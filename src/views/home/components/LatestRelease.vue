@@ -96,7 +96,7 @@ API.get(sourceRandom.url).then((res) => {
 			<LoadingImage :src="react.output.image || DefaultImage || EmptyImage" class="object-cover" />
 			<div class="dim" v-if="linearBackground"></div>
 			<div class="radial-dim" v-else></div>
-			<div class="card-content !flex-row">
+			<div class="card-content flex-row!">
 				<div class="flex justify-between">
 					<div class="flex flex-col gap-1">
 						<div class="flex justify-between items-center">

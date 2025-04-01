@@ -112,19 +112,19 @@ provide("commentSystem", commentSystem);
 
 		<div v-else-if="react.loaded && !react.error && react.comments.withoutReplies.length > 0"
 			v-for="(comment, index) in react.comments.withoutReplies" :id="`comment-${comment.id}`" :key="comment.id"
-			class="rounded-xl w-full max-w-screen-lg min-h-16 p-0 flex mb-1 mx-auto flex-col relative">
+			class="rounded-xl w-full max-w-(--breakpoint-lg) min-h-16 p-0 flex mb-1 mx-auto flex-col relative">
 			<Comment :comment="{ ...comment, isReply: false, isDeleted: (comment.author === undefined) }">
 				<template #replyBox />
 				<template #replies>
 					<div v-if="react.comments.replies.length > 0"
 						v-for="(reply, replyIndex) in react.comments.replies.filter(r => r.parent === comment.id)"
 						:id="`comment-${reply.id}`" :key="reply.id"
-						class="rounded-xl w-full max-w-screen-lg min-h-24 gap-3 py-0 m-auto pl-3 flex relative mt-3">
+						class="rounded-xl w-full max-w-(--breakpoint-lg) min-h-24 gap-3 py-0 m-auto pl-3 flex relative mt-3">
 						<Comment :comment="{ ...reply, isReply: true, isDeleted: (reply.author === undefined) }" />
 					</div>
 				</template>
 			</Comment>
-			<GrayLine v-if="(index + 1) != react.comments.withoutReplies.length" :lineStyle=2 class="!h-0.5 !mt-1" />
+			<GrayLine v-if="(index + 1) != react.comments.withoutReplies.length" :lineStyle=2 class="h-0.5! mt-1!" />
 		</div>
 	</div>
 </template>

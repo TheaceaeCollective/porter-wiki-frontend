@@ -32,7 +32,7 @@ Events.Register(props.event + "-close", () => {
 
 function ClosePopup(fromEmitted, event) {
 	if (!fromEmitted && event) {
-		if (!event.target.classList.contains("backdrop-blur")) return;
+		if (!event.target.classList.contains("backdrop-blur-sm")) return;
 	};
 	if (fromEmitted != true) return ActiveComponents.close();
 	popupReact.open = false;
@@ -42,9 +42,9 @@ function ClosePopup(fromEmitted, event) {
 
 <template>
 	<Transition name="overlay">
-		<div class="z-50 flex fixed inset-0 justify-center items-center min-w-screen min-h-screen top-0 py-24 bg-opacity-25 backdrop-blur overflow-y-scroll"
+		<div class="z-50 flex fixed inset-0 justify-center items-center min-w-screen min-h-screen top-0 py-24 bg-opacity-25 backdrop-blur-sm overflow-y-scroll"
 			v-if="popupReact.open" @click="e => ClosePopup(null, e)">
-			<div class="z-0 max-w-4xl bg-background-1 bg-opacity-90 backdrop-blur theShadow rounded-xl flex flex-col p-5 gap-1"
+			<div class="z-0 max-w-4xl bg-background-1/90 backdrop-blur-sm theShadow rounded-xl flex flex-col p-5 gap-1"
 				ref="popupContent">
 				<slot name="title" :ClosePopup="ClosePopup"></slot>
 				<div class="flex grow">

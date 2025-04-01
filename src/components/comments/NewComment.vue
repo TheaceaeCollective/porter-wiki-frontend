@@ -225,12 +225,12 @@ const submitComment = () => {
 
 <template>
 	<div
-		:class="`${commentParent != null ? 'w-full max-w-screen-lg min-h-24 gap-3 py-0 m-auto pl-5 flex relative mt-3' : ''}`">
+		:class="`${commentParent != null ? 'w-full max-w-(--breakpoint-lg) min-h-24 gap-3 py-0 m-auto pl-5 flex relative mt-3' : ''}`">
 		<div v-if="commentParent != null">
-			<GradientLine lineStyle="vert" :overshoot="false" class="!h-14" />
+			<GradientLine lineStyle="vert" :overshoot="false" class="h-14!" />
 		</div>
 		<div class="new-comment w-full">
-			<div class="w-full rounded flex gap-3">
+			<div class="w-full rounded-sm flex gap-3">
 				<img v-if="commentParent == null && commentId == null" class="rounded-xl object-fill max-h-24 my-auto"
 					:src="API.user.avatar" alt="avatar" />
 				<Textbox :box-name="`${commentAction}comment`" :be-disabled="beDisabled" :handleInput="handleInput"
