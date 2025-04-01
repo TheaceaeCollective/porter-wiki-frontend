@@ -17,5 +17,5 @@ const props = defineProps({
 
 <template>
 	<Component :is="icon" :size="size" :disabled="disabled"
-		:class='"rounded-sm cursor-" + `${disabled ? "deny" : "pointer hover:text-accent"}`' />
+		:class='"rounded cursor-" + `${disabled ? "deny" : "pointer hover:text-accent"}`' />
 </template>
