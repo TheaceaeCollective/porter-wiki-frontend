@@ -1,5 +1,49 @@
 /* tailwind apparently needs a normal css file to work */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+    --color-*: initial;
+    --color-background-1: #37294c;
+    --color-background-2: #403055;
+    --color-background-3: #483561;
+    --color-background-4: #543c74;
+    --color-background-header-buttons: #5d427f;
+
+    --color-accent: #8760d3;
+    --color-accent-soft: #8b6f9e;
+    --color-primary: #8062b3;
+    --color-black: #000;
+    --color-white: #fff;
+    --color-red: #ff5555;
+    --color-light-gray: rgba(255, 255, 255, 0.7);
+    --color-gray: rgba(255, 255, 255, 0.4);
+
+    --color-userfeedback-info: #0044ff;
+    --color-userfeedback-success: #00ff00;
+    --color-userfeedback-warning: #ffdd00;
+    --color-userfeedback-error: #dd0000;
+
+    --width-content-width: 1080px;
+    --width-layout-width: calc(100vw - 32px);
+
+    --transition-duration-50: 50ms;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}

@@ -43,8 +43,8 @@ const props = defineProps({
 // Popup
 const popup = reactive({
     content: "",
-    clickYes: () => {},
-    clickNo: () => {},
+    clickYes: () => { },
+    clickNo: () => { },
 });
 const btnAction = (ClosePopup, callback) => {
     if (callback) callback();
@@ -232,53 +232,32 @@ if (comment && comment.content?.length > 0) {
 
 <template class="flex flex-col">
     <div v-if="comment.isLoading" id="comment-loading-overlay">
-        <div
-            class="m-auto flex size-10 items-center justify-center rounded-lg bg-background-4 p-1"
-        >
+        <div class="m-auto flex size-10 items-center justify-center rounded-lg bg-background-4 p-1">
             <PhArrowClockwise :size="32" class="spin-spin-spin" />
         </div>
     </div>
 
-    <div
-        :class="`${
-            comment.isReplying || comment.isEditing ? 'bg-background-3' : ''
-        } hover:bg-background-3 p-2 flex gap-3 w-full rounded-xl`"
-        @mouseover="changeHover(true)"
-        @mouseleave="changeHover(false)"
-        :id="`comment-${comment.id}`"
-    >
+    <div :class="`${comment.isReplying || comment.isEditing ? 'bg-background-3' : ''
+        } hover:bg-background-3 p-2 flex gap-3 w-full rounded-xl`" @mouseover="changeHover(true)"
+        @mouseleave="changeHover(false)" :id="`comment-${comment.id}`">
         <div v-if="comment.isReply">
             <GradientLine lineStyle="vert" :overshoot="false" class="!h-14" />
         </div>
         <div class="flex flex-col gap-2">
-            <img
-                alt="Avatar"
-                :class="`rounded-2xl border-2 h-14 min-w-14`"
-                :src="comment.author.avatar || Logo"
-                :style="`border-color: ${comment.author.color}`"
-                @error="fixAvatar"
-            />
+            <img alt="Avatar" :class="`rounded-2xl border-2 h-14 min-w-14`" :src="comment.author.avatar || Logo"
+                :style="`border-color: ${comment.author.color}`" @error="fixAvatar" />
         </div>
         <div class="flex flex-col w-full">
-            <div
-                class="flex text-xl justify-between items-center align-middle relative"
-            >
+            <div class="flex text-xl justify-between items-center align-middle relative">
                 <div class="text-primary">
                     <span class="font-bold">{{
                         comment.author.nick || comment.author.name
-                    }}</span>
-                    <span class="text-light-gray text-base gap-2"
-                        >&nbsp;@{{ comment.author.name }}
+                        }}</span>
+                    <span class="text-light-gray text-base gap-2">&nbsp;@{{ comment.author.name }}
                         &nbsp;&#8226;&nbsp;
-                        <span
-                            v-if="comment.author.staff"
-                            class="rounded py-[2px] px-2 font-medium"
-                            :style="{ backgroundColor: comment.author.color }"
-                            >{{ comment.author.position }}</span
-                        >
-                        <span v-if="comment.author.staff"
-                            >&nbsp;&nbsp;&#8226;&nbsp;</span
-                        >
+                        <span v-if="comment.author.staff" class="rounded py-[2px] px-2 font-medium"
+                            :style="{ backgroundColor: comment.author.color }">{{ comment.author.position }}</span>
+                        <span v-if="comment.author.staff">&nbsp;&nbsp;&#8226;&nbsp;</span>
                         {{ Formatting.formatDate(comment.time) }}
                         -
                         {{
@@ -289,161 +268,108 @@ if (comment && comment.content?.length > 0) {
                         {{ comment.edited ? " (edited)" : "" }}
                     </span>
                 </div>
-                <div
-                    class="bg-background-1 rounded-md hover:bg-background-2 cursor-pointer w-fit"
-                    v-if="comment.hovered"
-                >
+                <div class="bg-background-1 rounded-md hover:bg-background-2 cursor-pointer w-fit"
+                    v-if="comment.hovered">
                     <PhDotsThree :size="24" @click="chngMoreActions" />
-                    <div
-                        class="absolute mt-1 h-fit flex flex-col bg-background-1 w-fit rounded-md"
-                        v-if="comment.moreActions"
-                    >
-                        <span
-                            @click="commentAction(4)"
-                            class="flex text-light-gray cursor-pointer align-middle items-center gap-1 text-base rounded-sm px-2 hover:text-white hover:bg-gray py-1"
-                        >
+                    <div class="absolute mt-1 h-fit flex flex-col bg-background-1 w-fit rounded-md"
+                        v-if="comment.moreActions">
+                        <span @click="commentAction(4)"
+                            class="flex text-light-gray cursor-pointer align-middle items-center gap-1 text-base rounded-sm px-2 hover:text-white hover:bg-gray py-1">
                             <PhLink /> Link
                         </span>
-                        <span
-                            v-if="!comment.isDeleted"
-                            @click="commentAction(5)"
-                            class="flex text-red cursor-pointer align-middle items-center gap-1 text-base rounded-sm px-2 hover:text-white hover:bg-gray py-1"
-                        >
+                        <span v-if="!comment.isDeleted" @click="commentAction(5)"
+                            class="flex text-red cursor-pointer align-middle items-center gap-1 text-base rounded-sm px-2 hover:text-white hover:bg-gray py-1">
                             <PhFlag /> Report
                         </span>
                     </div>
                 </div>
             </div>
 
-            <div
-                v-if="!comment.isEditing && comment.isDeleted"
-                class="flex text-lg w-5/6 italic"
-            >
+            <div v-if="!comment.isEditing && comment.isDeleted" class="flex text-lg w-5/6 italic">
                 Comment was deleted
             </div>
             <!-- todo: fix up markdown for comments and not article (also remove comment-container) -->
-            <div
-                v-else-if="!comment.isEditing && !comment.isDeleted"
-                class="flex flex-col text-lg w-5/6 overflow-hidden text-ellipsis relative comment-container"
-            >
-                <MarkdownView
-                    :article="comment.renderedContent"
-                    :class="`${!comment.showMore ? 'imFading max-h-16' : ''} ${
-                        comment.hovered ||
+            <div v-else-if="!comment.isEditing && !comment.isDeleted"
+                class="flex flex-col text-lg w-5/6 overflow-hidden text-ellipsis relative comment-container">
+                <MarkdownView :article="comment.renderedContent" :class="`${!comment.showMore ? 'imFading max-h-16' : ''} ${comment.hovered ||
                         comment.isEditing ||
                         comment.isReplying
-                            ? 'hovered'
-                            : ''
-                    }`"
-                />
+                        ? 'hovered'
+                        : ''
+                    }`" />
             </div>
-            <NewComment
-                v-if="
-                    !comment.isReplying &&
-                    comment.isEditing &&
-                    !comment.isDeleted &&
-                    API.user.loggedIn
-                "
-                :loaded="!comment.isLoading"
-                :commentId="comment.id"
-                :extraSubmit="(data) => commentAction(2, data)"
-                :commentContent="comment.content"
-            />
-            <span
-                v-if="comment.content.length > MAX_COMMENT_LENGTH"
+            <NewComment v-if="
+                !comment.isReplying &&
+                comment.isEditing &&
+                !comment.isDeleted &&
+                API.user.loggedIn
+            " :loaded="!comment.isLoading" :commentId="comment.id" :extraSubmit="(data) => commentAction(2, data)"
+                :commentContent="comment.content" />
+            <span v-if="comment.content.length > MAX_COMMENT_LENGTH"
                 class="text-accent text-base w-max hover:text-accent-soft cursor-pointer"
-                @click="comment.showMore = !comment.showMore"
-            >
+                @click="comment.showMore = !comment.showMore">
                 {{ comment.showMore ? "Show less" : "Read more" }}
             </span>
-            <div
-                class="flex text-xl mt-2 justify-between gap-1 items-center align-middle"
-            >
-                <div
-                    class="flex text-light-gray align-middle items-center gap-1 text-lg select-none"
-                >
-                    <PhArrowFatUp
-                        :class="
-                            !comment.isDeleted
-                                ? `cursor-pointer hover:text-white ${
-                                      comment.vote == 1 ? 'text-accent' : ''
-                                  }`
-                                : ''
-                        "
-                        :size="24"
-                        @click="
+            <div class="flex text-xl mt-2 justify-between gap-1 items-center align-middle">
+                <div class="flex text-light-gray align-middle items-center gap-1 text-lg select-none">
+                    <PhArrowFatUp :class="!comment.isDeleted
+                            ? `cursor-pointer hover:text-white ${comment.vote == 1 ? 'text-accent' : ''
+                            }`
+                            : ''
+                        " :size="24" @click="
                             () =>
                                 comment.isDeleted
                                     ? false
                                     : commentAction(0, {
-                                          type: comment.vote == 1 ? 0 : 1,
-                                      })
-                        "
-                    />
+                                        type: comment.vote == 1 ? 0 : 1,
+                                    })
+                        " />
                     <span>{{ Math.floor(comment.ups - comment.downs) }}</span>
-                    <PhArrowFatDown
-                        :class="
-                            !comment.isDeleted
-                                ? `cursor-pointer hover:text-white ${
-                                      comment.vote == -1 ? 'text-accent' : ''
-                                  }`
-                                : ''
-                        "
-                        :size="24"
-                        @click="
+                    <PhArrowFatDown :class="!comment.isDeleted
+                            ? `cursor-pointer hover:text-white ${comment.vote == -1 ? 'text-accent' : ''
+                            }`
+                            : ''
+                        " :size="24" @click="
                             () =>
                                 comment.isDeleted
                                     ? false
                                     : commentAction(0, {
-                                          type: comment.vote == -1 ? 0 : -1,
-                                      })
-                        "
-                    />
+                                        type: comment.vote == -1 ? 0 : -1,
+                                    })
+                        " />
                 </div>
                 <div class="flex" v-if="comment.hovered">
-                    <span
-                        v-if="
-                            !comment.isReplying &&
-                            !comment.isEditing &&
-                            !comment.isReply
-                        "
-                        @click="commentAction(1)"
-                        class="flex text-light-gray cursor-pointer align-middle items-center gap-1 text-lg rounded-sm px-2 hover:text-white"
-                    >
+                    <span v-if="
+                        !comment.isReplying &&
+                        !comment.isEditing &&
+                        !comment.isReply
+                    " @click="commentAction(1)"
+                        class="flex text-light-gray cursor-pointer align-middle items-center gap-1 text-lg rounded-sm px-2 hover:text-white">
                         <PhArrowBendUpLeft /> Reply
                     </span>
-                    <span
-                        v-if="
-                            !comment.isEditing &&
-                            !comment.isReplying &&
-                            (!comment.isDeleted
-                                ? comment.author.id == API.user.id
-                                : false)
-                        "
-                        @click="commentAction(2)"
-                        class="flex text-light-gray cursor-pointer align-middle items-center gap-1 text-lg rounded-sm px-2 hover:text-white"
-                    >
+                    <span v-if="
+                        !comment.isEditing &&
+                        !comment.isReplying &&
+                        (!comment.isDeleted
+                            ? comment.author.id == API.user.id
+                            : false)
+                    " @click="commentAction(2)"
+                        class="flex text-light-gray cursor-pointer align-middle items-center gap-1 text-lg rounded-sm px-2 hover:text-white">
                         <PhPencil /> Edit
                     </span>
-                    <span
-                        v-if="
-                            !comment.isEditing &&
-                            !comment.isReplying &&
-                            (!comment.isDeleted
-                                ? comment.author.id == API.user.id ||
-                                  API.user.staff
-                                : false)
-                        "
-                        @click="commentAction(3)"
-                        class="flex text-red cursor-pointer align-middle items-center gap-1 text-lg rounded-sm px-2 hover:text-white"
-                    >
+                    <span v-if="
+                        !comment.isEditing &&
+                        !comment.isReplying &&
+                        (!comment.isDeleted
+                            ? comment.author.id == API.user.id ||
+                            API.user.staff
+                            : false)
+                    " @click="commentAction(3)"
+                        class="flex text-red cursor-pointer align-middle items-center gap-1 text-lg rounded-sm px-2 hover:text-white">
                         <PhTrash /> Delete
                     </span>
-                    <span
-                        v-if="comment.isEditing"
-                        @click="commentAction(2)"
-                        class="flex text-red cursor-pointer align-middle items-center gap-1 text-lg rounded-sm px-2 hover:text-white"
-                    >
+                    <span v-if="comment.isEditing" @click="commentAction(2)"
+                        class="flex text-red cursor-pointer align-middle items-center gap-1 text-lg rounded-sm px-2 hover:text-white">
                         <PhTrash /> Cancel
                     </span>
                 </div>
@@ -455,26 +381,15 @@ if (comment && comment.content?.length > 0) {
         <template #content>{{ popup.content }}</template>
         <template #footer="{ ClosePopup }">
             <div class="flex justify-center gap-2">
-                <Button
-                    type="success"
-                    @click="btnAction(ClosePopup, popup.clickYes)"
-                    >Yes</Button
-                >
-                <Button
-                    type="error"
-                    @click="btnAction(ClosePopup, popup.clickNo)"
-                    >No</Button
-                >
+                <Button type="success" @click="btnAction(ClosePopup, popup.clickYes)">Yes</Button>
+                <Button type="error" @click="btnAction(ClosePopup, popup.clickNo)">No</Button>
             </div>
         </template>
     </PopupOverlay>
 
     <slot name="replyBox" v-if="comment.isReplying">
-        <NewComment
-            :commentParent="comment.id"
-            :loaded="!comment.isLoading"
-            :extraSubmit="(data) => commentAction(1, data)"
-        />
+        <NewComment :commentParent="comment.id" :loaded="!comment.isLoading"
+            :extraSubmit="(data) => commentAction(1, data)" />
     </slot>
     <slot name="replies"> </slot>
 </template>

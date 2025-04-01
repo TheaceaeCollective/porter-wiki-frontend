@@ -44,7 +44,7 @@ Events.Register("searchoverlay-close", () => {
 
 const ClosePopup = (fromEmitted, event) => {
 	if (!fromEmitted && event) {
-		if (!event.target.classList.contains("backdrop-blur")) return;
+		if (!event.target.classList.contains("backdrop-blur-sm")) return;
 	};
 	if (fromEmitted != true) return ActiveComponents.close();
 	react.open = false;
@@ -145,7 +145,7 @@ const stupidGroupSortClassFix = (results, num) => {
 <template>
 	<Transition name="overlay">
 		<!-- Add "overflow-y-scroll" to this div below if you want that to scroll too -->
-		<div class="z-50 flex fixed justify-center items-center w-screen h-screen top-0 bg-opacity-25 backdrop-blur max-lg:items-baseline max-lg:p-0"
+		<div class="z-50 flex fixed justify-center items-center w-screen h-screen top-0 bg-opacity-25 backdrop-blur-sm max-lg:items-baseline max-lg:p-0"
 			v-if="react.open" @click="e => ClosePopup(null, e)">
 			<div
 				class="z-0 w-content-width min-h-96 bg-opacity-90 rounded-xl flex flex-col gap-4 xl:my-auto max-lg:min-h-32 max-lg:max-h-32">
@@ -166,7 +166,7 @@ const stupidGroupSortClassFix = (results, num) => {
 						{{ react.found.all.length }} RESULT{{ react.found.all.length == 1 ? "" : "S" }}
 					</p>
 					<div v-if="react.error == 0"
-						class="h-auto w-full flex flex-col rounded-xl bg-background-1 bg-opacity-90 backdrop-blur p-4 gap-2">
+						class="h-auto w-full flex flex-col rounded-xl bg-background-1/90 backdrop-blur-sm p-4 gap-2">
 						<div class="flex gap-5">
 							<span class="w-fit min-w-16 font-normal text-light-gray">Sort by</span>
 							<div class="flex flex-wrap gap-5">
@@ -199,11 +199,11 @@ const stupidGroupSortClassFix = (results, num) => {
 						</div>
 					</div>
 					<div v-if="react.error == 0"
-						class="w-full flex flex-col gap-2 max-h-[405px] xl:max-h-[535px] max-lg:overflow-y-scroll overflow-y-auto bg-background-1 bg-opacity-90 backdrop-blur p-4 rounded-xl">
+						class="w-full flex flex-col gap-2 max-h-[405px] xl:max-h-[535px] max-lg:overflow-y-scroll overflow-y-auto bg-background-1/90 backdrop-blur-sm p-4 rounded-xl">
 						<div v-for="(result, index) in react.displayingArticles" class="flex flex-col w-full gap-2">
 							<SearchResult :result="result" :resultClick="() => ClosePopup(null)" />
 							<GrayLine v-if="(index + 1) != react.displayingArticles.length" :lineStyle=2
-								class="!h-0.5" />
+								class="h-0.5!" />
 						</div>
 					</div>
 					<div v-if="react.error > 404" class="flex flex-col gap-4">
