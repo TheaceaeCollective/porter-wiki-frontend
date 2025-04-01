@@ -74,7 +74,7 @@ API.get("/articles?type=news&count=1984").then((res) => {
 <template>
 	<img v-if="props.type === '1'" :src="props.image" class="object-cover" alt="Article Cover">
 	<div v-else-if="props.type === '2'" class="w-full flex flex-col gap-4 mt-[120px]">
-		<BlockquoteNote class="border-x-0 rounded-lg" title="Wanna Read more? Here's a random post">
+		<BlockquoteNote class="!border-x-0 rounded-lg" title="Wanna Read more? Here's a random post">
 			<div class='text-3xl font-semibold mb-2'>{{ react.random.meta.title }}</div>
 			<div class="mb-2">{{ react.random.meta.description }}</div>
 			<a class="text-lg text-accent readMoreHover" :href="react.random.url">
