@@ -1,10 +1,6 @@
 @use "./variables.scss";
 @use "./font.scss";
 
-body {
-    font-family: "Author", sans-serif;
-}
-
 /* Scrollbar - Default - Non Vue */
 /* This is to fix horizontal scrollbars. Will get back to later (or someone can take a shot) */
 /* Common styles for Chrome, Safari, Edge */
@@ -31,11 +27,10 @@ html {
 }
 
 body {
+    font-family: "Author", sans-serif;
     height: 100vh;
-
     background-color: var(--background-3);
     color: white;
-
     #app {
         height: inherit;
     }
@@ -43,6 +38,7 @@ body {
 
 /* Toast */
 .Toastify__toast-container .Toastify__toast {
+    font-family: "Author", sans-serif;
     background: var(--pure-black);
     border-radius: 8px !important;
 }
