@@ -1,6 +1,6 @@
 <template>
-    <a href="" target="_blank"
-        class="bottom-0 bg-cover bg-center bg-no-repeat w-full bg-black border-l-4 flex items-center justify-between overflow-hidden z-10 p-4 rounded-lg">
+    <a href="https://youtu.be/Jqa1Ugmv9yY" target="_blank"
+        class="bg-cover bg-center bg-no-repeat w-full bg-black border-l-4 flex items-center justify-between overflow-hidden z-10 p-4 rounded-lg">
         <p class="text-base text-center text-white">
             Test Notification
         </p>

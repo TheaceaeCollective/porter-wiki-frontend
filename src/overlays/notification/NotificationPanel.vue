@@ -1,6 +1,5 @@
 <script setup>
 import { reactive, ref } from 'vue';
-import { PhCheckFat } from '@phosphor-icons/vue';
 
 import Events from '@/utils/Events';
 import ActiveComponents from '@/utils/ActiveComponents';
@@ -42,24 +41,22 @@ function ClosePanel(fromEmitted, event) {
 
 <template>
     <Transition name="slide-right">
-        <div class="z-50 flex fixed inset-0 justify-end items-center min-w-screen min-h-screen top-0 py-24 bg-opacity-25 backdrop-blur-sm overflow-y-scroll"
-            v-if="panelReact.open" @click="e => ClosePanel(null, e)">
-            <!-- temporary stuff such as notification component, click stop? yeah! - john -->
-            <div class="sidebar-panel z-0 min-w-sm h-screen bg-background-1/90 backdrop-blur-sm theShadow rounded-l-xl border-r-0 flex flex-col p-5 gap-2"
-                ref="sidebarContent" @click.stop>
-                <!-- announcements should only display when theres actual announcements - john -->
-                <div class="flex flex-row justify-between items-center w-full">
-                    <p class="text-2xl font-semibold">Announcements</p>
-                    <p class="text-base">CLEAR ALL</p>
+        <div class="z-50 fixed inset-0 flex justify-end bg-opacity-25 backdrop-blur-sm" v-if="panelReact.open"
+            @click="e => ClosePanel(null, e)">
+            <div
+                class="sidebar-panel z-0 min-w-sm h-screen bg-background-1/90 backdrop-blur-sm theShadow rounded-l-xl border-r-0 flex flex-col overflow-y-auto">
+                <div class="p-5 gap-2 flex flex-col" ref="panelContent" @click.stop>
+                    <div class="flex flex-row justify-between items-center w-full">
+                        <p class="text-2xl font-semibold">Announcements</p>
+                        <p class="text-base">CLEAR ALL</p>
+                    </div>
+                    <Notification />
+                    <div class="flex flex-row justify-between items-center w-full">
+                        <p class="text-2xl font-semibold">Notifications</p>
+                        <p class="text-base">CLEAR ALL</p>
+                    </div>
+                    <Notification v-for="n in 20" :key="n" />
                 </div>
-                <Notification />
-                <div class="flex flex-row justify-between items-center w-full">
-                    <p class="text-2xl font-semibold">Notifications</p>
-                    <p class="text-base">CLEAR ALL</p>
-                </div>
-                <Notification />
-                <Notification />
-                <Notification />
             </div>
         </div>
     </Transition>
