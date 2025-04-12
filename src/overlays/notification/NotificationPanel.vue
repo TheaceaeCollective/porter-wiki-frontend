@@ -48,12 +48,12 @@ function ClosePanel(fromEmitted, event) {
             <div class="sidebar-panel z-0 min-w-sm h-screen bg-background-1/90 backdrop-blur-sm theShadow rounded-l-xl border-r-0 flex flex-col p-5 gap-2"
                 ref="sidebarContent" @click.stop>
                 <!-- announcements should only display when theres actual announcements - john -->
-                <div class="flex flex-row justify-between w-full">
+                <div class="flex flex-row justify-between items-center w-full">
                     <p class="text-2xl font-semibold">Announcements</p>
                     <p class="text-base">CLEAR ALL</p>
                 </div>
                 <Notification />
-                <div class="flex flex-row justify-between w-full">
+                <div class="flex flex-row justify-between items-center w-full">
                     <p class="text-2xl font-semibold">Notifications</p>
                     <p class="text-base">CLEAR ALL</p>
                 </div>
