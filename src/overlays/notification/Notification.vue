@@ -1,17 +1,17 @@
 <template>
     <a href="" target="_blank"
-        class="bottom-0 bg-cover bg-center bg-no-repeat w-full bg-red flex items-center justify-center overflow-hidden z-10">
-        <div id="dim"
-            class="relative w-full py-2 inset-0 flex justify-center items-center transition-background duration-400 bg-black/20">
-            <p class="font-bold text-center text-white text-">
-                test notification
-            </p>
-        </div>
+        class="bottom-0 bg-cover bg-center bg-no-repeat w-full bg-black border-l-4 flex items-center justify-between overflow-hidden z-10 p-4 rounded-lg">
+        <p class="text-base text-center text-white">
+            Test Notification
+        </p>
+        <!-- <div id="xBtnNotif"
+            class="relative w-full py-2 inset-0 flex justify-center items-center transition-background duration-400 bg-white/20">
+        </div> -->
     </a>
 </template>
 
 <style lang="scss">
-#dim {
+#xBtnNotif {
     transition: background 400ms;
 
     &:hover {

@@ -45,8 +45,12 @@ function ClosePanel(fromEmitted, event) {
         <div class="z-50 flex fixed inset-0 justify-end items-center min-w-screen min-h-screen top-0 py-24 bg-opacity-25 backdrop-blur-sm overflow-y-scroll"
             v-if="panelReact.open" @click="e => ClosePanel(null, e)">
             <!-- temporary stuff such as notification component, click stop? yeah! - john -->
-            <div class="sidebar-panel z-0 min-w-sm h-screen bg-background-1/90 backdrop-blur-sm theShadow rounded-l-xl border-r-0 flex flex-col p-5 gap-1"
+            <div class="sidebar-panel z-0 min-w-sm h-screen bg-background-1/90 backdrop-blur-sm theShadow rounded-l-xl border-r-0 flex flex-col p-5 gap-2"
                 ref="sidebarContent" @click.stop>
+                <div class="flex flex-row justify-between w-full">
+                    <p class="text-2xl font-semibold">Notifications</p>
+                    <p class="text-base">CLEAR ALL</p>
+                </div>
                 <Notification />
             </div>
         </div>
