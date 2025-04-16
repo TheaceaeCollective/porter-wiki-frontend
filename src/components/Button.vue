@@ -27,7 +27,7 @@ const props = defineProps({
 </template>
 
 <style>
-/* optimize? -john */
+/* optimize? - john */
 .colorButtonSuccess {
 	background-color: #00FF0066;
 	/*equals rgba(0, 255, 0, 0.4)*/
