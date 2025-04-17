@@ -25,7 +25,7 @@ const leftLinkList = [{
 	name: "Main Page",
 }, {
 	route: "",
-	name: "Article Editor",
+	name: "Editor",
 }, {
 	route: "/wiki/contributing",
 	name: "How to Contribute",
@@ -38,8 +38,8 @@ const rightLinkList = [{
 	route: "/settings",
 	name: "Settings"
 }, {
-	route: "/polls",
-	name: "Polls"
+	route: "/modmenu",
+	name: "Mod Menu"
 }];
 
 if (API.user.loggedIn) rightLinkList.push({
