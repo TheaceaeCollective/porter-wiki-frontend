@@ -1,9 +1,10 @@
 <script setup>
-import { toRefs } from 'vue';
+import { ref, toRefs } from 'vue';
 
 import { PhTextBolder, PhTextItalic, PhTextH, PhTextUnderline, PhTextStrikethrough, PhListBullets, PhListNumbers, PhListChecks, PhQuotes, PhCodeSimple, PhHighlighter, PhSelection, PhGridFour, PhLinkSimple, PhImage, PhPaperPlaneRight, PhX } from '@phosphor-icons/vue';
 
 import TextboxIcon from './TextboxIcon.vue';
+import TextboxActions from '@/utils/TextboxActions';
 
 const props = defineProps({
 	isEditor: {
@@ -61,6 +62,38 @@ const props = defineProps({
 });
 
 const { handleInput, handleKeydown, handleSubmit, placeholderText, beDisabled, boxName, value, simple } = toRefs(props);
+
+// text buttons
+const textareaRef = ref(null);
+const handleBoldClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.boldFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
+const handleItalicClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.italicFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
+const handleUnderlineClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.underlineFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
+const handleListClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.listFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
+const handleNumListClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.numberListFormatting(textareaRef.value);
+	emit('input', newText);
+};
 </script>
 
 <template>
@@ -69,7 +102,7 @@ const { handleInput, handleKeydown, handleSubmit, placeholderText, beDisabled, b
 			<textarea
 				class="h-10 w-full resize-none overflow-hidden rounded-lg bg-background-1 px-3 py-1 text-lg outline-none ring-background-4 focus:ring-2"
 				:placeholder="placeholderText" @input="handleInput" @keydown="handleKeydown" :disabled="beDisabled"
-				:id="`${boxName}-textbox`" :value="value" />
+				:id="`${boxName}-textbox`" :value="value" ref="textareaRef" />
 
 			<button v-if="!simple"
 				:class='"m-auto flex size-10 items-center justify-center rounded-lg bg-background-3 p-1 cursor-" + `${beDisabled ? "deny" : "pointer"}`'
@@ -84,16 +117,16 @@ const { handleInput, handleKeydown, handleSubmit, placeholderText, beDisabled, b
 		</div>
 		<div v-if="!simple" class="max-w-fit flex flex-wrap px-2 gap-2 bg-background-3 rounded-lg py-2">
 			<div id="formatting" class="w-auto flex gap-3">
-				<TextboxIcon :icon="PhTextBolder" :disabled="beDisabled" />
-				<TextboxIcon :icon="PhTextItalic" :disabled="beDisabled" />
+				<TextboxIcon :icon="PhTextBolder" @click="handleBoldClick" :disabled="beDisabled" />
+				<TextboxIcon :icon="PhTextItalic" @click="handleItalicClick" :disabled="beDisabled" />
 				<TextboxIcon v-if="isEditor" :icon="PhTextH" :disabled="beDisabled" />
-				<TextboxIcon :icon="PhTextUnderline" :disabled="beDisabled" />
+				<TextboxIcon :icon="PhTextUnderline" @click="handleUnderlineClick" :disabled="beDisabled" />
 				<TextboxIcon :icon="PhTextStrikethrough" :disabled="beDisabled" />
 			</div>
 			<div class="h-auto w-0.5" style="background: rgba(255, 255, 255, 15%);"></div>
 			<div id="list" class="w-auto flex gap-3">
-				<TextboxIcon :icon="PhListBullets" :disabled="beDisabled" />
-				<TextboxIcon :icon="PhListNumbers" :disabled="beDisabled" />
+				<TextboxIcon :icon="PhListBullets" @click="handleListClick" :disabled="beDisabled" />
+				<TextboxIcon :icon="PhListNumbers" @click="handleNumListClick" :disabled="beDisabled" />
 				<TextboxIcon v-if="isEditor" :icon="PhListChecks" :disabled="beDisabled" />
 			</div>
 			<div class="h-auto w-0.5" style="background: rgba(255, 255, 255, 15%);"></div>
