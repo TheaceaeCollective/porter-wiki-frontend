@@ -75,6 +75,31 @@ export default class TextboxActions {
         return newText;
     };
 
+    // strikethrough text
+    static strikethroughFormatting(textarea) {
+        if (!textarea) return;
+        
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const value = textarea.value;
+        let newText, newPos;
+
+        if (start === end) {
+            newText = `${value.slice(0, start)}~~~~${value.slice(end)}`;
+            newPos = start + 2;
+        } else {
+            newText = `${value.slice(0, start)}~~${value.slice(start, end)}~~${value.slice(end)}`;
+            newPos = end + 4;
+        }
+
+        textarea.value = newText;
+        textarea.selectionStart = newPos;
+        textarea.selectionEnd = newPos;
+        textarea.focus();
+        
+        return newText;
+    };
+
      // list formatting
     static listFormatting(textarea) {
         if (!textarea) return;
@@ -101,7 +126,7 @@ export default class TextboxActions {
     };
 
      // number list formatting
-     static numberListFormatting(textarea) {
+    static numberListFormatting(textarea) {
         if (!textarea) return;
         
         const start = textarea.selectionStart;
@@ -127,4 +152,27 @@ export default class TextboxActions {
 
     // todo:
     // quote, uhh square, links, images
+
+    static tableFormatting(textarea) {
+        if (!textarea) return;
+        
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const selectedText = textarea.value.slice(start, end);
+        
+        // Create table from selection or empty template
+        const tableContent = selectedText 
+            ? `| ${selectedText} |\n|-----|\n|     |`
+            : `|     |     |\n|-----|-----|\n|     |     |`;
+        
+        const newText = `${textarea.value.slice(0, start)}${tableContent}${textarea.value.slice(end)}`;
+        
+        // Update textarea
+        textarea.value = newText;
+        textarea.selectionStart = start + 2;
+        textarea.selectionEnd = start + 2;
+        textarea.focus();
+        
+        return newText;
+    }
 }

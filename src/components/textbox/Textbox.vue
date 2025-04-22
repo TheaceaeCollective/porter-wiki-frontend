@@ -83,6 +83,12 @@ const handleUnderlineClick = () => {
 	emit('input', newText);
 };
 
+const handleStrikethroughClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.strikethroughFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
 const handleListClick = () => {
 	if (!textareaRef.value) return;
 	const newText = TextboxActions.listFormatting(textareaRef.value);
@@ -92,6 +98,12 @@ const handleListClick = () => {
 const handleNumListClick = () => {
 	if (!textareaRef.value) return;
 	const newText = TextboxActions.numberListFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
+const handleTablesClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.tableFormatting(textareaRef.value);
 	emit('input', newText);
 };
 </script>
@@ -121,7 +133,7 @@ const handleNumListClick = () => {
 				<TextboxIcon :icon="PhTextItalic" @click="handleItalicClick" :disabled="beDisabled" />
 				<TextboxIcon v-if="isEditor" :icon="PhTextH" :disabled="beDisabled" />
 				<TextboxIcon :icon="PhTextUnderline" @click="handleUnderlineClick" :disabled="beDisabled" />
-				<TextboxIcon :icon="PhTextStrikethrough" :disabled="beDisabled" />
+				<TextboxIcon :icon="PhTextStrikethrough" @click="handleStrikethroughClick" :disabled="beDisabled" />
 			</div>
 			<div class="h-auto w-0.5" style="background: rgba(255, 255, 255, 15%);"></div>
 			<div id="list" class="w-auto flex gap-3">
@@ -131,11 +143,11 @@ const handleNumListClick = () => {
 			</div>
 			<div class="h-auto w-0.5" style="background: rgba(255, 255, 255, 15%);"></div>
 			<div id="misc" class="w-auto flex gap-3">
-				<TextboxIcon :icon="PhQuotes" :disabled="beDisabled" />
+				<TextboxIcon :icon="PhQuotes" @click="handleQuotesClick" :disabled="beDisabled" />
 				<TextboxIcon v-if="isEditor" :icon="PhCodeSimple" :disabled="beDisabled" />
 				<TextboxIcon v-if="isEditor" :icon="PhHighlighter" :disabled="beDisabled" />
 				<TextboxIcon :icon="PhSelection" :disabled="beDisabled" />
-				<TextboxIcon v-if="isEditor" :icon="PhGridFour" :disabled="beDisabled" />
+				<TextboxIcon v-if="isEditor" :icon="PhGridFour" @click="handleTablesClick" :disabled="beDisabled" />
 				<TextboxIcon :icon="PhLinkSimple" :disabled="beDisabled" />
 				<TextboxIcon :icon="PhImage" :disabled="beDisabled" />
 			</div>
