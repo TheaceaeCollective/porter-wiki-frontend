@@ -270,7 +270,6 @@ export default class TextboxActions {
         
         const newText = `${textarea.value.slice(0, start)}${tableContent}${textarea.value.slice(end)}`;
         
-        // Update textarea
         textarea.value = newText;
         textarea.selectionStart = start + 2;
         textarea.selectionEnd = start + 2;
