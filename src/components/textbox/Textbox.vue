@@ -64,6 +64,8 @@ const props = defineProps({
 const { handleInput, handleKeydown, handleSubmit, placeholderText, beDisabled, boxName, value, simple } = toRefs(props);
 
 // text buttons
+// textareaRef is the textbox we specify in the tags. TextboxActions is the class we need to call functions for formatting.
+// we also specify the value. assuming its text value.
 const textareaRef = ref(null);
 const handleBoldClick = () => {
 	if (!textareaRef.value) return;
@@ -101,6 +103,30 @@ const handleNumListClick = () => {
 	emit('input', newText);
 };
 
+const handleQuotesClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.quoteFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
+const handleSpoilerClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.spoilerFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
+const handleLinkClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.linkFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
+const handleImageClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.imageFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
 const handleTablesClick = () => {
 	if (!textareaRef.value) return;
 	const newText = TextboxActions.tableFormatting(textareaRef.value);
@@ -129,28 +155,50 @@ const handleTablesClick = () => {
 		</div>
 		<div v-if="!simple" class="max-w-fit flex flex-wrap px-2 gap-2 bg-background-3 rounded-lg py-2">
 			<div id="formatting" class="w-auto flex gap-3">
-				<TextboxIcon :icon="PhTextBolder" @click="handleBoldClick" :disabled="beDisabled" />
-				<TextboxIcon :icon="PhTextItalic" @click="handleItalicClick" :disabled="beDisabled" />
-				<TextboxIcon v-if="isEditor" :icon="PhTextH" :disabled="beDisabled" />
-				<TextboxIcon :icon="PhTextUnderline" @click="handleUnderlineClick" :disabled="beDisabled" />
-				<TextboxIcon :icon="PhTextStrikethrough" @click="handleStrikethroughClick" :disabled="beDisabled" />
+				<TextboxIcon :icon="PhTextBolder" :title="`Bold Text`" @click="handleBoldClick"
+					:disabled="beDisabled" />
+				<TextboxIcon :icon="PhTextItalic" :title="`Italic Text`" @click="handleItalicClick"
+					:disabled="beDisabled" />
+				<TextboxIcon v-if="isEditor" :icon="PhTextH" :title="`Header Text`" :disabled="beDisabled" />
+				<TextboxIcon :icon="PhTextUnderline" :title="`Underlined Text`" @click="handleUnderlineClick"
+					:disabled="beDisabled" />
+				<TextboxIcon :icon="PhTextStrikethrough" :title="`Strikethrough Text`" @click="handleStrikethroughClick"
+					:disabled="beDisabled" />
 			</div>
 			<div class="h-auto w-0.5" style="background: rgba(255, 255, 255, 15%);"></div>
 			<div id="list" class="w-auto flex gap-3">
-				<TextboxIcon :icon="PhListBullets" @click="handleListClick" :disabled="beDisabled" />
-				<TextboxIcon :icon="PhListNumbers" @click="handleNumListClick" :disabled="beDisabled" />
-				<TextboxIcon v-if="isEditor" :icon="PhListChecks" :disabled="beDisabled" />
+				<TextboxIcon :icon="PhListBullets" :title="`Bullet List`" @click="handleListClick"
+					:disabled="beDisabled" />
+				<TextboxIcon :icon="PhListNumbers" :title="`Number List`" @click="handleNumListClick"
+					:disabled="beDisabled" />
+				<TextboxIcon v-if="isEditor" :icon="PhListChecks" :title="`Checklist`" :disabled="beDisabled" />
 			</div>
 			<div class="h-auto w-0.5" style="background: rgba(255, 255, 255, 15%);"></div>
 			<div id="misc" class="w-auto flex gap-3">
-				<TextboxIcon :icon="PhQuotes" @click="handleQuotesClick" :disabled="beDisabled" />
-				<TextboxIcon v-if="isEditor" :icon="PhCodeSimple" :disabled="beDisabled" />
-				<TextboxIcon v-if="isEditor" :icon="PhHighlighter" :disabled="beDisabled" />
-				<TextboxIcon :icon="PhSelection" :disabled="beDisabled" />
-				<TextboxIcon v-if="isEditor" :icon="PhGridFour" @click="handleTablesClick" :disabled="beDisabled" />
-				<TextboxIcon :icon="PhLinkSimple" :disabled="beDisabled" />
-				<TextboxIcon :icon="PhImage" :disabled="beDisabled" />
+				<TextboxIcon :icon="PhQuotes" :title="`Blockquote`" @click="handleQuotesClick" :disabled="beDisabled" />
+				<TextboxIcon v-if="isEditor" :icon="PhCodeSimple" :title="`Code`" :disabled="beDisabled" />
+				<TextboxIcon v-if="isEditor" :icon="PhHighlighter" :title="`Highlight`" :disabled="beDisabled" />
+				<TextboxIcon :icon="PhSelection" :title="`Spoiler`" @click="handleSpoilerClick"
+					:disabled="beDisabled" />
+				<TextboxIcon v-if="isEditor" :icon="PhGridFour" :title="`Table`" @click="handleTablesClick"
+					:disabled="beDisabled" />
+				<TextboxIcon :icon="PhLinkSimple" :title="`Link [Text](URL)`" @click="handleLinkClick"
+					:disabled="beDisabled" />
+				<TextboxIcon :icon="PhImage" :title="`Image ![Text](URL)`" @click="handleImageClick"
+					:disabled="beDisabled" />
 			</div>
 		</div>
 	</div>
 </template>
+
+<style lang="scss">
+// temp spoiler tag
+.spoiler {
+	color: black;
+	background-color: black;
+
+	&:hover {
+		color: white;
+	}
+}
+</style>

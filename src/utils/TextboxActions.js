@@ -150,9 +150,111 @@ export default class TextboxActions {
         return newText;
     };
 
-    // todo:
-    // quote, uhh square, links, images
+     // quote formatting
+    static quoteFormatting(textarea) {
+        if (!textarea) return;
+        
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const value = textarea.value;
+        let newText, newPos;
 
+        if (start === end) {
+            newText = `${value.slice(0, start)}>${value.slice(end)}`;
+            newPos = start + 2;
+        } else {
+            newText = `${value.slice(0, start)}>${value.slice(start, end)}`;
+            newPos = end + 2;
+        }
+
+        textarea.value = newText;
+        textarea.selectionStart = newPos;
+        textarea.selectionEnd = newPos;
+        textarea.focus();
+        
+        return newText;
+    };
+    
+
+    // todo:
+    // links, images
+
+     // spoiler formatting
+    static spoilerFormatting(textarea) {
+        if (!textarea) return;
+                
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const value = textarea.value;
+        let newText, newPos;
+        
+        if (start === end) {
+            newText = `${value.slice(0, start)}<p class=spoiler></p>${value.slice(end)}`;
+            newPos = start + 17;
+        } else {
+            newText = `${value.slice(0, start)}<p class=spoiler>${value.slice(start, end)}</p>${value.slice(end)}`;
+            newPos = end + 21;
+        }
+        
+        textarea.value = newText;
+        textarea.selectionStart = newPos;
+        textarea.selectionEnd = newPos;
+        textarea.focus();
+                
+        return newText;
+    };
+
+    // link formatting
+    static linkFormatting(textarea) {
+        if (!textarea) return;
+                
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const value = textarea.value;
+        let newText, newPos;
+
+        if (start === end) {
+            newText = `${value.slice(0, start)}[](#url)${value.slice(end)}`;
+            newPos = start + 1;
+        } else {
+            newText = `${value.slice(0, start)}[${value.slice(start, end)}](#url)${value.slice(end)}`;
+            newPos = end + 8;
+        }
+
+        textarea.value = newText;
+        textarea.selectionStart = newPos;
+        textarea.selectionEnd = newPos;
+        textarea.focus();
+        
+        return newText;
+    };
+
+    // image formatting
+    static imageFormatting(textarea) {
+        if (!textarea) return;
+                
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const value = textarea.value;
+        let newText, newPos;
+
+        if (start === end) {
+            newText = `${value.slice(0, start)}![](#imageUrl)${value.slice(end)}`;
+            newPos = start + 2;
+        } else {
+            newText = `${value.slice(0, start)}![${value.slice(start, end)}](#imageUrl)${value.slice(end)}`;
+            newPos = end + 14;
+        }
+
+        textarea.value = newText;
+        textarea.selectionStart = newPos;
+        textarea.selectionEnd = newPos;
+        textarea.focus();
+        
+        return newText;
+    };
+
+    // table formatting (unfinished)
     static tableFormatting(textarea) {
         if (!textarea) return;
         
@@ -160,7 +262,6 @@ export default class TextboxActions {
         const end = textarea.selectionEnd;
         const selectedText = textarea.value.slice(start, end);
         
-        // Create table from selection or empty template
         const tableContent = selectedText 
             ? `| ${selectedText} |\n|-----|\n|     |`
             : `|     |     |\n|-----|-----|\n|     |     |`;

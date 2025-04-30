@@ -11,11 +11,17 @@ const props = defineProps({
 	size: {
 		type: Number,
 		default: 24
+	},
+	title: {
+		type: String,
+		default: ''
 	}
 });
 </script>
 
 <template>
-	<Component :is="icon" :size="size" :disabled="disabled"
-		:class='"rounded cursor-" + `${disabled ? "deny" : "pointer hover:text-accent"}`' />
+	<span :title="title">
+		<Component :is="icon" :size="size" :disabled="disabled"
+			:class='"rounded cursor-" + `${disabled ? "deny" : "pointer hover:text-accent"}`' />
+	</span>
 </template>
