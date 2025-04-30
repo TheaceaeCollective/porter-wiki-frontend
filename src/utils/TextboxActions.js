@@ -254,6 +254,8 @@ export default class TextboxActions {
         return newText;
     };
 
+    // FOR THE EDITOR
+
     // table formatting (unfinished)
     static tableFormatting(textarea) {
         if (!textarea) return;
