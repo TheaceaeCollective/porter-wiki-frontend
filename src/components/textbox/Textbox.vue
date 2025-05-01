@@ -144,13 +144,15 @@ const handleTablesClick = () => {
 </script>
 
 <template>
-	<div class="h-auto w-full flex flex-col rounded-xl bg-background-1 p-2 gap-2">
+	<div class="w-full h-auto flex flex-col rounded-xl bg-background-1 p-2 gap-2">
 
 		<!-- profile pic and textbox -->
 		<div class="flex flex-row gap-2 w-full">
-			<img v-if="showAvatar" class="rounded-lg object-fill max-h-16 my-auto" :src="avatarUrl" alt="avatar" />
+			<img v-if="showAvatar" class="rounded-lg object-fill h-16 my-auto" :src="avatarUrl" alt="avatar" />
+
+			<!-- Add min-height and auto-resizing to textarea -->
 			<textarea
-				class="h-16 w-full resize-none overflow-hidden rounded-lg bg-background-1 px-3 py-1 text-lg outline-none ring-background-4 focus:ring-2"
+				class="w-full min-h-16 resize-none overflow-y-auto box-border rounded-lg bg-background-1 px-2 py-1 text-lg outline-none ring-background-4 focus:ring-2"
 				:placeholder="placeholderText" @input="handleInput" @keydown="handleKeydown" :disabled="beDisabled"
 				:id="`${boxName}-textbox`" :value="value" ref="textareaRef" />
 		</div>
@@ -197,7 +199,7 @@ const handleTablesClick = () => {
 			</div>
 
 			<!-- the send button and cancel button -->
-			<div class="flex flex-row gap-2">
+			<div class="flex flex-row gap-1">
 				<button v-if="!simple"
 					:class='"flex size-10 items-center justify-center rounded-lg bg-background-3 p-2 cursor-" + `${beDisabled ? "deny" : "pointer"}`'
 					id="submit" @click="handleSubmit" :disabled="beDisabled">
