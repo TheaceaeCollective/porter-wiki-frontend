@@ -191,7 +191,7 @@ if (comment && comment.content?.length > 0) {
 	<div :class="`${(comment.isReplying || comment.isEditing) ? 'bg-background-3' : ''} hover:bg-background-3 p-2 flex gap-3 w-full rounded-xl`"
 		@mouseover="changeHover(true)" @mouseleave="changeHover(false)" :id="`comment-${comment.id}`">
 		<div v-if="comment.isReply">
-			<GradientLine lineStyle="vert" :overshoot="false" class="!h-14" />
+			<GradientLine lineStyle="vert" :overshoot="false" class="h-14!" />
 		</div>
 		<div class="flex flex-col gap-2">
 			<img alt="Avatar" :class="`rounded-2xl border-2 h-14 min-w-14`" :src="comment.author.avatar || Logo"
@@ -203,7 +203,7 @@ if (comment && comment.content?.length > 0) {
 					<span class="font-bold">{{ comment.author.nick || comment.author.name }}</span>
 					<span class="text-light-gray text-base gap-2">&nbsp;@{{ comment.author.name }}
 						&nbsp;&#8226;&nbsp;
-						<span v-if="comment.author.staff" class="rounded py-[2px] px-2 font-medium"
+						<span v-if="comment.author.staff" class="rounded-sm py-[2px] px-2 font-medium"
 							:style="{ backgroundColor: comment.author.color }">{{ comment.author.position }}</span>
 						<span v-if="comment.author.staff">&nbsp;&nbsp;&#8226;&nbsp;</span>
 						{{ Formatting.formatDate(comment.time) }}
@@ -218,11 +218,11 @@ if (comment && comment.content?.length > 0) {
 					<div class="absolute mt-1 h-fit flex flex-col bg-background-1 w-fit rounded-md"
 						v-if="comment.moreActions">
 						<span @click="commentAction(4)"
-							class="flex text-light-gray cursor-pointer align-middle items-center gap-1 text-base rounded-sm px-2 hover:text-white hover:bg-gray py-1">
+							class="flex text-light-gray cursor-pointer align-middle items-center gap-1 text-base rounded-xs px-2 hover:text-white hover:bg-gray py-1">
 							<PhLink /> Link
 						</span>
 						<span v-if="!comment.isDeleted" @click="commentAction(5)"
-							class="flex text-red cursor-pointer align-middle items-center gap-1 text-base rounded-sm px-2 hover:text-white hover:bg-gray py-1">
+							class="flex text-red cursor-pointer align-middle items-center gap-1 text-base rounded-xs px-2 hover:text-white hover:bg-gray py-1">
 							<PhFlag /> Report
 						</span>
 					</div>
@@ -262,23 +262,23 @@ if (comment && comment.content?.length > 0) {
 				<div class="flex" v-if="comment.hovered">
 					<span v-if="(!comment.isReplying) && !comment.isEditing && !comment.isReply"
 						@click="commentAction(1)"
-						class="flex text-light-gray cursor-pointer align-middle items-center gap-1 text-lg rounded-sm px-2 hover:text-white">
+						class="flex text-light-gray cursor-pointer align-middle items-center gap-1 text-lg rounded-xs px-2 hover:text-white">
 						<PhArrowBendUpLeft /> Reply
 					</span>
 					<span
 						v-if="(!comment.isEditing && !comment.isReplying) && (!comment.isDeleted ? comment.author.id == API.user.id : false)"
 						@click="commentAction(2)"
-						class="flex text-light-gray cursor-pointer align-middle items-center gap-1 text-lg rounded-sm px-2 hover:text-white">
+						class="flex text-light-gray cursor-pointer align-middle items-center gap-1 text-lg rounded-xs px-2 hover:text-white">
 						<PhPencil /> Edit
 					</span>
 					<span
 						v-if="(!comment.isEditing && !comment.isReplying) && (!comment.isDeleted ? (comment.author.id == API.user.id || API.user.staff) : false)"
 						@click="commentAction(3)"
-						class="flex text-red cursor-pointer align-middle items-center gap-1 text-lg rounded-sm px-2 hover:text-white">
+						class="flex text-red cursor-pointer align-middle items-center gap-1 text-lg rounded-xs px-2 hover:text-white">
 						<PhTrash /> Delete
 					</span>
 					<span v-if="comment.isEditing" @click="commentAction(2)"
-						class="flex text-red cursor-pointer align-middle items-center gap-1 text-lg rounded-sm px-2 hover:text-white">
+						class="flex text-red cursor-pointer align-middle items-center gap-1 text-lg rounded-xs px-2 hover:text-white">
 						<PhTrash /> Cancel
 					</span>
 				</div>

@@ -1,4 +1,7 @@
 {
-  "prettier.printWidth": 140,
+  "$schema": "https://json.schemastore.org/prettierrc",
+  "semi": false,
+  "singleQuote": true,
+  "printWidth": 140,
   "tabWidth": 4
 }

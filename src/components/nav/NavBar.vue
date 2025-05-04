@@ -24,8 +24,8 @@ const leftLinkList = [{
 	route: "/",
 	name: "Main Page",
 }, {
-	route: "/articlecreation",
-	name: "Article Editor",
+	route: "",
+	name: "Editor",
 }, {
 	route: "/wiki/contributing",
 	name: "How to Contribute",
@@ -38,8 +38,8 @@ const rightLinkList = [{
 	route: "/settings",
 	name: "Settings"
 }, {
-	route: "/polls",
-	name: "Polls"
+	route: "/modmenu",
+	name: "Mod Menu"
 }];
 
 if (API.user.loggedIn) rightLinkList.push({
@@ -105,7 +105,7 @@ onMounted(() => {
 		</nav>
 		<Transition name="fade">
 			<div v-if="isOpen" @click="togNav(false)"
-				class="fixed -z-10 top-16 bg-background-1/50 h-full backdrop-blur-sm md:mx-4 w-screen md:w-layout-width rounded-t-2xl">
+				class="fixed -z-10 top-16 bg-background-1/50 h-full backdrop-blur-xs md:mx-4 w-screen md:w-layout-width rounded-t-2xl">
 			</div>
 		</Transition>
 		<Transition name="slidedown-fade">

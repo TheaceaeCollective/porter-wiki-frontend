@@ -16,12 +16,12 @@ const skeleData = {
 	content: {
 		class: "article-contents w-72 min-w-72 h-fit bg-background-3 rounded-lg flex flex-col p-5",
 		rows: 5,
-		rows_class: "animate-pulse h-5 bg-background-1 rounded w-full mb-4"
+		rows_class: "animate-pulse h-5 bg-background-1 rounded-sm w-full mb-4"
 	},
 	body: {
 		class: "article-body w-full pt-2",
 		rows: 10,
-		rows_class: "animate-pulse h-6 bg-background-3 rounded w-full mb-2"
+		rows_class: "animate-pulse h-6 bg-background-3 rounded-sm w-full mb-2"
 	}
 }
 
@@ -30,10 +30,10 @@ const skeleData = {
 <template>
 	<div v-if="loading" class="flex flex-col w-full">
 		<div :class="skeleData.breadCumbs.class">
-			<div class="animate-pulse h-6 bg-background-3 rounded w-full"></div>
+			<div class="animate-pulse h-6 bg-background-3 rounded-sm w-full"></div>
 		</div>
 		<div :class="skeleData.meta.class">
-			<div class="animate-pulse h-6 bg-background-3 rounded w-full"></div>
+			<div class="animate-pulse h-6 bg-background-3 rounded-sm w-full"></div>
 		</div>
 		<div class="article-content">
 			<div :class="skeleData.content.class">
