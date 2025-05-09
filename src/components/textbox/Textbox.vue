@@ -5,7 +5,6 @@ import { PhTextBolder, PhTextItalic, PhTextH, PhTextUnderline, PhTextStrikethrou
 
 import TextboxIcon from './TextboxIcon.vue';
 import TextboxActions from '@/utils/TextboxActions';
-import { stringify } from 'postcss';
 
 const props = defineProps({
 	isEditor: {
