@@ -157,6 +157,7 @@ const handleTablesClick = () => {
 		</div>
 
 		<!-- fucking icons and send button -->
+		<!-- current bug: buttons still work while logged out -->
 		<div class="flex flex-row w-full justify-between">
 
 			<!-- icons -->
