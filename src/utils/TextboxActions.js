@@ -1,8 +1,15 @@
+import API from "./API";
+
 export default class TextboxActions {
-    
+
+    // ensure we are logged in first. this is shit lawl
+    static _shouldProceed(textarea) {
+        return API.user.loggedIn && textarea;
+    }
+
     // bold text
     static boldFormatting(textarea) {
-        if (!textarea) return;
+        if (!TextboxActions._shouldProceed(textarea)) return;
         
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
@@ -27,7 +34,7 @@ export default class TextboxActions {
 
     // italic text
     static italicFormatting(textarea) {
-        if (!textarea) return;
+        if (!TextboxActions._shouldProceed(textarea)) return;
         
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
@@ -52,7 +59,7 @@ export default class TextboxActions {
 
     // underlined text
     static underlineFormatting(textarea) {
-        if (!textarea) return;
+        if (!TextboxActions._shouldProceed(textarea)) return;
                 
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
@@ -77,7 +84,7 @@ export default class TextboxActions {
 
     // strikethrough text
     static strikethroughFormatting(textarea) {
-        if (!textarea) return;
+        if (!TextboxActions._shouldProceed(textarea)) return;
         
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
@@ -102,7 +109,7 @@ export default class TextboxActions {
 
      // list formatting
     static listFormatting(textarea) {
-        if (!textarea) return;
+        if (!TextboxActions._shouldProceed(textarea)) return;
         
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
@@ -127,7 +134,7 @@ export default class TextboxActions {
 
      // number list formatting
     static numberListFormatting(textarea) {
-        if (!textarea) return;
+        if (!TextboxActions._shouldProceed(textarea)) return;
         
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
@@ -152,7 +159,7 @@ export default class TextboxActions {
 
      // quote formatting
     static quoteFormatting(textarea) {
-        if (!textarea) return;
+        if (!TextboxActions._shouldProceed(textarea)) return;
         
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
@@ -181,7 +188,7 @@ export default class TextboxActions {
 
      // spoiler formatting
     static spoilerFormatting(textarea) {
-        if (!textarea) return;
+        if (!TextboxActions._shouldProceed(textarea)) return;
                 
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
@@ -206,7 +213,7 @@ export default class TextboxActions {
 
     // link formatting
     static linkFormatting(textarea) {
-        if (!textarea) return;
+        if (!TextboxActions._shouldProceed(textarea)) return;
                 
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
@@ -231,7 +238,7 @@ export default class TextboxActions {
 
     // image formatting
     static imageFormatting(textarea) {
-        if (!textarea) return;
+       if (!TextboxActions._shouldProceed(textarea)) return;
                 
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
@@ -258,7 +265,7 @@ export default class TextboxActions {
 
     // table formatting (unfinished)
     static tableFormatting(textarea) {
-        if (!textarea) return;
+        if (!TextboxActions._shouldProceed(textarea)) return;
         
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
