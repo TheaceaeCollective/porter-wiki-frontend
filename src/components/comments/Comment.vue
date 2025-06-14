@@ -233,7 +233,7 @@ if (comment && comment.content?.length > 0) {
 			</div>
 			<!-- todo: fix up markdown for comments and not article (also remove comment-container) -->
 			<div v-else-if="(!comment.isEditing) && !comment.isDeleted"
-				class="flex flex-col text-lg w-5/6 overflow-hidden text-ellipsis relative comment-container">
+				class="flex flex-col text-lg w-full overflow-hidden text-ellipsis relative comment-container">
 				<MarkdownView :article="comment.renderedContent"
 					:class="`${!comment.showMore ? 'imFading max-h-16' : ''} ${comment.hovered || comment.isEditing || comment.isReplying ? 'hovered' : ''}`" />
 			</div>
@@ -265,7 +265,8 @@ if (comment && comment.content?.length > 0) {
 						class="flex text-light-gray cursor-pointer align-middle items-center gap-1 text-lg rounded-xs px-2 hover:text-white">
 						<PhArrowBendUpLeft /> Reply
 					</span>
-					<span v-if="(!comment.isEditing && !comment.isReplying) && (!comment.isDeleted ? comment.author.id == API.user.id : false)"
+					<span
+						v-if="(!comment.isEditing && !comment.isReplying) && (!comment.isDeleted ? comment.author.id == API.user.id : false)"
 						@click="commentAction(2)"
 						class="flex text-light-gray cursor-pointer align-middle items-center gap-1 text-lg rounded-xs px-2 hover:text-white">
 						<PhPencil /> Edit
