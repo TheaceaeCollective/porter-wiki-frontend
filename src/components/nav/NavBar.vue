@@ -20,35 +20,27 @@ const togNav = (newValue) => { // pass newValue to force toggle
 
 const router = useRouter();
 
-const leftLinkList = [
-	{
-		route: "/",
-		name: "Main Page",
-	},
-	{
-		route: "/editor",
-		name: "Article Editor",
-	},
-	{
-		route: "/wiki/contributing",
-		name: "How to Contribute",
-	},
-	{
-		route: "/wiki/about",
-		name: "About Us",
-	},
-];
+const leftLinkList = [{
+	route: "/",
+	name: "Main Page",
+}, {
+	route: "/editor",
+	name: "Editor",
+}, {
+	route: "/wiki/contributing",
+	name: "How to Contribute",
+}, {
+	route: "/wiki/about",
+	name: "About Us",
+}];
 
-const rightLinkList = [
-	{
-		route: "/settings",
-		name: "Settings",
-	},
-	{
-		route: "/polls",
-		name: "Polls",
-	},
-];
+const rightLinkList = [{
+	route: "/settings",
+	name: "Settings"
+}, {
+	route: "/modmenu",
+	name: "Mod Menu"
+}];
 
 if (API.user.loggedIn)
 	rightLinkList.push({

@@ -106,7 +106,7 @@ API.get("/articles?type=news&count=3").then((res) => {
 
 // Blog Posts
 react.community = [];
-API.get("/articles?type=community&count=5").then((res) => {
+API.get("/articles?type=community&count=3").then((res) => {
 	if (res.status == 200) react.community = res.data;
 });
 
@@ -147,7 +147,7 @@ onMounted(() => {
 			</div>
 			<div class="w-full flex flex-col lg:w-64 gap-4">
 				<SidebarPosts title="News Posts" :posts="react.news" url="/news" use-images />
-				<SidebarPosts title="Blog Posts" :posts="react.community" url="/blog" />
+				<SidebarPosts title="Blog Posts" :posts="react.community" url="/blog" use-images />
 			</div>
 		</div>
 	</div>

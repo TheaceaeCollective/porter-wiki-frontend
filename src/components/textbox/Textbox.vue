@@ -1,9 +1,10 @@
 <script setup>
-import { toRefs } from 'vue';
+import { ref, toRefs } from 'vue';
 
 import { PhTextBolder, PhTextItalic, PhTextH, PhTextUnderline, PhTextStrikethrough, PhListBullets, PhListNumbers, PhListChecks, PhQuotes, PhCodeSimple, PhHighlighter, PhSelection, PhGridFour, PhLinkSimple, PhImage, PhPaperPlaneRight, PhX } from '@phosphor-icons/vue';
 
 import TextboxIcon from './TextboxIcon.vue';
+import TextboxActions from '@/utils/TextboxActions';
 
 const props = defineProps({
 	isEditor: {
@@ -57,55 +58,171 @@ const props = defineProps({
 	simple: {
 		type: Boolean,
 		default: false
+	},
+	showAvatar: {
+		type: Boolean,
+		default: false
+	},
+	avatarUrl: {
+		type: String,
+		default: ''
 	}
 });
 
 const { handleInput, handleKeydown, handleSubmit, placeholderText, beDisabled, boxName, value, simple } = toRefs(props);
+
+// text buttons
+// textareaRef is the textbox we specify in the tags. TextboxActions is the class we need to call functions for formatting.
+// we also specify the value. assuming its text value.
+const textareaRef = ref(null);
+const handleBoldClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.boldFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
+const handleItalicClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.italicFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
+const handleUnderlineClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.underlineFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
+const handleStrikethroughClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.strikethroughFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
+const handleListClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.listFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
+const handleNumListClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.numberListFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
+const handleQuotesClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.quoteFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
+const handleSpoilerClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.spoilerFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
+const handleLinkClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.linkFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
+const handleImageClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.imageFormatting(textareaRef.value);
+	emit('input', newText);
+};
+
+const handleTablesClick = () => {
+	if (!textareaRef.value) return;
+	const newText = TextboxActions.tableFormatting(textareaRef.value);
+	emit('input', newText);
+};
 </script>
 
 <template>
-	<div class="h-auto w-full flex flex-col rounded-xl bg-background-1 p-2 gap-2">
-		<div class="w-full flex gap-2">
-			<textarea
-				class="h-10 w-full resize-none overflow-hidden rounded-lg bg-background-1 px-3 py-1 text-lg outline-none ring-background-4 focus:ring-2"
-				:placeholder="placeholderText" @input="handleInput" @keydown="handleKeydown" :disabled="beDisabled"
-				:id="`${boxName}-textbox`" :value="value" />
+	<div class="w-full h-auto flex flex-col rounded-xl bg-background-1 p-2 gap-2">
 
-			<button v-if="!simple"
-				:class='"m-auto flex size-10 items-center justify-center rounded-lg bg-background-3 p-1 cursor-" + `${beDisabled ? "deny" : "pointer"}`'
-				id="submit" @click="handleSubmit" :disabled="beDisabled">
-				<Component :is="submitIcon" :size="20" :disabled="beDisabled" :class="submitIconClasses"></Component>
-			</button>
-			<button v-if="isReply && !simple"
-				:class='"m-auto flex size-10 items-center justify-center rounded-lg bg-background-3 p-1 cursor-" + `${beDisabled ? "deny" : "pointer"}`'
-				id="cancel" @click="handleCancel" :disabled="beDisabled">
-				<Component :is="PhX" :size="20" :disabled="beDisabled" :class="submitIconClasses"></Component>
-			</button>
+		<!-- profile pic and textbox -->
+		<div class="flex flex-row gap-2 w-full">
+			<img v-if="showAvatar" class="rounded-lg object-fill h-16 my-auto" :src="avatarUrl" alt="avatar" />
+
+			<!-- Add min-height and auto-resizing to textarea -->
+			<textarea
+				class="w-full min-h-16 resize-none overflow-y-auto box-border rounded-lg bg-background-1 px-2 py-1 text-lg outline-none ring-background-4 focus:ring-2"
+				:placeholder="placeholderText" @input="handleInput" @keydown="handleKeydown" :disabled="beDisabled"
+				:id="`${boxName}-textbox`" :value="value" ref="textareaRef" />
 		</div>
-		<div v-if="!simple" class="max-w-fit flex flex-wrap px-2 gap-2 bg-background-3 rounded-lg py-2">
-			<div id="formatting" class="w-auto flex gap-3">
-				<TextboxIcon :icon="PhTextBolder" :disabled="beDisabled" />
-				<TextboxIcon :icon="PhTextItalic" :disabled="beDisabled" />
-				<TextboxIcon v-if="isEditor" :icon="PhTextH" :disabled="beDisabled" />
-				<TextboxIcon :icon="PhTextUnderline" :disabled="beDisabled" />
-				<TextboxIcon :icon="PhTextStrikethrough" :disabled="beDisabled" />
+
+		<!-- fucking icons and send button -->
+		<div class="flex flex-row w-full justify-between">
+
+			<!-- icons -->
+			<div v-if="!simple" class="max-w-fit flex flex-wrap px-2 gap-2 bg-background-3 rounded-lg py-2">
+				<div id="formatting" class="w-auto flex gap-3">
+					<TextboxIcon :icon="PhTextBolder" :title="`Bold Text`" @click="handleBoldClick"
+						:disabled="beDisabled" />
+					<TextboxIcon :icon="PhTextItalic" :title="`Italic Text`" @click="handleItalicClick"
+						:disabled="beDisabled" />
+					<TextboxIcon v-if="isEditor" :icon="PhTextH" :title="`Header Text`" :disabled="beDisabled" />
+					<TextboxIcon :icon="PhTextUnderline" :title="`Underlined Text`" @click="handleUnderlineClick"
+						:disabled="beDisabled" />
+					<TextboxIcon :icon="PhTextStrikethrough" :title="`Strikethrough Text`"
+						@click="handleStrikethroughClick" :disabled="beDisabled" />
+				</div>
+				<div class="h-auto w-0.5" style="background: rgba(255, 255, 255, 15%);"></div>
+				<div id="list" class="w-auto flex gap-3">
+					<TextboxIcon :icon="PhListBullets" :title="`Bullet List`" @click="handleListClick"
+						:disabled="beDisabled" />
+					<TextboxIcon :icon="PhListNumbers" :title="`Number List`" @click="handleNumListClick"
+						:disabled="beDisabled" />
+					<TextboxIcon v-if="isEditor" :icon="PhListChecks" :title="`Checklist`" :disabled="beDisabled" />
+				</div>
+				<div class="h-auto w-0.5" style="background: rgba(255, 255, 255, 15%);"></div>
+				<div id="misc" class="w-auto flex gap-3">
+					<TextboxIcon :icon="PhQuotes" :title="`Blockquote`" @click="handleQuotesClick"
+						:disabled="beDisabled" />
+					<TextboxIcon v-if="isEditor" :icon="PhCodeSimple" :title="`Code`" :disabled="beDisabled" />
+					<TextboxIcon v-if="isEditor" :icon="PhHighlighter" :title="`Highlight`" :disabled="beDisabled" />
+					<TextboxIcon :icon="PhSelection" :title="`Spoiler`" @click="handleSpoilerClick"
+						:disabled="beDisabled" />
+					<TextboxIcon v-if="isEditor" :icon="PhGridFour" :title="`Table`" @click="handleTablesClick"
+						:disabled="beDisabled" />
+					<TextboxIcon :icon="PhLinkSimple" :title="`Link [Text](URL)`" @click="handleLinkClick"
+						:disabled="beDisabled" />
+					<TextboxIcon :icon="PhImage" :title="`Image ![Text](URL)`" @click="handleImageClick"
+						:disabled="beDisabled" />
+				</div>
 			</div>
-			<div class="h-auto w-0.5" style="background: rgba(255, 255, 255, 15%);"></div>
-			<div id="list" class="w-auto flex gap-3">
-				<TextboxIcon :icon="PhListBullets" :disabled="beDisabled" />
-				<TextboxIcon :icon="PhListNumbers" :disabled="beDisabled" />
-				<TextboxIcon v-if="isEditor" :icon="PhListChecks" :disabled="beDisabled" />
-			</div>
-			<div class="h-auto w-0.5" style="background: rgba(255, 255, 255, 15%);"></div>
-			<div id="misc" class="w-auto flex gap-3">
-				<TextboxIcon :icon="PhQuotes" :disabled="beDisabled" />
-				<TextboxIcon v-if="isEditor" :icon="PhCodeSimple" :disabled="beDisabled" />
-				<TextboxIcon v-if="isEditor" :icon="PhHighlighter" :disabled="beDisabled" />
-				<TextboxIcon :icon="PhSelection" :disabled="beDisabled" />
-				<TextboxIcon v-if="isEditor" :icon="PhGridFour" :disabled="beDisabled" />
-				<TextboxIcon :icon="PhLinkSimple" :disabled="beDisabled" />
-				<TextboxIcon :icon="PhImage" :disabled="beDisabled" />
+
+			<!-- the send button and cancel button -->
+			<div class="flex flex-row gap-1">
+				<button v-if="!simple"
+					:class='"flex size-10 items-center justify-center rounded-lg bg-background-3 p-2 cursor-" + `${beDisabled ? "deny" : "pointer"}`'
+					id="submit" @click="handleSubmit" :disabled="beDisabled">
+					<Component :is="submitIcon" :size="24" :disabled="beDisabled" :class="submitIconClasses">
+					</Component>
+				</button>
+				<button v-if="isReply && !simple"
+					:class='"flex size-10 items-center justify-center rounded-lg bg-background-3 p-2 cursor-" + `${beDisabled ? "deny" : "pointer"}`'
+					id="cancel" @click="handleCancel" :disabled="beDisabled">
+					<Component :is="PhX" :size="24" :disabled="beDisabled" :class="submitIconClasses"></Component>
+				</button>
 			</div>
 		</div>
 	</div>
 </template>
+
+<style lang="scss">
+// temp spoiler tag
+.spoiler {
+	color: black;
+	background-color: black;
+
+	&:hover {
+		color: white;
+	}
+}
+</style>
