@@ -41,6 +41,7 @@ import SiteDisclaimer from "./SiteDisclaimer.vue";
 			</div>
 		</div>
 	</div>
+	<SiteDisclaimer />
 </template>
 
 
