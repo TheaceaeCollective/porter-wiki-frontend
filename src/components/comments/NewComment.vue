@@ -229,17 +229,12 @@ const submitComment = () => {
 		<div v-if="commentParent != null">
 			<GradientLine lineStyle="vert" :overshoot="false" class="h-14!" />
 		</div>
-		<div class="new-comment w-full">
-			<div class="w-full rounded-sm flex gap-3">
-				<img v-if="commentParent == null && commentId == null" class="rounded-xl object-fill max-h-24 my-auto"
-					:src="API.user.avatar" alt="avatar" />
-				<Textbox :box-name="`${commentAction}comment`" :be-disabled="beDisabled" :handleInput="handleInput"
-					:handleKeydown="handleKeydown" :handleSubmit="submitComment" :handleCancel="handleCancel"
-					:submitIcon="currentState.icon" :submitIconClasses="submitIconClasses"
-					:placeholderText="API.user.loggedIn ? `Press enter to ${commentAction}. Use shift+enter to make a new line.` : `Please login to comment.`"
-					:value="commentContent" :isReply="commentParent != null">
-				</Textbox>
-			</div>
-		</div>
+		<Textbox :box-name="`${commentAction}comment`" :be-disabled="beDisabled" :handleInput="handleInput"
+			:handleKeydown="handleKeydown" :handleSubmit="submitComment" :handleCancel="handleCancel"
+			:submitIcon="currentState.icon" :submitIconClasses="submitIconClasses"
+			:placeholderText="API.user.loggedIn ? `Press enter to ${commentAction}. Use shift+enter to make a new line.` : `Please login to comment.`"
+			:value="commentContent" :isReply="commentParent != null"
+			:showAvatar="commentParent === null && commentId === null" :avatarUrl="API.user.avatar">
+		</Textbox>
 	</div>
 </template>

@@ -89,9 +89,9 @@ provide("commentSystem", commentSystem);
 
 	<NewComment :error="react.error" :loaded="react.loaded" />
 
-	<div class="flex gap-10">
-		<span class="ml-6 font-normal text-light-gray">Sort by</span>
-		<div class="flex gap-6">
+	<div class="flex gap-5 bg-background-1 p-2 rounded-xl">
+		<span class="ml-2 min-w-16 font-normal text-light-gray">Sort by</span>
+		<div class="flex gap-5">
 			<span :class="`cursor-pointer ${sortedBy == 1 ? 'text-accent' : 'text-white'}`"
 				@click="commentSorter(1)">New</span>
 			<span :class="`cursor-pointer ${sortedBy == 2 ? 'text-accent' : 'text-white'}`"
