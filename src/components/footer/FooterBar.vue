@@ -1,7 +1,7 @@
 <script setup>
 import FooterLink from "./FooterLink.vue";
 
-import SiteDisclaimer from "../SiteDisclaimer.vue";
+import SiteDisclaimer from "./SiteDisclaimer.vue";
 </script>
 
 <template>
@@ -11,9 +11,15 @@ import SiteDisclaimer from "../SiteDisclaimer.vue";
 		</div>
 		<div class="w-full h-16 relative bg-background-1 flex items-center">
 			<a href="https://theaceae.org/" target="_blank"
-				class="absolute left-1 max-md:bottom-16 flex items-center hover:bg-background-3 p-1 rounded-sm transition">
-				<img src="https://raw.githubusercontent.com/theaceaecollective/.github/refs/heads/main/maintainedby.png"
-					alt="Big Theaceae Logo" class="md:h-12 h-9" />
+				class="absolute left-1 flex items-center hover:bg-background-3 p-1 rounded-sm transition">
+				<div class="hidden lg:block">
+					<img src="https://raw.githubusercontent.com/theaceaecollective/.github/refs/heads/main/maintainedby.png"
+						alt="Theaceae Logo" class="h-12" />
+				</div>
+				<div class="hidden sm:block lg:hidden">
+					<img src="https://raw.githubusercontent.com/theaceaecollective/.github/refs/heads/main/wikilogo.png"
+						alt="Theaceae Logo" class="h-12" />
+				</div>
 			</a>
 			<div class="mx-auto text-center">
 				<p class="flex text-xl justify-center gap-2">
@@ -35,7 +41,7 @@ import SiteDisclaimer from "../SiteDisclaimer.vue";
 			</div>
 		</div>
 	</div>
-	<SiteDisclaimer /> <!-- remove once we are in beta -->
+	<SiteDisclaimer />
 </template>
 
 

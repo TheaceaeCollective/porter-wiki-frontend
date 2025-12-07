@@ -15,6 +15,7 @@ import API from '@/utils/API';
 import ActiveComponents from '@/utils/ActiveComponents';
 import SearchOverlay from './overlays/search/SearchOverlay.vue';
 import Events from './utils/Events';
+import NotificationPanel from './overlays/notification/NotificationPanel.vue';
 const handleKeyDown = (e) => {
 	if (e.repeat) return;
 
@@ -97,6 +98,7 @@ onBeforeUnmount(() => { window.removeEventListener("keydown", handleKeyDown); })
 	<ScrollToTop />
 	<ProfileOverlay />
 	<SearchOverlay />
+	<NotificationPanel />
 </template>
 
 <style lang="scss">

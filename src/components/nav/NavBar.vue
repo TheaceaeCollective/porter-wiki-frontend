@@ -75,7 +75,7 @@ onMounted(() => {
 </script>
 
 <template>
-	<div class="w-screen h-16 fixed bg-background-3 z-40 pt-2 pb-14">
+	<div class="w-screen h-16 fixed bg-background-3 z-40 pt-2 pb-14 print:absolute">
 		<nav class="w-full z-10 px-2 xl:px-0">
 			<div class="flex justify-between xl:w-content-width xl:mx-auto">
 				<div class="flex items-center text-center gap-4">
@@ -97,7 +97,7 @@ onMounted(() => {
 							<PhGlobe :size="28" />
 						</NavBarButton>
 						<!--if there ever gets anything added here, give it the 'middle' attribute-->
-						<NavBarButton last>
+						<NavBarButton last @click="Events.Emit('notificationoverlay')">
 							<PhBell :size="28" />
 						</NavBarButton>
 					</div>

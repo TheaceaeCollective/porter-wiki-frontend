@@ -71,6 +71,7 @@ API.get("/articles?type=news&count=1984").then((res) => {
 
 </script>
 
+<!-- this shit needs to be reworked -john -->
 <template>
 	<img v-if="props.type === '1'" :src="props.image" class="object-cover" alt="Article Cover">
 	<div v-else-if="props.type === '2'" class="w-full flex flex-col gap-4 mt-[120px]">

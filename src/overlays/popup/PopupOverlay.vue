@@ -4,7 +4,7 @@ import { PhCheckFat } from '@phosphor-icons/vue';
 
 import Events from '@/utils/Events';
 import ActiveComponents from '@/utils/ActiveComponents';
-import Button from '@/components/Button.vue';
+import Button from '@/components/buttons/Button.vue';
 
 const props = defineProps({
 	event: {
