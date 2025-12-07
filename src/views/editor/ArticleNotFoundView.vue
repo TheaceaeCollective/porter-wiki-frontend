@@ -81,7 +81,7 @@ Utils.setTitle(react.meta.title);
 				<RouterLink to="/" class="text-accent readMoreHover">Home</RouterLink>.
 			</BlockquoteNote>
 			<!-- note: we sort of dont want to route back to article creation so we could use the user's location instead -->
-			<RouterLink to="articlecreation" class="rounded-xl">
+			<RouterLink to="editor" class="rounded-xl">
 				<Button>
 					Create new article
 				</Button>

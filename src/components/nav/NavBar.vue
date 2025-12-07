@@ -24,7 +24,7 @@ const leftLinkList = [{
 	route: "/",
 	name: "Main Page",
 }, {
-	route: "",
+	route: "/editor",
 	name: "Editor",
 }, {
 	route: "/wiki/contributing",
@@ -42,20 +42,21 @@ const rightLinkList = [{
 	name: "Mod Menu"
 }];
 
-if (API.user.loggedIn) rightLinkList.push({
-	route: "/settings",
-	name: "Settings",
-});
+if (API.user.loggedIn)
+	rightLinkList.push({
+		route: "/settings",
+		name: "Settings",
+	});
 
 // we basically "hook" info the anchor click
 // and if it's an internal link, we use the router
 function openLink(e, url) {
 	e.preventDefault();
 
-	if (url.startsWith('/') || url.startsWith("#")) {
+	if (url.startsWith("/") || url.startsWith("#")) {
 		router.push(url);
 	} else {
-		window.open(url, '_blank');
+		window.open(url, "_blank");
 	}
 
 	togNav(false);
@@ -105,7 +106,7 @@ onMounted(() => {
 		</nav>
 		<Transition name="fade">
 			<div v-if="isOpen" @click="togNav(false)"
-				class="fixed -z-10 top-16 bg-background-1/50 h-full backdrop-blur-xs md:mx-4 w-screen md:w-layout-width rounded-t-2xl">
+				class="fixed -z-10 top-16 bg-background-1/50 h-full backdrop-blur-sm md:mx-4 w-screen md:w-layout-width rounded-t-2xl">
 			</div>
 		</Transition>
 		<Transition name="slidedown-fade">

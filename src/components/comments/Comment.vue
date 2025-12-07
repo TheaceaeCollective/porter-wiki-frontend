@@ -1,22 +1,32 @@
 <script setup>
-import { reactive, inject } from 'vue';
-import { useRoute } from 'vue-router';
-import { PhArrowClockwise, PhArrowFatUp, PhArrowFatDown, PhArrowBendUpLeft, PhDotsThree, PhPencil, PhTrash, PhLink, PhFlag } from '@phosphor-icons/vue';
+import { reactive, inject } from "vue";
+import { useRoute } from "vue-router";
+import {
+	PhArrowClockwise,
+	PhArrowFatUp,
+	PhArrowFatDown,
+	PhArrowBendUpLeft,
+	PhDotsThree,
+	PhPencil,
+	PhTrash,
+	PhLink,
+	PhFlag,
+} from "@phosphor-icons/vue";
 
-import Toast from '@/utils/Toast';
+import Toast from "@/utils/Toast";
 import API from "@/utils/API";
-import Formatting from '@/utils/Formatting';
+import Formatting from "@/utils/Formatting";
 
 import Logo from "@/assets/images/avatar.png";
-import GradientLine from '../GradientLine.vue';
+import GradientLine from "../GradientLine.vue";
 
-import MarkdownUtils from '@/utils/MarkdownUtils';
-import MarkdownView from '../md/MarkdownView.vue';
+import MarkdownUtils from "@/utils/MarkdownUtils";
+import MarkdownView from "../md/MarkdownView.vue";
 
-import NewComment from './NewComment.vue';
-import Button from '../buttons/Button.vue';
-import PopupOverlay from '@/overlays/popup/PopupOverlay.vue';
-import Events from '@/utils/Events';
+import NewComment from "./NewComment.vue";
+import Button from "@/components/buttons/Button.vue";
+import PopupOverlay from "@/overlays/popup/PopupOverlay.vue";
+import Events from "@/utils/Events";
 
 const route = useRoute();
 
@@ -26,15 +36,15 @@ const props = defineProps({
 	comment: {
 		type: Object,
 		default: {},
-		required: true
-	}
+		required: true,
+	},
 });
 
 // Popup
 const popup = reactive({
 	content: "",
 	clickYes: () => { },
-	clickNo: () => { }
+	clickNo: () => { },
 });
 const btnAction = (ClosePopup, callback) => {
 	if (callback) callback();
@@ -55,13 +65,14 @@ const chngMoreActions = () => {
 };
 
 const commentAction = (action, options) => {
-	if (API.user.loggedIn && action == 0) { // Vote on comment
+	if (API.user.loggedIn && action == 0) {
+		// Vote on comment
 		const { type } = options;
 
 		let oldVotes = {
 			vote: comment.vote,
 			ups: comment.ups,
-			downs: comment.downs
+			downs: comment.downs,
 		};
 
 		if (oldVotes.vote == type) return;
@@ -69,38 +80,43 @@ const commentAction = (action, options) => {
 		if (type == 0) {
 			if (oldVotes.vote == 1) comment.ups--;
 			else comment.downs--;
-
 		} else {
 			if (oldVotes.vote == 1) comment.ups--;
 			else if (oldVotes.vote == -1) comment.downs--;
 
 			if (type == 1) comment.ups++;
 			else if (type == -1) comment.downs++;
-		};
+		}
 
 		comment.vote = type;
-		API.post(`/comments/${comment.id}/votes`, { vote: type }).then(res => {
-			if (res.status != 204) {
-				Toast.showToast("Failed to cast your vote! Please try again.", { type: "error" });
-				// Restore original data
-				comment.vote = oldVotes.vote;
-				comment.ups = oldVotes.ups;
-				comment.downs = oldVotes.downs;
-				return;
-			};
-		});
-
-	} else if (API.user.loggedIn && action == 1) { // Reply
+		API.post(`/comments/${comment.id}/votes`, { vote: type }).then(
+			(res) => {
+				if (res.status != 204) {
+					Toast.showToast(
+						"Failed to cast your vote! Please try again.",
+						{ type: "error" }
+					);
+					// Restore original data
+					comment.vote = oldVotes.vote;
+					comment.ups = oldVotes.ups;
+					comment.downs = oldVotes.downs;
+					return;
+				}
+			}
+		);
+	} else if (API.user.loggedIn && action == 1) {
+		// Reply
 		if (options) {
 			comment.isReplying = options.isReplying;
 		} else {
 			comment.isReplying = !comment.isReplying;
-		};
+		}
 		if (!comment.isReplying) {
 			comment.hovered = false;
 			comment.moreActions = false;
-		};
-	} else if (API.user.loggedIn && action == 2) { // Edit
+		}
+	} else if (API.user.loggedIn && action == 2) {
+		// Edit
 		if (options) {
 			comment.isLoading = options.isLoading;
 			comment.isEditing = options.isEditing;
@@ -108,53 +124,82 @@ const commentAction = (action, options) => {
 
 			if (comment.content != options.content) {
 				comment.content = options.content;
-				updateComment(comment.content);
-				if (comment.content.length > MAX_COMMENT_LENGTH) comment.showMore = false;
-			};
+				updateComment(comment.content).then(() => {
+					if (comment.content.length > MAX_COMMENT_LENGTH)
+						comment.showMore = false;
+				});
+			}
 		} else {
 			comment.isEditing = !comment.isEditing;
-		};
+		}
 
 		if (!comment.isEditing) {
 			comment.hovered = false;
 			comment.moreActions = false;
-		};
-
-	} else if (API.user.loggedIn && action == 3) { // Delete
+		}
+	} else if (API.user.loggedIn && action == 3) {
+		// Delete
 		comment.isLoading = true;
 		popup.content = `Are you sure you want to delete the comment?\nID: ${comment.id}\nAuthor: ${comment.author?.name}\nContent: ${comment.content}`;
-		popup.clickNo = () => { comment.isLoading = false; };
+		popup.clickNo = () => {
+			comment.isLoading = false;
+		};
 		popup.clickYes = () => {
-			API.delete(`/comments/${comment.id}`).then(res => {
+			API.delete(`/comments/${comment.id}`).then((res) => {
 				comment.isLoading = false;
 				if (res.status != 200) {
-					Toast.showToast("Failed to delete the comment! Please try again.", { type: "error" });
+					Toast.showToast(
+						"Failed to delete the comment! Please try again.",
+						{ type: "error" }
+					);
 				} else {
 					comment.isDeleted = true;
 
 					if (comment.author.id === API.user.id) API.user.comments--;
 					comment.author = { id: 0, name: "[deleted]", color: "" };
 
-					let commentIndex = commentSystem.value.cache.findIndex(c => c.id === comment.id);
-					if (commentIndex == null || commentIndex == undefined) return;
-					commentSystem.value.cache[commentIndex] = { ...commentSystem.value.cache[commentIndex], author: undefined, content: undefined };
-
-				};
+					let commentIndex = commentSystem.value.cache.findIndex(
+						(c) => c.id === comment.id
+					);
+					if (commentIndex == null || commentIndex == undefined)
+						return;
+					commentSystem.value.cache[commentIndex] = {
+						...commentSystem.value.cache[commentIndex],
+						author: undefined,
+						content: undefined,
+					};
+				}
 			});
 		};
-		Events.Register(`popup-comment-${comment.id}-confirmation-closeComplete`, popup.clickNo);
+		Events.Register(
+			`popup-comment-${comment.id}-confirmation-closeComplete`,
+			popup.clickNo
+		);
 		Events.Emit(`popup-comment-${comment.id}-confirmation`);
-	} else if (action == 4) { // Copy to clipboard
+	} else if (action == 4) {
+		// Copy to clipboard
 		const url = `${route.fullPath.split("#")[0]}#comment-${comment.id}`;
 
 		if (!navigator.clipboard) {
-			Toast.showToast("Your browser does not support copying to the clipboard, sorry.", { type: "error" });
+			Toast.showToast(
+				"Your browser does not support copying to the clipboard, sorry.",
+				{ type: "error" }
+			);
 			return;
-		};
+		}
 
-		navigator.clipboard.writeText(`${window.location.protocol}//${window.location.host}${url}`)
-			.then(() => Toast.showToast("Copied to clipboard!", { type: "success" }))
-			.catch((err) => Toast.showToast("Error occurred copying to clipboard.", { type: "error" }));
+		navigator.clipboard
+			.writeText(
+				`${window.location.protocol}//${window.location.host}${url}`
+			)
+			.then(() =>
+				Toast.showToast("Copied to clipboard!", { type: "success" })
+			)
+			.catch((err) =>
+				Toast.showToast("Error occurred copying to clipboard.", {
+					type: "error",
+				})
+			);
 
 		chngMoreActions(); // Close dropdown
 	} else {
@@ -163,22 +208,26 @@ const commentAction = (action, options) => {
 	}
 };
 
-const fixAvatar = (e) => e.target.src = Logo;
+const fixAvatar = (e) => (e.target.src = Logo);
 
-const commentTime = Formatting.convertHumanFromStamp((Date.now() / 1000) - comment.time);
+const commentTime = Formatting.convertHumanFromStamp(
+	Date.now() / 1000 - comment.time
+);
 
 if (comment.isDeleted) comment.author = { id: 0, name: "[deleted]", color: "" };
 
 // TODO: Don't use this one as it renders articles, which comments should have more restrictions.
-const updateComment = (content) => {
+const updateComment = async (content) => {
 	var md = MarkdownUtils.parse({ meta: {}, content });
-	comment.renderedContent = MarkdownUtils.render(md.content, false);
+	comment.renderedContent = await MarkdownUtils.render(md.content, false);
 };
 
 if (comment && comment.content?.length > 0) {
-	updateComment(comment.content);
-	if (comment.content.length > MAX_COMMENT_LENGTH) comment.showMore = false;
-};
+	updateComment(comment.content).then(() => {
+		if (comment.content.length > MAX_COMMENT_LENGTH)
+			comment.showMore = false;
+	});
+}
 </script>
 
 <template class="flex flex-col">
@@ -188,10 +237,11 @@ if (comment && comment.content?.length > 0) {
 		</div>
 	</div>
 
-	<div :class="`${(comment.isReplying || comment.isEditing) ? 'bg-background-3' : ''} hover:bg-background-3 p-2 flex gap-3 w-full rounded-xl`"
-		@mouseover="changeHover(true)" @mouseleave="changeHover(false)" :id="`comment-${comment.id}`">
+	<div :class="`${comment.isReplying || comment.isEditing ? 'bg-background-3' : ''
+		} hover:bg-background-3 p-2 flex gap-3 w-full rounded-xl`" @mouseover="changeHover(true)"
+		@mouseleave="changeHover(false)" :id="`comment-${comment.id}`">
 		<div v-if="comment.isReply">
-			<GradientLine lineStyle="vert" :overshoot="false" class="h-14!" />
+			<GradientLine lineStyle="vert" :overshoot="false" class="!h-14" />
 		</div>
 		<div class="flex flex-col gap-2">
 			<img alt="Avatar" :class="`rounded-2xl border-2 h-14 min-w-14`" :src="comment.author.avatar || Logo"
@@ -200,15 +250,21 @@ if (comment && comment.content?.length > 0) {
 		<div class="flex flex-col w-full">
 			<div class="flex text-xl justify-between items-center align-middle relative">
 				<div class="text-primary">
-					<span class="font-bold">{{ comment.author.nick || comment.author.name }}</span>
+					<span class="font-bold">{{
+						comment.author.nick || comment.author.name
+					}}</span>
 					<span class="text-light-gray text-base gap-2">&nbsp;@{{ comment.author.name }}
 						&nbsp;&#8226;&nbsp;
-						<span v-if="comment.author.staff" class="rounded-sm py-[2px] px-2 font-medium"
+						<span v-if="comment.author.staff" class="rounded py-[2px] px-2 font-medium"
 							:style="{ backgroundColor: comment.author.color }">{{ comment.author.position }}</span>
 						<span v-if="comment.author.staff">&nbsp;&nbsp;&#8226;&nbsp;</span>
 						{{ Formatting.formatDate(comment.time) }}
 						-
-						{{ commentTime + "" + (commentTime != "just now" ? " ago" : "") }}
+						{{
+							commentTime +
+							"" +
+							(commentTime != "just now" ? " ago" : "")
+						}}
 						{{ comment.edited ? " (edited)" : "" }}
 					</span>
 				</div>
@@ -218,11 +274,11 @@ if (comment && comment.content?.length > 0) {
 					<div class="absolute mt-1 h-fit flex flex-col bg-background-1 w-fit rounded-md"
 						v-if="comment.moreActions">
 						<span @click="commentAction(4)"
-							class="flex text-light-gray cursor-pointer align-middle items-center gap-1 text-base rounded-xs px-2 hover:text-white hover:bg-gray py-1">
+							class="flex text-light-gray cursor-pointer align-middle items-center gap-1 text-base rounded-sm px-2 hover:text-white hover:bg-gray py-1">
 							<PhLink /> Link
 						</span>
 						<span v-if="!comment.isDeleted" @click="commentAction(5)"
-							class="flex text-red cursor-pointer align-middle items-center gap-1 text-base rounded-xs px-2 hover:text-white hover:bg-gray py-1">
+							class="flex text-red cursor-pointer align-middle items-center gap-1 text-base rounded-sm px-2 hover:text-white hover:bg-gray py-1">
 							<PhFlag /> Report
 						</span>
 					</div>
@@ -298,11 +354,9 @@ if (comment && comment.content?.length > 0) {
 
 	<slot name="replyBox" v-if="comment.isReplying">
 		<NewComment :commentParent="comment.id" :loaded="!comment.isLoading"
-			:extraSubmit="data => commentAction(1, data)" />
+			:extraSubmit="(data) => commentAction(1, data)" />
 	</slot>
-	<slot name="replies">
-	</slot>
-
+	<slot name="replies"> </slot>
 </template>
 
 <style lang="scss">
