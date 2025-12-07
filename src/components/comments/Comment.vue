@@ -24,7 +24,7 @@ import MarkdownUtils from "@/utils/MarkdownUtils";
 import MarkdownView from "../md/MarkdownView.vue";
 
 import NewComment from "./NewComment.vue";
-import Button from "../Button.vue";
+import Button from "@/components/buttons/Button.vue";
 import PopupOverlay from "@/overlays/popup/PopupOverlay.vue";
 import Events from "@/utils/Events";
 
