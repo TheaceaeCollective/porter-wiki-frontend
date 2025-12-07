@@ -223,8 +223,12 @@ onMounted(() => {
                         </RouterLink>
                     </span>
                 </p>
-                <RouterLink :to="'/editor?path=' + `${route.path}` + '#source'"
-                    class="text-accent cursor-pointer readMoreHover">Edit this page!</RouterLink>
+                <div class="flex gap-2">
+                    <a :href='"https://github.com/theaceaecollective/porter-wiki-articles/edit/main" + `${route.path}` + "/en.md"'
+                        target="_blank" class="text-accent cursor-pointer readMoreHover">Edit on Github</a> |
+                    <RouterLink :to="'/editor?path=' + `${route.path}` + '#source'"
+                        class="text-accent cursor-pointer readMoreHover">Edit this page</RouterLink>
+                </div>
             </div>
             <div
                 class="w-full bg-background-1 rounded-lg p-4 flex flex-col md:flex-row justify-between items-center mb-4 gap-4">
