@@ -96,7 +96,7 @@ onMounted(() => {
 							<PhGlobe :size="28" />
 						</NavBarButton>
 						<!--if there ever gets anything added here, give it the 'middle' attribute-->
-						<NavBarButton last>
+						<NavBarButton last @click="Events.Emit('notificationoverlay')">
 							<PhBell :size="28" />
 						</NavBarButton>
 					</div>
