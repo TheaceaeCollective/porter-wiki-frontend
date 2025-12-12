@@ -29,7 +29,7 @@ const props = defineProps({
                     </div>
                     <span>Jan 6, 2024 - 12 minutes ago</span>
                 </div>
-                <span class="text-xl leading-6 font-light">shit needs to be refactored. this is also the old comment
+                <span class="text-xl leading-6 font-light">stuff needs to be refactored. this is also the old comment
                     design (dont use)</span>
             </div>
             <div class="flex flex-row justify-between">
