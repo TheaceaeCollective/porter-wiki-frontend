@@ -118,7 +118,7 @@ export default class MarkdownUtils {
             image: (href: string, title: string, text: string) => {
                 if (articleUrl) {
                     // Check for @ or /
-                    if (href.startsWith("@") || href.startsWith("/")) return `<MarkdownImage url="${href}" alt="${text}" />`;
+                    if (href.startsWith("@") || href.startsWith("/")) return `<MarkdownImage url="${Utils.fixCDNImages(href, articleUrl)}" alt="${text}" />`;
                 }
 
                 // Default
