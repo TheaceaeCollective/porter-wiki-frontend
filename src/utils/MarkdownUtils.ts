@@ -115,6 +115,7 @@ export default class MarkdownUtils {
 
                 return `<Blockquote>${quote}</Blockquote>`;
             },
+            // idk if this was fixed in the backend because fixCDNImages was like, completely removed lol
             image: (href: string, title: string, text: string) => {
                 if (articleUrl) {
                     // Check for @ or /

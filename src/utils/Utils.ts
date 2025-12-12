@@ -27,4 +27,17 @@ export default class Utils {
         const lastSpaceIndex = truncated.lastIndexOf(" ");
         return truncated.slice(0, lastSpaceIndex) + "...";
     };
+
+    static fixCDNImages(image, articlePath) {
+        if (!image) return;
+    
+        // Check for @ - this will load article media from the CDN root
+        if (image.startsWith("@")) image = `${Config.cdnURL}/${image.slice(1)}`;
+    
+        // Check for / - this will load article media from the CDN article directory
+        if (articlePath && image.startsWith("/")) image = `${Config.cdnURL}/articles/${articlePath.split("/").pop()}/${image.slice(1)}`;
+    
+         return image;
+    }
+    
 }
