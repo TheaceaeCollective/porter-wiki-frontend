@@ -1,13 +1,18 @@
+<script setup lang="ts">
+import { onMounted, ref } from 'vue';
+const currentLocation = ref('');
+onMounted(() => {
+    currentLocation.value = window.location.origin;
+});
+</script>
+
 <template>
-    <a href="https://discord.gg/nUeRyRtDYC" target="_blank"
+    <a :href="`${currentLocation}/news/gardens-wiki`"
         class="sticky bottom-0 bg-cover bg-center bg-no-repeat w-full bg-red flex items-center justify-center overflow-hidden z-10 print:hidden">
         <div id="dim"
             class="relative w-full py-2 inset-0 flex justify-center items-center transition-background duration-400 bg-black/20">
-            <p class="font-bold text-center text-white text-">This site is still in pre-alpha. If you
-                wish
-                to give
-                feedback or help,
-                contact me @papertek or join the Discord.</p>
+            <p class="font-bold text-center text-white">The site is no longer in development due to our priorities
+                being elsewhere. Don't fret, we're just migrating! Click here for info.</p>
         </div>
     </a>
 </template>
