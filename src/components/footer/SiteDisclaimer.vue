@@ -7,6 +7,13 @@ onMounted(() => {
 </script>
 
 <template>
+    <a href="https://forms.gle/bGju6qJZ6WZdGewb6" target="_blank"
+        class="sticky bottom-10 bg-cover bg-center bg-no-repeat w-full bg-userfeedback-success flex items-center justify-center overflow-hidden z-10 print:hidden">
+        <div id="dim"
+            class="relative w-full py-2 inset-0 flex justify-center items-center transition-background duration-400 bg-black/20">
+            <p class="font-bold text-center text-white">We're hiring! Click here to fill out an application.</p>
+        </div>
+    </a>
     <a :href="`${currentLocation}/news/gardens-wiki`"
         class="sticky bottom-0 bg-cover bg-center bg-no-repeat w-full bg-red flex items-center justify-center overflow-hidden z-10 print:hidden">
         <div id="dim"
