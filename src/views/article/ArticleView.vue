@@ -46,7 +46,7 @@ onMounted(() => {
     let articleUrl = `/articles/${path}`;
     let routeHash = route.hash?.split("#").filter((e) => e.length > 0);
 
-    if (path === "style-test") {
+    if (path === "blockquote-test") {
         articleUrl = "http://localhost:5173/src/assets/tests/blockquote-test.md"; // can be replaced with md files in the tests folder
 
         fetch(articleUrl)
@@ -61,7 +61,24 @@ onMounted(() => {
                 react.sections = md.sections;
                 react.loaded = true; // nuke loading since we got something now!
             });
-    } else {
+    }
+    else if (path == "style-test") {
+        articleUrl = "http://localhost:5173/src/assets/tests/style-test.md";
+
+        fetch(articleUrl)
+            .then((response) => response.text())
+            .then(async (text) => {
+                var md = MarkdownUtils.parse({ meta: {}, content: text });
+                console.log(text, md);
+
+                Utils.setTitle("Style Test 2");
+
+                react.article = await MarkdownUtils.render(md.content, articleUrl, true);
+                react.sections = md.sections;
+                react.loaded = true; // nuke loading since we got something now!
+            });
+    }
+    else {
         // uncomment the setTimeout to simulate long loading
         // setTimeout(() => {
         API.get(articleUrl)
