@@ -33,19 +33,6 @@ const handleKeyDown = (e) => {
 onMounted(() => {
 	API.fetchUser();
 
-	// fix up this shit at a later time - john
-	// const [initBodyOverlayScrollBars] = useOverlayScrollbars({
-	// 	defer: true,
-	// 	options: {
-	// 		scrollbars: {
-	// 			theme: 'os-theme-light',
-	// 			clickScroll: true,
-	// 		},
-	// 	},
-	// });
-
-	// initBodyOverlayScrollBars(document.body);
-
 	window.addEventListener("keydown", handleKeyDown);
 
 	// Load Ko-Fi
