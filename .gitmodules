@@ -1,0 +1,6 @@
+[submodule "porter-wiki-backend"]
+	path = porter-wiki-backend
+	url = https://github.com/SolyncSoftware/porter-wiki-backend.git
+[submodule "porter-wiki-articles"]
+	path = porter-wiki-articles
+	url = https://github.com/SolyncSoftware/porter-wiki-articles.git
