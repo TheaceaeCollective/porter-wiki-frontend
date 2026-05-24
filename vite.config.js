@@ -57,11 +57,11 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
         plugins,
         resolve,
         ssr: ['build'].includes(command),
-        server: {
-            allowedHosts: ['potaro.wiki', '.potaro.wiki'],
-            fs: {
-                strict: false,
-            },
-        },
+        // server: {
+        //     allowedHosts: ['potaro.wiki', '.potaro.wiki'],
+        //     fs: {
+        //         strict: false,
+        //     },
+        // },
     }
 })
