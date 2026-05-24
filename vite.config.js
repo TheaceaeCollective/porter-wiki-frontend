@@ -59,6 +59,9 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
         ssr: ['build'].includes(command),
         server: {
             allowedHosts: ['potaro.wiki', '.potaro.wiki'],
+            fs: {
+                strict: false,
+            },
         },
     }
 })
