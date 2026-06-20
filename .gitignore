@@ -31,3 +31,4 @@ coverage
 
 # Other files
 package-lock.json
+.fake
