@@ -16,7 +16,7 @@ onMounted(() => {
         </div>
     </a> -->
     <a href="https://forms.gle/bGju6qJZ6WZdGewb6" target="_blank"
-        class="sticky bottom-0 bg-cover bg-center bg-no-repeat w-full bg-userfeedback-info flex items-center justify-center overflow-hidden z-10 print:hidden">
+        class="sticky bottom-0 bg-cover bg-center bg-no-repeat w-full bg-[#F36647] flex items-center justify-center overflow-hidden z-10 print:hidden">
         <div id="dim"
             class="relative w-full py-2 inset-0 flex justify-center items-center transition-background duration-400 bg-black/20">
             <p class="font-bold text-center text-white">Looking for people for our team. Click here to apply! :]
