@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="300" alt="wiki logo" src="https://raw.githubusercontent.com/TheaceaeCollective/porter-wiki-frontend/refs/heads/alpha/src/assets/images/wikilogo.png">
+  <img width="300" alt="wiki logo" src="https://raw.githubusercontent.com/SolyncSoftware/porter-wiki-frontend/refs/heads/alpha/src/assets/images/wikilogo.png">
 </p>
 
 # Porter Robinson Wiki (Frontend)
@@ -14,7 +14,7 @@
 ## Articles
 
 > [!NOTE]
-> We have moved articles to [their own repository](https://github.com/theaceaecollective/porter-wiki-articles).
+> We have moved articles to [their own repository](https://github.com/SolyncSoftware/porter-wiki-articles).
 >
 > Please do not move or place articles on the frontend repo. Thanks!
 
@@ -25,7 +25,7 @@
 
 To begin development and testing locally, please follow these steps in your terminal of choice:
 
-1. Clone the repo by running `git clone https://github.com/theaceaecollective/porter-wiki-frontend`.
+1. Clone the repo by running `git clone https://github.com/SolyncSoftware/porter-wiki-frontend`.
 2. Go inside the newly cloned folder (`cd porter-wiki-frontend`).
 3. Run `npm i` to install the packages.
 4. Great! Now run `npm run dev` to run the development server.
